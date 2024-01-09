@@ -8,6 +8,10 @@ export default {
     extend: {
       colors: {
         'whitesmoke': '#f5f5f5',
+        'emerald': '#00BD5E',
+        'springgreen': '#00FF7F',
+        'jet': '#333333',
+        'platinum': '#DADADA',
       },
     },
   },
