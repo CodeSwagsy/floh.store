@@ -1,7 +1,7 @@
 ﻿
-import {Product} from "./Product.jsx";
+import {ProductComponent} from "./product.component.jsx";
 
-export const ProductSections = ({ products }) => {
+export const ProductSectionComponent = ({ products }) => {
   const maxVisibleProducts = 5;
 
 
@@ -24,7 +24,7 @@ export const ProductSections = ({ products }) => {
       <h2 className="text-2xl mb-[10px]">New Products</h2>
       <div className="flex gap-2.5 py-2.5">
         {products.slice(0, maxVisibleProducts).map((product) => (
-          <Product key={product.id} product={product} />
+          <ProductComponent key={product.id} product={product} />
         ))}
       </div>
     </div>

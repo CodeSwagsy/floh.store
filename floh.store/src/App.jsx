@@ -1,12 +1,17 @@
 import "./App.css";
-import { HeaderComponent } from "./components/header/header.component.jsx";
+import {HeaderComponent} from "./components/header/header.component.jsx";
+import {HeroComponent} from "./components/hero/hero.component.jsx";
+import {products} from "./components/productSection/product.data.jsx";
+import {ProductSectionComponent} from "./components/productSection/productsection.component.jsx";
 
 function App() {
-  return (
-    <>
-      <HeaderComponent />
-    </>
-  );
+    return (
+        <>
+            <HeaderComponent/>
+            <HeroComponent/>
+            <ProductSectionComponent products={products}/>
+        </>
+    );
 }
 
 export default App;
