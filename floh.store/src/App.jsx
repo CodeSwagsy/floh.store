@@ -1,12 +1,14 @@
-import './App.css'
-import {HeaderComponent} from "./components/header/header.component.jsx";
+import "./App.css";
+import { HeroComponent } from "./components/header/hero.component.jsx";
+import { HeaderComponent } from "./components/header/header.component.jsx";
 
 function App() {
-    return (
-        <>
-            <HeaderComponent/>
-        </>
-    )
+  return (
+    <>
+      <HeaderComponent />
+      <HeroComponent />
+    </>
+  );
 }
 
-export default App
+export default App;
