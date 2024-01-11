@@ -1,8 +1,7 @@
-﻿// ProductSections.jsx
-import React from 'react';
-import Product from './Product';
+﻿
+import {Product} from "./Product.jsx";
 
-const ProductSections = ({ products }) => {
+export const ProductSections = ({ products }) => {
   const maxVisibleProducts = 5;
 
 
@@ -32,4 +31,3 @@ const ProductSections = ({ products }) => {
   );
 };
 
-export { ProductSections };
