@@ -6,15 +6,7 @@ const Product = ({ product }) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
-  const productStyle = {
-    backgroundColor: '#F5F5F5',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '10px',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-  };
+
 
   const imageStyle = {
     width: '165px',
@@ -48,7 +40,7 @@ const Product = ({ product }) => {
 
   return (
     <div
-      style={productStyle}
+      style={productStyle} className="bg-whitesmoke flex flex-col items-center p-2.5 border rounded-lg"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
