@@ -1,26 +1,30 @@
 import {NavComponent} from "./nav.component.jsx";
 import {CategoryComponent} from "./category.component.jsx";
 import {SearchfieldComponent} from "./searchfield.component.jsx";
-import {ButtonComponent} from "./button.component.jsx";
+import {LinkButtonComponent} from "./button.component.jsx";
+import {Link} from "react-router-dom";
 
 export function HeaderComponent() {
     return (
         <header>
-            <div className="container mx-auto bg-whitesmoke">  {/*whitesmoke im css als body!*/}
-                <div className="flex flex-row items-center justify-around mt-2 lg:mt-8">
-                    <img src="/logo.svg" alt="Floh.store" className=""/>
+            <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">  {/*whitesmoke im css als body!*/}
+                <div className="flex flex-row items-center justify-around mt-2 lg:mt-4">
+                    <Link to="/">
+                        <img src="/logo.svg" alt="Floh.store" className=""/>
+                    </Link>
                     <div className="flex flex-row justify-center gap-8 max-lg:hidden">
                         <CategoryComponent additionalClasses=""/>
                         <SearchfieldComponent additionalClasses="grow"/>
                     </div>
-
-                    <ButtonComponent
+                    <LinkButtonComponent
                         text="+ Anzeige erstellen"
                         additionalClasses="max-lg:w-4/12 max-lg:py-2"
+                        link="/products/add"
                     />
-                    <ButtonComponent
+                    <LinkButtonComponent
                         text="Login / Registrieren"
                         additionalClasses="max-lg:hidden"
+                        link="/profile/signin"
                     />
                     <NavComponent/>
                 </div>
