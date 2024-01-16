@@ -1,4 +1,5 @@
 import { ButtonComponent } from "../hero/button.component";
+import {Link} from "react-router-dom";
 
 export function SigninComponent() {
   return (
@@ -86,12 +87,12 @@ export function SigninComponent() {
         </div>
         <p className="mt-10 text-center text-sm text-gray-500">
           Noch kein mitglied?{" "}
-          <a
-            href="#"
+          <Link
+            to="/profile/register"
             className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
           >
             Jetzt Registrieren!
-          </a>
+          </Link>
         </p>
       </div>
     </div>
