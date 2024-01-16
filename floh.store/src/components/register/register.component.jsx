@@ -21,7 +21,7 @@ export function RegisterComponent() {
             >
               <option value="Herr">Herr</option>
               <option value="Frau">Frau</option>
-              <option value="KeineAngabe">Möchte ich nicht angeben</option>
+              <option value="KeineAngabe">Transformer</option>
             </select>
           </div>
           <form className="space-y-6" action="#" method="POST">
@@ -124,7 +124,7 @@ export function RegisterComponent() {
                 htmlFor="grid-street"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Straße
+                Straße/Hausnummer
               </label>
               <input
                 id="grid-street"
