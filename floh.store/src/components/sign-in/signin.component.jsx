@@ -75,8 +75,18 @@ export function SigninComponent() {
               <ButtonComponent text="Anmelden" spantxt="" />
             </div>
           </form>
+
           <div>
-            <div className="relative mt-10">
+            <div className="relative mt-10 pt-1">
+              <p className="mt-10 text-center text-sm text-gray-500">
+                Noch kein mitglied?{" "}
+                <a
+                  href="#"
+                  className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                >
+                  Jetzt Registrieren!
+                </a>
+              </p>
               <div
                 className="absolute inset-0 flex items-center"
                 aria-hidden="true"
@@ -86,15 +96,6 @@ export function SigninComponent() {
             </div>
           </div>
         </div>
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Noch kein mitglied?{" "}
-          <a
-            href="#"
-            className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
-          >
-            Jetzt Registrieren!
-          </a>
-        </p>
       </div>
     </div>
   );

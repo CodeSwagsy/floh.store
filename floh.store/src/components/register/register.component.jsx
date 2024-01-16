@@ -164,12 +164,21 @@ export function RegisterComponent() {
                 className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-10">
               <ButtonComponent text="Registrieren" />
             </div>
           </form>
           <div>
-            <div className="relative mt-10">
+            <div className="relative mt-10 pt-1">
+              <p className="mt-10 text-center text-sm text-gray-500 pt-0">
+                Noch kein mitglied?{" "}
+                <a
+                  href="#"
+                  className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                >
+                  Jetzt Registrieren!
+                </a>
+              </p>
               <div
                 className="absolute inset-0 flex items-center"
                 aria-hidden="true"
@@ -179,15 +188,6 @@ export function RegisterComponent() {
             </div>
           </div>
         </div>
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Bist du schon Mitglied?{" "}
-          <a
-            href="#"
-            className="font-semibold  text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
-          >
-            Melde dich mit deinem Konto an!
-          </a>
-        </p>
       </div>
     </div>
   );
