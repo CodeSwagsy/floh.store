@@ -1,6 +1,7 @@
 import {Fragment, useEffect, useRef, useState} from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { UserIcon } from '@heroicons/react/20/solid'
+import {Link} from "react-router-dom";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -54,57 +55,56 @@ export function NavComponent() {
                     <div className="py-1">
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/profile/favoriteproducts"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Meine Merkliste
-                                </a>
+                                </Link>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/profile/ownproducts"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Meine Verkäufe
-                                </a>
+                                </Link>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Meine Benachrichtigungen
-                                </a>
+                                </Link>
                             )}
                         </Menu.Item>
                     </div>                    <div className="py-1">
                     <form method="POST" action="#">
                         <Menu.Item>
                             {({ active }) => (
-                                <button
-                                    type="submit"
+                                <Link
+                                    to="/profile/settings"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        '' +
-                                        'block w-full px-4 py-2 text-left text-sm'
+                                        'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Profileinstellungen
-                                </button>
+                                </Link>
                             )}
                         </Menu.Item>
                     </form>
