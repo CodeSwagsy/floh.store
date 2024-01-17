@@ -1,5 +1,5 @@
 import { ButtonComponent } from "../hero/button.component";
-import {Link} from "react-router-dom";
+
 
 export function SigninComponent() {
   return (
@@ -15,7 +15,7 @@ export function SigninComponent() {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email addresse
+                Deine Email
               </label>
               <div className="mt-2">
                 <input
@@ -24,7 +24,8 @@ export function SigninComponent() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  placeholder="Email@adresse.com"
+                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -40,9 +41,10 @@ export function SigninComponent() {
                   id="password"
                   name="password"
                   type="password"
+                  placeholder=" ••••••••"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -52,7 +54,7 @@ export function SigninComponent() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  className="h-4 w-4 rounded border-0 text-indigo-600 focus:ring-indigo-600"
                 />
                 <label
                   htmlFor="remember-me"
@@ -74,8 +76,18 @@ export function SigninComponent() {
               <ButtonComponent text="Anmelden" spantxt="" />
             </div>
           </form>
+
           <div>
-            <div className="relative mt-10">
+            <div className="relative mt-10 pt-1">
+              <p className="mt-10 text-center text-sm text-gray-500">
+                Noch kein mitglied?{" "}
+                <a
+                  href="#"
+                  className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                >
+                  Jetzt Registrieren!
+                </a>
+              </p>
               <div
                 className="absolute inset-0 flex items-center"
                 aria-hidden="true"
@@ -85,15 +97,7 @@ export function SigninComponent() {
             </div>
           </div>
         </div>
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Noch kein mitglied?{" "}
-          <Link
-            to="/profile/register"
-            className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
-          >
-            Jetzt Registrieren!
-          </Link>
-        </p>
+
       </div>
     </div>
   );
