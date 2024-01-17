@@ -10,9 +10,9 @@ export function HeaderComponent() {
             <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">  {/*whitesmoke im css als body!*/}
                 <div className="flex flex-row items-center justify-around mt-2 lg:mt-4">
                     <Link to="/">
-                        <img src="/logo.svg" alt="Floh.store" className=""/>
+                        <img src="/logo.svg" alt="Floh.store" className="mt-2"/>
                     </Link>
-                    <div className="flex flex-row justify-center gap-8 max-lg:hidden">
+                    <div className="flex flex-row xl:w-6/12 justify-center gap-8 max-lg:hidden">
                         <CategoryComponent additionalClasses=""/>
                         <SearchfieldComponent additionalClasses="grow"/>
                     </div>
