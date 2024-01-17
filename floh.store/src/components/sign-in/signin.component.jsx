@@ -72,12 +72,12 @@ export function SigninComponent() {
                 </Link>
               </div>
             </div>
-            <div className="flex w-full justify-center rounded-md">
+            <div className="pb-8  flex w-full justify-center rounded-md">
               <ButtonComponent text="Anmelden" spantxt="" />
             </div>
           </form>
           <div>
-            <div className="w-full border-t border-gray-200"> </div>
+            <div className=" pb-0 w-full border-t border-gray-200"> </div>
             <p className="mt-10 text-center text-sm text-gray-500">
               Noch kein mitglied?{" "}
               <Link
