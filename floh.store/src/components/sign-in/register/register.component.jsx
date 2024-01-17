@@ -201,11 +201,11 @@ export function RegisterComponent() {
                   to="#"
                   className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
-                  Allgemeine Geschäftsbedingungen!
+                  (AGB's)!
                 </Link>
               </label>
             </div>
-            <div className="flex justify-center pt-6">
+            <div className="pb-8 flex justify-center pt-6">
               <ButtonComponent text="Registrieren" />
             </div>
           </form>
@@ -213,12 +213,12 @@ export function RegisterComponent() {
           <div>
             <div className="w-full border-t border-gray-200"> </div>
             <p className="mt-10 text-center text-sm text-gray-500">
-              Noch kein mitglied?{" "}
+              Du bist schon mitglied?{" "}
               <Link
-                to="/profile/register"
+                to="/profile/signin"
                 className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
               >
-                Jetzt Registrieren!
+                Jetzt mit deinem Konto Anmelden!
               </Link>
             </p>
           </div>
