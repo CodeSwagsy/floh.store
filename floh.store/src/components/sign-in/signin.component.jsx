@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import { ButtonComponent } from "../hero/button.component";
-
 
 export function SigninComponent() {
   return (
@@ -64,12 +64,12 @@ export function SigninComponent() {
                 </label>
               </div>
               <div className="text-sm leading-6">
-                <a
-                  href="#"
-                  className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                <Link
+                  to="/profile/register"
+                  className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
                   Passwort vergessen?
-                </a>
+                </Link>
               </div>
             </div>
             <div className="flex w-full justify-center rounded-md">
@@ -81,12 +81,12 @@ export function SigninComponent() {
             <div className="relative mt-10 pt-1">
               <p className="mt-10 text-center text-sm text-gray-500">
                 Noch kein mitglied?{" "}
-                <a
-                  href="#"
+                <Link
+                  to="/profile/register"
                   className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
                   Jetzt Registrieren!
-                </a>
+                </Link>
               </p>
               <div
                 className="absolute inset-0 flex items-center"
@@ -97,7 +97,6 @@ export function SigninComponent() {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
