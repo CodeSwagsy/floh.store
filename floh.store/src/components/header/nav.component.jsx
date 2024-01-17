@@ -1,41 +1,52 @@
+
 import {Fragment, useEffect, useRef, useState} from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { UserIcon } from '@heroicons/react/20/solid'
+import {Link} from "react-router-dom";
+
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export function NavComponent() {
-    const [isActive, setIsActive] = useState(false);
-    const menuRef = useRef(null);
+  const [isActive, setIsActive] = useState(false);
+  const menuRef = useRef(null);
 
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
-                setIsActive(false);
-            }
-        }
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsActive(false);
+      }
+    }
 
-        document.addEventListener('click', handleClickOutside);
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    }, []);
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-    return (
-        <Menu as="div" className="relative inline-block text-left group" ref={menuRef}>
-            <div>
-                <Menu.Button
-                    className="inline-flex w-full items-center justify-center gap-x-1.5 rounded-lg bg-white  max-lg:p-2.5 lg:max-xl:p-0.5 lg:max-xl:mt-[4px] p-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-jet"
-                    onClick={() => setIsActive(!isActive)}
-                >
-                    <UserIcon
-                        className={classNames('h-5 w-5', isActive ? 'text-emerald' : 'text-jet')}
-                        aria-hidden="true"
-                    />
-                </Menu.Button>
-            </div>
+  return (
+    <Menu
+      as="div"
+      className="relative inline-block text-left group"
+      ref={menuRef}
+    >
+      <div>
+        <Menu.Button
+          className="inline-flex w-full items-center justify-center gap-x-1.5 rounded-lg bg-white  max-lg:p-2.5 lg:max-xl:p-0.5 lg:max-xl:mt-[4px] p-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-jet"
+          onClick={() => setIsActive(!isActive)}
+        >
+          <UserIcon
+            className={classNames(
+              "h-5 w-5",
+              isActive ? "text-emerald" : "text-jet"
+            )}
+            aria-hidden="true"
+          />
+        </Menu.Button>
+      </div>
+
 
             <Transition
                 as={Fragment}
@@ -54,57 +65,56 @@ export function NavComponent() {
                     <div className="py-1">
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/profile/favoriteproducts"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Meine Merkliste
-                                </a>
+                                </Link>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/profile/ownproducts"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Meine Verkäufe
-                                </a>
+                                </Link>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                         'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Meine Benachrichtigungen
-                                </a>
+                                </Link>
                             )}
                         </Menu.Item>
                     </div>                    <div className="py-1">
                     <form method="POST" action="#">
                         <Menu.Item>
                             {({ active }) => (
-                                <button
-                                    type="submit"
+                                <Link
+                                    to="/profile/settings"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        '' +
-                                        'block w-full px-4 py-2 text-left text-sm'
+                                        'block px-4 py-2 text-sm'
                                     )}
                                 >
                                     Profileinstellungen
-                                </button>
+                                </Link>
                             )}
                         </Menu.Item>
                     </form>
@@ -131,4 +141,5 @@ export function NavComponent() {
             </Transition>
         </Menu>
     )
+
 }
