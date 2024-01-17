@@ -1,5 +1,5 @@
-import "./App.css";
 
+import "./App.css";
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 import {IndexContainer} from "./routes/Index/index.container.jsx";
 import {ProfileContainer} from "./routes/Profile/profile.container.jsx";
