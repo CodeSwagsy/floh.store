@@ -8,11 +8,13 @@ export function RegisterComponent() {
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-10">
             Registrieren
           </h2>
-          <div className="w-24">
+          <div className="w-24 py-4">
             <label
               htmlFor="gender"
               className="block  text-sm font-medium leading-6 text-gray-900"
-            ></label>
+            >
+              Anrede
+            </label>
             <select
               id="gender"
               name="gender"
@@ -28,35 +30,36 @@ export function RegisterComponent() {
             <div className="flex space-x-6">
               <div className="w-1/2">
                 <label
-                  htmlFor="grid-first-name"
+                  htmlFor="grid-name"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Vorname
+                  Username
                 </label>
                 <input
-                  id="grid-first-name"
-                  name="grid-first-name"
+                  id="grid-username"
+                  name="grid-username"
                   type="text"
-                  placeholder="Vorname"
+                  placeholder="Username"
                   className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
               <div className="w-1/2">
                 <label
-                  htmlFor="grid-last-name"
+                  htmlFor="grid-name"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Nachname
+                  Name
                 </label>
                 <input
-                  id="grid-last-name"
-                  name="grid-last-name"
+                  id="grid-name"
+                  name="grid-name"
                   type="text"
-                  placeholder="Nachname"
+                  placeholder="name"
                   className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
+
             <div>
               <label
                 htmlFor="grid-street"
@@ -90,21 +93,6 @@ export function RegisterComponent() {
             <div className="flex space-x-6">
               <div className="w-1/2">
                 <label
-                  htmlFor="grid-city"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Stadt
-                </label>
-                <input
-                  id="grid-city"
-                  name="grid-city"
-                  type="text"
-                  placeholder="Stadt"
-                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-              <div className="w-1/2">
-                <label
                   htmlFor="grid-zip"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
@@ -118,21 +106,53 @@ export function RegisterComponent() {
                   className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
+              <div className="w-1/2">
+                <label
+                  htmlFor="grid-city"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Stadt
+                </label>
+                <input
+                  id="grid-city"
+                  name="grid-city"
+                  type="text"
+                  placeholder="Stadt"
+                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
             </div>
-            <div>
-              <label
-                htmlFor="grid-street"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Straße/Hausnummer
-              </label>
-              <input
-                id="grid-street"
-                name="grid-street"
-                type="text"
-                placeholder="Straße"
-                className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+            <div className="flex space-x-6">
+              <div className="w-1/2">
+                <label
+                  htmlFor="grid-street"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Straße
+                </label>
+                <input
+                  id="grid-street"
+                  name="grid-street"
+                  type="text"
+                  placeholder="Straße"
+                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+              <div className="w-1/2">
+                <label
+                  htmlFor="grid-housenumber"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Hausnummer
+                </label>
+                <input
+                  id="grid-housenumber"
+                  name="grid-housenumber"
+                  type="text"
+                  placeholder="Hausnummer"
+                  className="p-2.5  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
             </div>
             <div>
               <label
@@ -164,19 +184,40 @@ export function RegisterComponent() {
                 className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
-            <div className="flex justify-center pt-10">
+            <div className="flex items-center">
+              <input
+                id="AGB"
+                name="AGB"
+                type="checkbox"
+                className="h-4 w-4 rounded border-0 text-indigo-600 focus:ring-indigo-600"
+              />
+              <label
+                htmlFor="AGB"
+                className="ml-3 block text-sm leading-6 text-gray-900"
+              >
+                Ich akzeptiere die
+                <a
+                  href="#"
+                  className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                >
+                  Allgemeine Geschäftsbedingungen!
+                </a>
+              </label>
+            </div>
+            <div className="flex justify-center pt-6">
               <ButtonComponent text="Registrieren" />
             </div>
           </form>
+
           <div>
             <div className="relative mt-10 pt-1">
               <p className="mt-10 text-center text-sm text-gray-500 pt-0">
-                Noch kein mitglied?{" "}
+                Du bist schon Mitglied?{" "}
                 <a
                   href="#"
-                  className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                  className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
-                  Jetzt Registrieren!
+                  Mit deinem Konto einloggen!
                 </a>
               </p>
               <div
