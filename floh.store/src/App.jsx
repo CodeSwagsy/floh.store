@@ -20,6 +20,7 @@ import { KontaktContainer } from "./routes/Kontakt/kontakt.container.jsx";
 import { DatenschutzContainer } from "./routes/Datenschutz/datenschutz.container.jsx";
 import { ImpressumContainer } from "./routes/Impressum/impressum.container.jsx";
 import { ForgotPasswordContainer } from "./routes/ForgotPassword/forgotpassword.container.jsx";
+import { NewPasswordContainer } from "./routes/NewPassword/newpassword.container.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
         path="/profile/forgotpassword"
         element={<ForgotPasswordContainer />}
       />
+      <Route path="/profile/newpassword" element={<NewPasswordContainer />} />
       <Route path="/profile/register" element={<RegisterContainer />} />
       <Route path="/profile/ownproducts" element={<OwnProductsContainer />} />
       <Route
