@@ -1,4 +1,5 @@
-import { ButtonComponent } from "../hero/button.component";
+import { Link } from "react-router-dom";
+import { ButtonComponent } from "../../hero/button.component";
 
 export function RegisterComponent() {
   return (
@@ -30,7 +31,7 @@ export function RegisterComponent() {
             <div className="flex space-x-6">
               <div className="w-1/2">
                 <label
-                  htmlFor="grid-name"
+                  htmlFor="grid-username"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Username
@@ -62,7 +63,7 @@ export function RegisterComponent() {
 
             <div>
               <label
-                htmlFor="grid-street"
+                htmlFor="number"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Telefon Nummer
@@ -195,38 +196,31 @@ export function RegisterComponent() {
                 htmlFor="AGB"
                 className="ml-3 block text-sm leading-6 text-gray-900"
               >
-                Ich akzeptiere die
-                <a
-                  href="#"
+                Ich akzeptiere die{" "}
+                <Link
+                  to="#"
                   className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
-                  Allgemeine Geschäftsbedingungen!
-                </a>
+                  (AGB's)!
+                </Link>
               </label>
             </div>
-            <div className="flex justify-center pt-6">
-              <ButtonComponent text="Registrieren" />
+            <div className="pb-8 flex justify-center pt-6">
+              <ButtonComponent text="Registrieren" size="large" />
             </div>
           </form>
 
           <div>
-            <div className="relative mt-10 pt-1">
-              <p className="mt-10 text-center text-sm text-gray-500 pt-0">
-                Du bist schon Mitglied?{" "}
-                <a
-                  href="#"
-                  className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
-                >
-                  Mit deinem Konto einloggen!
-                </a>
-              </p>
-              <div
-                className="absolute inset-0 flex items-center"
-                aria-hidden="true"
+            <div className="w-full border-t border-gray-200"> </div>
+            <p className="mt-10 text-center text-sm text-gray-500">
+              Du bist schon mitglied?{" "}
+              <Link
+                to="/profile/signin"
+                className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
               >
-                <div className="w-full border-t border-gray-200" />
-              </div>
-            </div>
+                Jetzt mit deinem Konto Anmelden!
+              </Link>
+            </p>
           </div>
         </div>
       </div>
