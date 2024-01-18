@@ -1,5 +1,6 @@
 ﻿// AllProductsPage.jsx
 import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 
 export const ProductCard = ({ product }) => {
   const { title, category, condition, price, description, location, images } =
@@ -30,16 +31,15 @@ export const ProductCard = ({ product }) => {
         <p className="font-bold text-base md:text-lg lg:text-xl xl:text-2xl mb-2">{`Price: $${price}`}</p>
         <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Description: ${description}`}</p>
         <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Location: ${location.city}, ${location.zip}`}</p>
-        <button
+        <Link to={`/products/${product._id}`}
           className={`bg-green-500 text-white px-5 py-2 rounded mt-4 ${
             isHovered ? "bg-green-600" : "bg-gray-800"
           }`}
-          onClick={handleViewDetails}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );
