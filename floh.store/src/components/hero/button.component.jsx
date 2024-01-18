@@ -9,7 +9,6 @@ export function ButtonComponent({ text, additionalclasses, spantxt, size }) {
       <span className="group-hover:text-white ease-in duration-300">
         {spantxt}
       </span>
-      .
     </button>
   );
 }

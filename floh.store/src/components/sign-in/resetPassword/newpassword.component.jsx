@@ -51,7 +51,7 @@ export function NewPasswordComponent() {
             </div>
 
             <div className="pb-8  flex w-full justify-center rounded-md">
-              <ButtonComponent text="Bestätigen" size="large" />
+              <ButtonComponent spantxt="Bestätigen" size="large" />
             </div>
           </form>
           <div>
