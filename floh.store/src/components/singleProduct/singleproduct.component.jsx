@@ -4,6 +4,7 @@ import {useParams} from "react-router";
 export function SingleProductComponent() {
     const { id } = useParams();
     const [product, setProduct] = useState({});
+    const [formattedDate, setFormattedDate] = useState(null);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -28,13 +29,21 @@ export function SingleProductComponent() {
         fetchProduct();
     }, []);
 
+    useEffect(() => {
+        // Wenn das Produkt geladen wurde, formatiere das Datum
+        if (product) {
+            const createdAtDate = new Date(product.createdAt);
+            setFormattedDate(createdAtDate.toLocaleString());
+        }
+    }, [product]);
+
 
     return (
         <>
             <div className="container mx-auto">
                 <div className="flex py-4">
                     <h2 className="font-semibold underline">{product.category}</h2>
-                    <h2 className="no-underline">{" / "}{product.title}</h2>
+                    <h2 className="no-underline">&nbsp; / {product.title}</h2>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-between">
                     <div className="max-lg:px-2 lg:w-5/12 pb-4 lg:mb-4 flex justify-center items-center">
@@ -55,21 +64,21 @@ export function SingleProductComponent() {
                     <h2 className="font-bold mb-2">Produktdetails:</h2>
                     <div className="flex gap-4">
                         <h3 className="font-semibold max-lg:w-3/12 w-2/12">Preis</h3>
-                        <p>LOGIK FÜR PREIS</p>
+                        <p>{product.price} €</p>
                     </div>
                     <div className="flex gap-4">
                         <h3 className="font-semibold max-lg:w-3/12 w-2/12">Zustand</h3>
-                        <p>LOGIK FÜR ZUSTAND</p>
+                        <p>{product.condition}</p>
                     </div>
                     <div className="flex gap-4">
                         <h3 className="font-semibold max-lg:w-3/12 w-2/12">Inseriert seit:</h3>
-                        <p>LOGIK FÜR ERSTELLUNGSDATUM</p>
+                        <p>{formattedDate}</p>
                     </div>
                 </div>
                 <div className="max-lg:px-2">
                     <h2 className="font-bold mt-4 mb-2">Beschreibung:</h2>
                     <div className="flex gap-4">
-                        <p>LOGIK FÜR BESCHREIBUNG</p>
+                        <p>{product.description}</p>
                     </div>
 
                 </div>
