@@ -206,7 +206,7 @@ export function RegisterComponent() {
               </label>
             </div>
             <div className="pb-8 flex justify-center pt-6">
-              <ButtonComponent text="Registrieren" />
+              <ButtonComponent text="Registrieren" size="large" />
             </div>
           </form>
 
