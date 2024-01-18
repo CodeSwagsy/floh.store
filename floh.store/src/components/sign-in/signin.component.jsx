@@ -74,7 +74,7 @@ export function SigninComponent() {
               </div>
             </div>
             <div className="pb-8  flex w-full justify-center rounded-md">
-              <ButtonComponent text="Anmelden" spantxt="" />
+              <ButtonComponent text="Anmelden" size="large" />
             </div>
           </form>
           <div>

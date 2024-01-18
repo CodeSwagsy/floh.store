@@ -34,7 +34,7 @@ export function ForgotPasswordComponent() {
               </div>
             </div>
             <div>
-              <ButtonComponent text="Absenden" />
+              <ButtonComponent text="Absenden" size="large" />
             </div>
             <div className="flex w-full justify-center rounded-md"></div>
           </form>
