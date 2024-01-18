@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import { ButtonComponent } from "../hero/button.component";
-
 
 export function SigninComponent() {
   return (
@@ -9,6 +9,7 @@ export function SigninComponent() {
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-10">
             Mit deinem Konto Anmelden
           </h2>
+
           <form className="space-y-6" action="#" method="POST">
             <div>
               <label
@@ -64,40 +65,31 @@ export function SigninComponent() {
                 </label>
               </div>
               <div className="text-sm leading-6">
-                <a
-                  href="#"
-                  className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                <Link
+                  to="/profile/forgotpassword"
+                  className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
                   Passwort vergessen?
-                </a>
+                </Link>
               </div>
             </div>
-            <div className="flex w-full justify-center rounded-md">
+            <div className="pb-8  flex w-full justify-center rounded-md">
               <ButtonComponent text="Anmelden" spantxt="" />
             </div>
           </form>
-
           <div>
-            <div className="relative mt-10 pt-1">
-              <p className="mt-10 text-center text-sm text-gray-500">
-                Noch kein mitglied?{" "}
-                <a
-                  href="#"
-                  className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
-                >
-                  Jetzt Registrieren!
-                </a>
-              </p>
-              <div
-                className="absolute inset-0 flex items-center"
-                aria-hidden="true"
+            <div className=" pb-0 w-full border-t border-gray-200"> </div>
+            <p className="mt-10 text-center text-sm text-gray-500">
+              Noch kein mitglied?{" "}
+              <Link
+                to="/profile/register"
+                className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
               >
-                <div className="w-full border-t border-gray-200" />
-              </div>
-            </div>
+                Jetzt Registrieren!
+              </Link>
+            </p>
           </div>
         </div>
-
       </div>
     </div>
   );
