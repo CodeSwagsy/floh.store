@@ -9,6 +9,7 @@ export function SigninComponent() {
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-10">
             Mit deinem Konto Anmelden
           </h2>
+
           <form className="space-y-6" action="#" method="POST">
             <div>
               <label
@@ -65,7 +66,7 @@ export function SigninComponent() {
               </div>
               <div className="text-sm leading-6">
                 <Link
-                  to="/profile/register"
+                  to="/profile/forgotpassword"
                   className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
                   Passwort vergessen?

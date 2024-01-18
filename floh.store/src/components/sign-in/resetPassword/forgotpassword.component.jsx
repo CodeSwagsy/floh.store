@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { ButtonComponent } from "../hero/button.component";
+import { ButtonComponent } from "../../hero/button.component";
 
-export function ResetPassword() {
+export function ForgotPasswordComponent() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
@@ -33,30 +33,23 @@ export function ResetPassword() {
                 />
               </div>
             </div>
-
-            <div className="flex w-full justify-center rounded-md">
-              <ButtonComponent text="Absenden" spantxt="" />
+            <div>
+              <ButtonComponent text="Absenden" />
             </div>
+            <div className="flex w-full justify-center rounded-md"></div>
           </form>
 
           <div>
-            <div className="relative mt-10 pt-1">
-              <p className="mt-10 text-center text-sm text-gray-500">
-                Noch kein mitglied?{" "}
-                <Link
-                  to="/profile/resetPassword"
-                  className="font-semibold  hover:text-indigo-500 text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
-                >
-                  Jetzt Registrieren!
-                </Link>
-              </p>
-              <div
-                className="absolute inset-0 flex items-center"
-                aria-hidden="true"
+            <div className=" pb-0 w-full border-t border-gray-200"> </div>
+            <p className="mt-10 text-center text-sm text-gray-500">
+              Noch kein mitglied?{" "}
+              <Link
+                to="/profile/register"
+                className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
               >
-                <div className="w-full border-t border-gray-200" />
-              </div>
-            </div>
+                Jetzt Registrieren!
+              </Link>
+            </p>
           </div>
         </div>
       </div>
