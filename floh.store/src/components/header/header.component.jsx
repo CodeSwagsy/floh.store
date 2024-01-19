@@ -18,12 +18,12 @@ export function HeaderComponent() {
                     </div>
                     <LinkButtonComponent
                         text="+ Anzeige erstellen"
-                        additionalClasses="max-lg:w-4/12 max-lg:py-2"
+                        additionalClasses="max-lg:w-4/12 max-lg:py-2 bg-jet lg:px-2 xl:px-4 xl:py-2"
                         link="/products/add"
                     />
                     <LinkButtonComponent
                         text="Login / Registrieren"
-                        additionalClasses="max-lg:hidden"
+                        additionalClasses="max-lg:hidden bg-jet lg:px-2 xl:px-4 xl:py-2"
                         link="/profile/signin"
                     />
                     <NavComponent/>
