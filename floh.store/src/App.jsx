@@ -40,6 +40,7 @@ const router = createBrowserRouter(
         element={<ForgotPasswordContainer />}
       />
       <Route path="/profile/newpassword" element={<NewPasswordContainer />} />
+
       <Route path="/profile/register" element={<RegisterContainer />} />
       <Route path="/profile/ownproducts" element={<OwnProductsContainer />} />
       <Route
