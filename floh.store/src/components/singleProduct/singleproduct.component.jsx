@@ -56,6 +56,10 @@ export function SingleProductComponent() {
                             <h2 className="">{product.location ? product.location.zip : " "}</h2>
                             <p className="">{product.location ? product.location.city : " "}</p>
                         </div>
+                        <div className="flex flex-col items-start">
+                            <button className="">Angebot machen</button>
+                            <button>Zur Merkliste hinzufügen {"<3"}</button>
+                        </div>
                     </div>
 
 
