@@ -51,7 +51,7 @@ export const AllFavoritePage = () => {
   useEffect(() => {
     const fetchFavorite = async () => {
       try {
-        const response = await fetch("https://api.floh.store/favorite/all", {
+        const response = await fetch("", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
