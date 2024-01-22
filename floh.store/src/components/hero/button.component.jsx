@@ -1,4 +1,11 @@
-export function ButtonComponent({ text, additionalclasses, spantxt, size }) {
+export function ButtonComponent({
+  text,
+  additionalclasses,
+  spantxt,
+  size,
+  height,
+  buttonType,
+}) {
   const buttonWidthClass = size === "large" ? "w-full" : "w-16";
   const buttonHeightClass = height === "height" ? "h-12" : "h-1";
 
