@@ -44,7 +44,7 @@ const router = createBrowserRouter(
       <Route path="/profile/register" element={<RegisterContainer />} />
       <Route path="/profile/ownproducts" element={<OwnProductsContainer />} />
       <Route
-        path="/profile/favoriteproducts"
+        path="/profile/favoriten"
         element={<FavoriteProductsContainer />}
       />
       <Route path="/products/gallery" element={<GalleryContainer />} />
