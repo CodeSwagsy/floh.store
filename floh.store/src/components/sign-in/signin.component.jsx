@@ -1,7 +1,60 @@
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../hero/button.component";
+import {useState} from "react";
+
 
 export function SigninComponent() {
+
+
+    const [credentials, setCredentials] = useState({
+        email: '',
+        password: '',
+    });
+
+    const [responseData, setResponseData] = useState({})
+
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setCredentials({
+            ...credentials,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(credentials)
+        try {
+            const response = await fetch('https://api.floh.store/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: "same-origin",
+                body: JSON.stringify(credentials),
+            });
+
+            const data = await response.json();
+            if (response.status === 200) {
+                setLogin(true);
+                setResponseData(data)
+                localStorage.setItem('responseData', JSON.stringify(data))
+                console.log(responseData)
+            } else {
+                setError(error)
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const [login, setLogin] = useState(false);
+
+
+    const [error, setError] = useState("")
+
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
@@ -10,7 +63,7 @@ export function SigninComponent() {
             Mit deinem Konto Anmelden
           </h2>
 
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -19,26 +72,26 @@ export function SigninComponent() {
                 Deine Email
               </label>
               <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  placeholder="Email@adresse.com"
-                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                <input onChange={handleInputChange}
+                       id="email"
+                       name="email"
+                       type="email"
+                       autoComplete="email"
+                       required
+                       placeholder="Email@adresse.com"
+                       className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Passwort
-              </label>
-              <div className="mt-2">
-                <input
+              <div>
+                  <label
+                      htmlFor="password"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                      Passwort
+                  </label>
+                  <div className="mt-2">
+                      <input onChange={handleInputChange}
                   id="password"
                   name="password"
                   type="password"
@@ -74,7 +127,7 @@ export function SigninComponent() {
               </div>
             </div>
             <div className="pb-8  flex w-full justify-center rounded-md">
-              <ButtonComponent text="Anmelden" size="large" />
+              <ButtonComponent text="Anmelden" size="large" buttonType="submit"/>
             </div>
           </form>
           <div>
