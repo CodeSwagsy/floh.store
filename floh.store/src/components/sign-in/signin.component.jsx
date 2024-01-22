@@ -28,10 +28,11 @@ export function SigninComponent() {
         try {
             const response = await fetch('https://api.floh.store/user/login', {
                 method: 'POST',
+                mode: "cors",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: "same-origin",
+                credentials: "include",
                 body: JSON.stringify(credentials),
             });
 
@@ -39,7 +40,6 @@ export function SigninComponent() {
             if (response.status === 200) {
                 setLogin(true);
                 setResponseData(data)
-                localStorage.setItem('responseData', JSON.stringify(data))
                 console.log(responseData)
             } else {
                 setError(error)
@@ -47,6 +47,7 @@ export function SigninComponent() {
         } catch (error) {
             console.error('Error:', error);
         }
+
     };
 
     const [login, setLogin] = useState(false);
