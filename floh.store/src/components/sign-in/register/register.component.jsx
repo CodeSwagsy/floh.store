@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../../hero/button.component";
+import { useState } from "react";
 
 export function RegisterComponent() {
   return (
@@ -198,7 +199,7 @@ export function RegisterComponent() {
               >
                 Ich akzeptiere die{" "}
                 <Link
-                  to="/datenschutz"
+                  to="#"
                   className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
                   (AGB's)!
