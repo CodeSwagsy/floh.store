@@ -6,7 +6,7 @@ export function HeroComponent() {
       <div className="pt-8 pb-8 py-0 container mx-auto pl-36">
         <div className="flex flex-col items-center justify-around  w-96 h-56 bg-emerald/70 rounded-lg px-8 pt-6 ">
           <ButtonComponent
-            text="Finde dein"
+            text="Finde deinen "
             spantxt="FLOH"
             size="large"
             height="height"
