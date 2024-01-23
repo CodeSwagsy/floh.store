@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export function SettingsComponent() {
     const options = [
@@ -12,7 +12,7 @@ export function SettingsComponent() {
     const [isFormEnabled, setIsFormEnabled] = useState(false);
     const [formState, setFormState] = useState(true)
     const [cancelButtonClass, setCancelButtonClass] = useState("bg-jet/20");
-    const [saveButtonText, setSaveButtonText] =useState("Ändern")
+    const [saveButtonText, setSaveButtonText] = useState("Ändern")
 
     const toggleForm = () => {
         setIsFormEnabled(!isFormEnabled);
@@ -27,6 +27,36 @@ export function SettingsComponent() {
             setFormState(false)
         }
     };
+
+    const abortHandler = () =>{
+        toggleForm()
+    }
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await fetch(`https://api.floh.store/user/about/65ae73ec4da60910ca7d43e6`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                const data = await response.json();
+                if (data.code === 200) {
+                    setUser(data.user);
+                    console.log(data.user)
+                } else {
+                    console.error("Error fetching users:", data.message);
+                }
+            } catch (error) {
+                console.error("Error fetching users:", error.message);
+            }
+        };
+
+        fetchUser();
+    }, []);
 
     return (
         <>
@@ -105,6 +135,7 @@ export function SettingsComponent() {
                 </form>
                 <div className="flex flex-row justify-end gap-2 lg:gap-4 mt-4 lg:mt-8">
                     <button disabled={formState}
+                            onClick={abortHandler}
                         className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg ${cancelButtonClass} px-2 py-1 w-2/12 lg:w-1/12`}
                     >
                         Abbrechen
