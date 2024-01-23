@@ -13,7 +13,7 @@ export const ProductComponent = ({ product }) => {
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2">
       <div
-        className={`relative group opacity-${isHovered ? "120" : "00"}`}
+        className={`relative group opacity-${isHovered ? "120" : "100"}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -34,7 +34,7 @@ export const ProductComponent = ({ product }) => {
             <button
               className={`bg-white text-gray-800 border border-gray-800 px-5 py-2 rounded mt-4 transition-colors ${
                 isHovered
-                  ? "bg-green-400 text-white border-green-400"
+                  ? "bg-green-650 text-green border-green-400"
                   : "text-gray-800 border-gray-800"
               }`}
               onClick={handleViewDetails}
