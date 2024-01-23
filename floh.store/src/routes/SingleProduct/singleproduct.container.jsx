@@ -1,12 +1,13 @@
 import {HeaderComponent} from "../../components/header/header.component.jsx";
 import {FooterComponent} from "../../components/footer/footer.component.jsx";
-import {SettingsComponent} from "../../components/profile/settings.component.jsx";
+import {SingleProductComponent} from "../../components/singleProduct/singleproduct.component.jsx";
 
-export function SettingsContainer() {
+
+export function SingleProductContainer() {
     return (
         <>
             <HeaderComponent/>
-            <SettingsComponent/>
+            <SingleProductComponent/>
             <FooterComponent/>
         </>
     )

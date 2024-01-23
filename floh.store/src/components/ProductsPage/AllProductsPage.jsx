@@ -1,5 +1,6 @@
 ﻿// AllProductsPage.jsx
 import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 
 export const ProductCard = ({ product }) => {
   const { title, category, condition, price, description, location, images } =
@@ -7,17 +8,14 @@ export const ProductCard = ({ product }) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleViewDetails = () => {
-    // Add logic to navigate to a detailed product page or show a modal
-    alert(`View details for ${title}`);
-  };
 
   return (
     <div
-      className={`bg-gray-100 p-4 border rounded-lg hover:shadow-md transition duration-300 mb-4 ${
+      className={`bg-gray-100 p-4 border rounded-lg hover:shadow-md transition duration-300 mb-4 flex flex-col justify-between ${
         isHovered ? "shadow-md" : ""
       }`}
     >
+
       <div className="flex justify-center mb-3">
         <img
           src={images[0]}
@@ -36,14 +34,14 @@ export const ProductCard = ({ product }) => {
         <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2 overflow-hidden h-10">{`Location: ${location.city}, ${location.zip}`}</p>
         <button
           className={`bg-green-500 text-white px-3 py-1 rounded mt-4 ${
+
             isHovered ? "bg-green-600" : "bg-gray-800"
           }`}
-          onClick={handleViewDetails}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );
