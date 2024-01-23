@@ -15,20 +15,26 @@ export const ProductCard = ({ product }) => {
         isHovered ? "shadow-md" : ""
       }`}
     >
-      <div className="flex justify-center mb-3 h-1/3">
-        <img src={images[0]} alt={title} className="object-cover rounded" />
+
+      <div className="flex justify-center mb-3">
+        <img
+          src={images[0]}
+          alt={title}
+          className="w-full h-64 object-cover rounded"
+        />
       </div>
-      <div className="text-center flex flex-col">
-        <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2">
+      <div className="text-center">
+        <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2 truncate">
           {title}
         </h3>
-        <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Kategorie: ${category}`}</p>
-        <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Zustand: ${condition}`}</p>
-        <p className="font-bold text-base md:text-lg lg:text-xl xl:text-2xl mb-2">{`Preis: ${price} €`}</p>
-        <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl mb-2 line-clamp-4">{`${description}`}</p>
-        <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Location: ${location.city}, ${location.zip}`}</p>
-        <Link to={`/products/${product._id}`}
-          className={`bg-green-500 text-white px-5 py-2 rounded mt-4 ${
+        <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Category: ${category}`}</p>
+        <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Condition: ${condition}`}</p>
+        <p className="font-bold text-base md:text-lg lg:text-xl xl:text-2xl mb-2">{`Price: $${price}`}</p>
+        <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2 overflow-hidden h-16">{`Description: ${description}`}</p>
+        <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2 overflow-hidden h-10">{`Location: ${location.city}, ${location.zip}`}</p>
+        <button
+          className={`bg-green-500 text-white px-3 py-1 rounded mt-4 ${
+
             isHovered ? "bg-green-600" : "bg-gray-800"
           }`}
           onMouseEnter={() => setIsHovered(true)}
@@ -68,7 +74,7 @@ export const AllProductsPage = () => {
   }, []);
 
   return (
-    <div className="container mx-auto my-8 mt-16">
+    <div className=" container mx-auto my-8 mt-16">
       <h2 className="text-3xl font-bold mb-4">All Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {products.map((product) => (
