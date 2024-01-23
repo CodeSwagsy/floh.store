@@ -29,7 +29,7 @@ export function SigninComponent() {
         e.preventDefault();
         console.log(credentials)
         try {
-            const response = await fetch('https://api.floh.store/user/login', {
+            const response = await fetch('http://localhost:4000/user/login', {
                 method: 'POST',
                 mode: "cors",
                 headers: {
@@ -43,7 +43,7 @@ export function SigninComponent() {
             if (response.status === 200) {
                 setLogin(true);
                 updateUserData(data);
-                console.log(userData)
+                localStorage.setItem("responseData", data.uid);
             } else {
                 setError(error)
             }
