@@ -199,7 +199,7 @@ export function RegisterComponent() {
               >
                 Ich akzeptiere die{" "}
                 <Link
-                  to="#"
+                  to="/datenschutz"
                   className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
                   (AGB's)!
