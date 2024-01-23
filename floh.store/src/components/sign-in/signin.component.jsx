@@ -12,7 +12,10 @@ export function SigninComponent() {
     });
 
     const [responseData, setResponseData] = useState({})
+    const [login, setLogin] = useState(false);
 
+
+    const [error, setError] = useState("")
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
@@ -50,10 +53,6 @@ export function SigninComponent() {
 
     };
 
-    const [login, setLogin] = useState(false);
-
-
-    const [error, setError] = useState("")
 
 
   return (
