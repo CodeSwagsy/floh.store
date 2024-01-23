@@ -35,7 +35,12 @@ export function ForgotPasswordComponent() {
             </div>
             <div>
               <Link to="/profile/newpassword">
-                <ButtonComponent spantxt="Absenden" size="large" />
+                <ButtonComponent
+                  spantxt="Absenden"
+                  size="large"
+                  height="height"
+                  buttonType="submit"
+                />
               </Link>
             </div>
             <div className="flex w-full justify-center rounded-md"></div>
