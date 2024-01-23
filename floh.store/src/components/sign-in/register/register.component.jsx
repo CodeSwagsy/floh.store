@@ -1,6 +1,5 @@
-import {Link} from "react-router-dom";
-import {ButtonComponent} from "../../hero/button.component";
-import {useState} from "react";
+import { Link } from "react-router-dom";
+import { ButtonComponent } from "../../hero/button.component";
 
 export function RegisterComponent() {
     const [credentials, setCredentials] = useState({
@@ -287,20 +286,20 @@ export function RegisterComponent() {
                         </div>
                     </form>
 
-                    <div>
-                        <div className="w-full border-t border-gray-200"></div>
-                        <p className="mt-10 text-center text-sm text-gray-500">
-                            Du bist schon registriert?{" "}
-                            <Link
-                                to="/profile/signin"
-                                className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
-                            >
-                                Jetzt mit deinem Konto Anmelden!
-                            </Link>
-                        </p>
-                    </div>
-                </div>
-            </div>
+          <div>
+            <div className="w-full border-t border-gray-200"> </div>
+            <p className="mt-10 text-center text-sm text-gray-500">
+              Du bist schon mitglied?{" "}
+              <Link
+                to="/profile/signin"
+                className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+              >
+                Jetzt mit deinem Konto Anmelden!
+              </Link>
+            </p>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
