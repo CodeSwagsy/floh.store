@@ -197,12 +197,12 @@ export function RegisterComponent() {
                 htmlFor="AGB"
                 className="ml-3 block text-sm leading-6 text-gray-900"
               >
-                Ich akzeptiere die{" "}
+                Hiermit akzeptiere die{" "}
                 <Link
                   to="/datenschutz"
                   className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
                 >
-                  (AGB's)!
+                  Datenschutzerklärung!
                 </Link>
               </label>
             </div>
