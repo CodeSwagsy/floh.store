@@ -1,6 +1,10 @@
 import {useEffect, useState} from "react";
+import {useParams} from "react-router";
 
 export function SettingsComponent() {
+    const {id} = useParams()
+
+
     const options = [
         {value: "keine Angabe", label: "keine Angabe"},
         {value: "male", label: "männlich"},
@@ -37,7 +41,7 @@ export function SettingsComponent() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`https://api.floh.store/user/about/65ae73ec4da60910ca7d43e6`, {
+                const response = await fetch(`https://api.floh.store/user/about/${id}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -54,7 +58,6 @@ export function SettingsComponent() {
                 console.error("Error fetching users:", error.message);
             }
         };
-
         fetchUser();
     }, []);
 

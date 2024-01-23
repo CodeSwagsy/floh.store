@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../hero/button.component";
 import {useState} from "react";
+import {useData} from "../../context/signin.context.jsx";
 
 
 export function SigninComponent() {
+
+    const { userData, updateUserData } = useData();
 
 
     const [credentials, setCredentials] = useState({
@@ -11,10 +14,7 @@ export function SigninComponent() {
         password: '',
     });
 
-    const [responseData, setResponseData] = useState({})
     const [login, setLogin] = useState(false);
-
-
     const [error, setError] = useState("")
 
     const handleInputChange = (e) => {
@@ -42,8 +42,8 @@ export function SigninComponent() {
             const data = await response.json();
             if (response.status === 200) {
                 setLogin(true);
-                setResponseData(data)
-                console.log(responseData)
+                updateUserData(data);
+                console.log(userData)
             } else {
                 setError(error)
             }
