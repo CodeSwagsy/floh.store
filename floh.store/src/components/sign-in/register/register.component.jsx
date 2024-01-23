@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../../hero/button.component";
+import {useState} from "react";
 
 export function RegisterComponent() {
     const [credentials, setCredentials] = useState({
