@@ -7,6 +7,7 @@ export function SingleProductComponent() {
     const [product, setProduct] = useState(null);
     const [formattedDate, setFormattedDate] = useState(null);
     const [owner, setOwner] = useState(null)
+    const [durchschnittsRating, setDurchschnittsRating] = useState(0);
     const options = {
         weekday: 'long',
         year: 'numeric',
@@ -18,7 +19,7 @@ export function SingleProductComponent() {
             const fetchProduct = async () => {
 
                 try {
-                    const response = await fetch(`http://localhost:4000/product/id/${id}`, {
+                    const response = await fetch(`${import.meta.env.VITE_API}/product/id/${id}`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
@@ -47,7 +48,7 @@ export function SingleProductComponent() {
             setFormattedDate(createdAtDate.toLocaleString());
             const fetchOwner = async () => {
                 try {
-                    const response = await fetch(`http://localhost:4000/user/about/${product.owner}`, {
+                    const response = await fetch(`${import.meta.env.VITE_API}/user/about/${product.owner}`, {
                         method: "GET",
                         credentials: "include",
                         headers: {
@@ -70,6 +71,25 @@ export function SingleProductComponent() {
         }
     }, [product]);
 
+    function berechneDurchschnitt(ratings) {
+        if (!ratings || ratings.length === 0) {
+            return 0;
+        }
+
+        const summe = ratings.reduce((acc, rating) => acc + rating, 0);
+        const durchschnitt = summe / ratings.length;
+
+        return durchschnitt;
+    }
+
+    useEffect(() => {
+        if (owner && owner.info && owner.info.rating) {
+            const durchschnitt = berechneDurchschnitt(owner.info.rating);
+            setDurchschnittsRating(durchschnitt);
+        } else {
+            setDurchschnittsRating(0);
+        }
+    }, [owner])
 
     return (
         <>
@@ -111,7 +131,7 @@ export function SingleProductComponent() {
                                 </div>
                                 <div className="flex gap-4">
                                     <h3 className="font-semibold w-6/12 lg:w-5/12">Durchschnittliche Bewertung</h3>
-                                    <p>{owner ? owner.info.rating : ""}</p>
+                                    <p className="font-semibold"><span>{owner ? berechneDurchschnitt(owner.info.rating) : ""}</span> / 5</p>
                                 </div>
                                 <div className="flex gap-4">
                                     <h3 className="font-semibold w-6/12 lg:w-5/12">Mitglied seit</h3>
