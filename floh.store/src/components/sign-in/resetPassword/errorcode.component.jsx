@@ -1,33 +1,33 @@
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../../hero/button.component";
 
-export function ConfirmCodeComponent() {
+export function ErrorCodeComponent() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
         <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-10">
-            Passwort Wiederherstellen
-            <p>
-              Gib den Code ein der auf deine Email adresse gesendet worden ist!
-            </p>
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pt-2 pb-2">
+            Upps! Ein Fehler ist aufgetreten
           </h2>
+          <p className="mt-6 text-center text-2xl font-semibold leading-9 tracking-tight text-gray-600 py-8">
+            Versuchen wir es nochmal!
+          </p>
           <form className="space-y-6" action="#" method="POST">
             <div>
               <label
-                htmlFor="code"
+                htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Bestätigungs Code
+                E-Mail-Adresse
               </label>
               <div className="mt-2">
                 <input
-                  id="code"
-                  name="code"
-                  type="code"
-                  autoComplete="code"
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
                   required
-                  placeholder="••••••••"
+                  placeholder="Email@adresse.com"
                   className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                 />
               </div>
@@ -35,7 +35,7 @@ export function ConfirmCodeComponent() {
             <div>
               <Link to="/profile/newpassword">
                 <ButtonComponent
-                  spantxt="Absenden"
+                  spantxt="Erneut Senden"
                   size="large"
                   height="height"
                   buttonType="submit"

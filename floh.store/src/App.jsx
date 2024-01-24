@@ -23,7 +23,7 @@ import { ForgotPasswordContainer } from "./routes/ForgotPassword/forgotpassword.
 import { NewPasswordContainer } from "./routes/NewPassword/newpassword.container.jsx";
 import { SingleProductContainer } from "./routes/SingleProduct/singleproduct.container.jsx";
 import { DataProvider } from "./context/signin.context.jsx";
-import { ConfirmCodedContainer } from "./routes/ConfirmCode/confirmcode.container.jsx";
+import { ErrorCodeContainer } from "./routes/ErrorCode/errorcode.container.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,7 +42,7 @@ const router = createBrowserRouter(
         path="/profile/forgotpassword"
         element={<ForgotPasswordContainer />}
       />
-      <Route path="/profile/confirmcode" element={<ConfirmCodedContainer />} />
+      <Route path="/profile/errorcode" element={<ErrorCodeContainer />} />
       <Route path="/profile/newpassword" element={<NewPasswordContainer />} />
 
       <Route path="/profile/register" element={<RegisterContainer />} />
