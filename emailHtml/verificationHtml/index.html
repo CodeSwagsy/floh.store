@@ -3,9 +3,82 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Verification</title>
+    <style>
+        @media screen {
+            @font-face {
+                font-family: 'Source Sans Pro';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+            }
+
+            @font-face {
+                font-family: 'Source Sans Pro';
+                font-style: normal;
+                font-weight: 700;
+                src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+            }
+        }
+
+        /**
+       * Avoid browser level font resizing.
+       * 1. Windows Mobile
+       * 2. iOS / OSX
+       */
+        body,
+        table,
+        td,
+        a {
+            -ms-text-size-adjust: 100%;
+            /* 1 */
+            -webkit-text-size-adjust: 100%;
+            /* 2 */
+        }
+
+        /**
+        /**
+       * Better fluid images in Internet Explorer.
+       */
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+
+        /**
+       * Remove blue links for iOS devices.
+       */
+        a[x-apple-data-detectors] {
+            font-family: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /**
+       * Fix centering issues in Android 4.4.
+       */
+        div[style*="margin: 16px 0;"] {
+            margin: 0 !important;
+        }
+
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        /**
+       * Collapse table borders to avoid space between cells.
+       */
+        table {
+            border-collapse: collapse !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,15 +99,12 @@
 
                     <table style="max-width: 1200px; text-align: center; margin: 0 auto;">
                         <h1
-                            style="float: left; font: normal 28px Cookie, Arial, Helvetica, sans-serif; line-height: 40px; margin: 0 0 0 0px; color: #00BD5E;">
+                            style="float: left; font: normal 2em Cookie, Arial, Helvetica, sans-serif; line-height: 40px; margin: 0 0 0 0px; color: #00BD5E;">
                             <a href="#" style="color: inherit; text-decoration: none;">
                                 FLOH<span style="color: #f5f5f5; margin-right: 20px;">.STORE</span>
                             </a>
                         </h1>
-                        <td style="font: 21px Arial, Helvetica, sans-serif; line-height: 30px; width: 350px; ">
-                            <a href="#"
-                                style="color: #f5f5f5; text-decoration: none; opacity: 0.9; display: inline-block; padding: 0 5px; width: 100%; text-align: right; ">Contact</a>
-                        </td>
+
                     </table>
 
                 </td>
@@ -48,24 +118,23 @@
                             <td
                                 style="max-width: 600px; margin: 20px auto; padding: 40px; color: #333333; background-color: #f5f5f5; font-size: 1.2rem; text-align: center; margin: auto;">
                                 <h2
-                                    style="text-align: center ; font-size: 3.5rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight:100">
-                                    Welcome!</h2>
-                                <p>We're excited to have you get started. First, you need to confirm your account.
-                                    Just press the Button below.</p>
+                                    style="text-align: center ; font-size: 3rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight:300">
+                                    Willkommen!</h2>
+                                <p>Verifizieren Sie zuerst Ihr Konto, indem Sie auf die Schaltfläche unten klicken.</p>
 
                                 <button
                                     style="appearance: none; background-color: #2ea44f; border: 1px solid #333333; border-radius: 6px; box-shadow: rgba(27, 31, 35, .1) 0 1px 0; box-sizing: border-box; color: #fff; cursor: pointer; display: inline-block; font-family: -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; font-size: 21px; font-weight: 500; line-height: 20px; padding: 14px 28px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; white-space: nowrap;">
 
-                                    <a href="#" style="color: inherit; text-decoration: none;">Confirm Account</a>
+                                    <a href="#" style="color: inherit; text-decoration: none;">Account Verifizieren</a>
                                 </button>
-                                <p>If that doesn't work, copy and paste the following link in your browser:</p>
+                                <p>Wenn das nicht funktioniert, kopieren Sie den folgenden Link und fügen Sie ihn in
+                                    Ihren Browser ein:</p>
 
                                 <a href="#" target="_blank" style="color: #00BD5E; text-decoration: none;">Link für
                                     die Browser Ansicht</a>
-                                <p>If you have any questions, just reply to this email - we're always happy to help
-                                    out.</p>
-                                <p>Cheers, <br>
-                                    The Dev Team</p>
+                                <p>Bei weiteren Fragen können Sie unseren Support via <a
+                                        href="mailto:flohstore@gmail.com">Support@gmail.com</a> kontaktieren</p>
+                                <p> Mit freundlichen Grüßen <br> Floh.Store Dev Team</p>
                             </td>
                         </tr>
                     </table>
@@ -74,7 +143,7 @@
             style="width: 100%; max-width: 600px; border-collapse: collapse;margin: 20px auto; background-color: #f5f5f5;">
             <tr>
                 <td
-                    style="text-align: center; max-width: 600px; margin: 20px auto; padding: 20px; background-color: #333333; color: #f5f5f5; font-size: 1.2rem">
+                    style="text-align: center; max-width: 600px; margin: 20px auto; padding: 20px; background-color: #00BD5E; color: #f5f5f5; font-size: 1.2rem">
                     <h3>Need more help?</h3>
                     <h3><a href="#" style="color: inherit; text-decoration: none;">We're here, ready to talk</a></h3>
                 </td>
@@ -97,7 +166,7 @@
                         If these emails get annoying, please feel free to <a
                             style="color: #333333 ; text-decoration: none;" href="#" target="_blank">unsubscribe.</a>
                     </p>
-                    <p>&copy; 2024 Made in Germany.</p>
+                    <p>&copy; 2024 Made in Germany</p>
 
                 </td>
             </tr>
