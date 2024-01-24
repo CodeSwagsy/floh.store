@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../../hero/button.component";
 
-export function ForgotPasswordComponent() {
+export function ErrorCodeComponent() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
         <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pt-2 pb-2">
-            Passwort Wiederherstellen
+            Upps! Ein Fehler ist aufgetreten
           </h2>
           <p className="mt-6 text-center text-2xl font-semibold leading-9 tracking-tight text-gray-600 py-8">
-            Gib die E-Mail-Adresse von deinem Konto ein für, Passwort
-            wiederherstellung
+            Versuchen wir es nochmal!
           </p>
           <form className="space-y-6" action="#" method="POST">
             <div>
@@ -19,7 +18,7 @@ export function ForgotPasswordComponent() {
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Deine E-Mail-Adresse
+                E-Mail-Adresse
               </label>
               <div className="mt-2">
                 <input
@@ -34,9 +33,9 @@ export function ForgotPasswordComponent() {
               </div>
             </div>
             <div>
-              <Link to="/profile/errorcode">
+              <Link to="/profile/newpassword">
                 <ButtonComponent
-                  spantxt="Absenden"
+                  spantxt="Erneut Senden"
                   size="large"
                   height="height"
                   buttonType="submit"
