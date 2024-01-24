@@ -6,16 +6,16 @@ export function DatenschutzComponent() {
         <div className="container mx-auto">
           <div className="mt-10 ">
             <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-              <h1 className="py-2 flex justify-center underline underline-offset-2 font-bold">
+              <h1 className="py-2 flex justify-start underline underline-offset-2 font-bold">
                 Datenschutz&shy;erkl&auml;rung
               </h1>
-              <h2 className="py-4 flex justify-center underline underline-offset-2 font-medium">
+              <h2 className="py-4 flex justify-start underline underline-offset-2 font-medium">
                 1. Datenschutz auf einen Blick
               </h2>
-              <h3 className="py-4 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-4 flex justify-start underline underline-offset-2 font-semibold">
                 Allgemeine Hinweise
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die folgenden Hinweise geben einen einfachen &Uuml;berblick
                 dar&uuml;ber, was mit Ihren personenbezogenen Daten passiert,
                 wenn Sie diese Website besuchen. Personenbezogene Daten sind
@@ -24,28 +24,28 @@ export function DatenschutzComponent() {
                 Datenschutz entnehmen Sie unserer unter diesem Text
                 aufgef&uuml;hrten Datenschutzerkl&auml;rung.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Datenerfassung auf dieser Website
               </h3>{" "}
-              <h4 className="py-4 flex justify-center">
+              <h4 className="py-4 flex justify-start">
                 Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser
                 Website?
               </h4>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die Datenverarbeitung auf dieser Website erfolgt durch den
                 Websitebetreiber. Dessen Kontaktdaten k&ouml;nnen Sie dem
                 Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in
                 dieser Datenschutzerkl&auml;rung entnehmen.
               </p>{" "}
-              <h4 className="py-4 flex justify-center underline underline-offset-2">
+              <h4 className="py-4 flex justify-start underline underline-offset-2">
                 Wie erfassen wir Ihre Daten?
               </h4>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese
                 mitteilen. Hierbei kann es sich z.&nbsp;B. um Daten handeln, die
                 Sie in ein Kontaktformular eingeben.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Andere Daten werden automatisch oder nach Ihrer Einwilligung
                 beim Besuch der Website durch unsere IT-Systeme erfasst. Das
                 sind vor allem technische Daten (z.&nbsp;B. Internetbrowser,
@@ -53,18 +53,18 @@ export function DatenschutzComponent() {
                 dieser Daten erfolgt automatisch, sobald Sie diese Website
                 betreten.
               </p>{" "}
-              <h4 className="py-8 flex justify-center underline underline-offset-2">
+              <h4 className="py-8 flex justify-start underline underline-offset-2">
                 Wof&uuml;r nutzen wir Ihre Daten?
               </h4>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Ein Teil der Daten wird erhoben, um eine fehlerfreie
                 Bereitstellung der Website zu gew&auml;hrleisten. Andere Daten
                 k&ouml;nnen zur Analyse Ihres Nutzerverhaltens verwendet werden.
               </p>{" "}
-              <h4 className="py-8 flex justify-center underline underline-offset-2">
+              <h4 className="py-8 flex justify-start underline underline-offset-2">
                 Welche Rechte haben Sie bez&uuml;glich Ihrer Daten?
               </h4>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Sie haben jederzeit das Recht, unentgeltlich Auskunft &uuml;ber
                 Herkunft, Empf&auml;nger und Zweck Ihrer gespeicherten
                 personenbezogenen Daten zu erhalten. Sie haben au&szlig;erdem
@@ -77,24 +77,24 @@ export function DatenschutzComponent() {
                 Weiteren steht Ihnen ein Beschwerderecht bei der
                 zust&auml;ndigen Aufsichtsbeh&ouml;rde zu.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Hierzu sowie zu weiteren Fragen zum Thema Datenschutz
                 k&ouml;nnen Sie sich jederzeit an uns wenden.
               </p>
-              <h2 className="py-4 flex justify-center underline underline-offset-2 font-medium">
+              <h2 className="py-4 flex justify-start underline underline-offset-2 font-medium">
                 2. Allgemeine Hinweise und Pflicht&shy;informationen
               </h2>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Datenschutz
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die Betreiber dieser Seiten nehmen den Schutz Ihrer
                 pers&ouml;nlichen Daten sehr ernst. Wir behandeln Ihre
                 personenbezogenen Daten vertraulich und entsprechend den
                 gesetzlichen Datenschutzvorschriften sowie dieser
                 Datenschutzerkl&auml;rung.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Wenn Sie diese Website benutzen, werden verschiedene
                 personenbezogene Daten erhoben. Personenbezogene Daten sind
                 Daten, mit denen Sie pers&ouml;nlich identifiziert werden
@@ -103,36 +103,36 @@ export function DatenschutzComponent() {
                 nutzen. Sie erl&auml;utert auch, wie und zu welchem Zweck das
                 geschieht.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Wir weisen darauf hin, dass die Daten&uuml;bertragung im
                 Internet (z.&nbsp;B. bei der Kommunikation per E-Mail)
                 Sicherheitsl&uuml;cken aufweisen kann. Ein l&uuml;ckenloser
                 Schutz der Daten vor dem Zugriff durch Dritte ist nicht
                 m&ouml;glich.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Hinweis zur verantwortlichen Stelle
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die verantwortliche Stelle f&uuml;r die Datenverarbeitung auf
                 dieser Website ist:
               </p>{" "}
-              <p className="py-8 flex justify-center">Offener Handel</p>
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8 flex justify-start">Offener Handel</p>
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Telefon: &#91;Telefonnummer der verantwortlichen Stelle&#93;
                 <br />
                 E-Mail: &#91;E-Mail-Adresse der verantwortlichen Stelle&#93;
               </p>
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Verantwortliche Stelle ist die nat&uuml;rliche oder juristische
                 Person, die allein oder gemeinsam mit anderen &uuml;ber die
                 Zwecke und Mittel der Verarbeitung von personenbezogenen Daten
                 (z.&nbsp;B. Namen, E-Mail-Adressen o. &Auml;.) entscheidet.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Speicherdauer
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Soweit innerhalb dieser Datenschutzerkl&auml;rung keine
                 speziellere Speicherdauer genannt wurde, verbleiben Ihre
                 personenbezogenen Daten bei uns, bis der Zweck f&uuml;r die
@@ -145,11 +145,11 @@ export function DatenschutzComponent() {
                 Aufbewahrungsfristen); im letztgenannten Fall erfolgt die
                 L&ouml;schung nach Fortfall dieser Gr&uuml;nde.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Allgemeine Hinweise zu den Rechtsgrundlagen der
                 Datenverarbeitung auf dieser Website
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Sofern Sie in die Datenverarbeitung eingewilligt haben,
                 verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von
                 Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO,
@@ -175,10 +175,10 @@ export function DatenschutzComponent() {
                 wird in den folgenden Abs&auml;tzen dieser
                 Datenschutzerkl&auml;rung informiert.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Empfänger von personenbezogenen Daten
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Im Rahmen unserer Gesch&auml;ftst&auml;tigkeit arbeiten wir mit
                 verschiedenen externen Stellen zusammen. Dabei ist teilweise
                 auch eine &Uuml;bermittlung von personenbezogenen Daten an diese
@@ -195,21 +195,21 @@ export function DatenschutzComponent() {
                 gemeinsamen Verarbeitung wird ein Vertrag &uuml;ber gemeinsame
                 Verarbeitung geschlossen.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Widerruf Ihrer Einwilligung zur Datenverarbeitung
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Viele Datenverarbeitungsvorg&auml;nge sind nur mit Ihrer
                 ausdr&uuml;cklichen Einwilligung m&ouml;glich. Sie k&ouml;nnen
                 eine bereits erteilte Einwilligung jederzeit widerrufen. Die
                 Rechtm&auml;&szlig;igkeit der bis zum Widerruf erfolgten
                 Datenverarbeitung bleibt vom Widerruf unber&uuml;hrt.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Widerspruchsrecht gegen die Datenerhebung in besonderen
                 F&auml;llen sowie gegen Direktwerbung (Art. 21 DSGVO)
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 WENN DIE DATENVERARBEITUNG AUF GRUNDLAGE VON ART. 6 ABS. 1 LIT.
                 E ODER F DSGVO ERFOLGT, HABEN SIE JEDERZEIT DAS RECHT, AUS
                 GR&Uuml;NDEN, DIE SICH AUS IHRER BESONDEREN SITUATION ERGEBEN,
@@ -226,7 +226,7 @@ export function DatenschutzComponent() {
                 AUS&Uuml;BUNG ODER VERTEIDIGUNG VON RECHTSANSPR&Uuml;CHEN
                 (WIDERSPRUCH NACH ART. 21 ABS. 1 DSGVO).
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 WERDEN IHRE PERSONENBEZOGENEN DATEN VERARBEITET, UM
                 DIREKTWERBUNG ZU BETREIBEN, SO HABEN SIE DAS RECHT, JEDERZEIT
                 WIDERSPRUCH GEGEN DIE VERARBEITUNG SIE BETREFFENDER
@@ -237,11 +237,11 @@ export function DatenschutzComponent() {
                 NICHT MEHR ZUM ZWECKE DER DIREKTWERBUNG VERWENDET (WIDERSPRUCH
                 NACH ART. 21 ABS. 2 DSGVO).
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Beschwerde&shy;recht bei der zust&auml;ndigen
                 Aufsichts&shy;beh&ouml;rde
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Im Falle von Verst&ouml;&szlig;en gegen die DSGVO steht den
                 Betroffenen ein Beschwerderecht bei einer Aufsichtsbeh&ouml;rde,
                 insbesondere in dem Mitgliedstaat ihres gew&ouml;hnlichen
@@ -250,10 +250,10 @@ export function DatenschutzComponent() {
                 besteht unbeschadet anderweitiger verwaltungsrechtlicher oder
                 gerichtlicher Rechtsbehelfe.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Recht auf Daten&shy;&uuml;bertrag&shy;barkeit
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Sie haben das Recht, Daten, die wir auf Grundlage Ihrer
                 Einwilligung oder in Erf&uuml;llung eines Vertrags automatisiert
                 verarbeiten, an sich oder an einen Dritten in einem
@@ -262,10 +262,10 @@ export function DatenschutzComponent() {
                 einen anderen Verantwortlichen verlangen, erfolgt dies nur,
                 soweit es technisch machbar ist.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Auskunft, Berichtigung und L&ouml;schung
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen
                 jederzeit das Recht auf unentgeltliche Auskunft &uuml;ber Ihre
                 gespeicherten personenbezogenen Daten, deren Herkunft und
@@ -274,50 +274,45 @@ export function DatenschutzComponent() {
                 sowie zu weiteren Fragen zum Thema personenbezogene Daten
                 k&ouml;nnen Sie sich jederzeit an uns wenden.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Recht auf Einschr&auml;nkung der Verarbeitung
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Sie haben das Recht, die Einschr&auml;nkung der Verarbeitung
                 Ihrer personenbezogenen Daten zu verlangen. Hierzu k&ouml;nnen
                 Sie sich jederzeit an uns wenden. Das Recht auf
                 Einschr&auml;nkung der Verarbeitung besteht in folgenden
                 F&auml;llen:
               </p>{" "}
-              <ul className="py-8 mx-auto max-w-[600px] text-justify">
-                {" "}
-                <li>
-                  Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten
-                  personenbezogenen Daten bestreiten, ben&ouml;tigen wir in der
-                  Regel Zeit, um dies zu &uuml;berpr&uuml;fen. F&uuml;r die
-                  Dauer der Pr&uuml;fung haben Sie das Recht, die
-                  Einschr&auml;nkung der Verarbeitung Ihrer personenbezogenen
-                  Daten zu verlangen.
-                </li>{" "}
-                <li>
-                  Wenn die Verarbeitung Ihrer personenbezogenen Daten
-                  unrechtm&auml;&szlig;ig geschah/geschieht, k&ouml;nnen Sie
-                  statt der L&ouml;schung die Einschr&auml;nkung der
-                  Datenverarbeitung verlangen.
-                </li>{" "}
-                <li>
-                  Wenn wir Ihre personenbezogenen Daten nicht mehr
-                  ben&ouml;tigen, Sie sie jedoch zur Aus&uuml;bung, Verteidigung
-                  oder Geltendmachung von Rechtsanspr&uuml;chen ben&ouml;tigen,
-                  haben Sie das Recht, statt der L&ouml;schung die
-                  Einschr&auml;nkung der Verarbeitung Ihrer personenbezogenen
-                  Daten zu verlangen.
-                </li>{" "}
-                <li>
-                  Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt
-                  haben, muss eine Abw&auml;gung zwischen Ihren und unseren
-                  Interessen vorgenommen werden. Solange noch nicht feststeht,
-                  wessen Interessen &uuml;berwiegen, haben Sie das Recht, die
-                  Einschr&auml;nkung der Verarbeitung Ihrer personenbezogenen
-                  Daten zu verlangen.
-                </li>{" "}
-              </ul>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justifyr">
+              <p className="py-2  max-w-[600px] flex justify-start">
+                Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten
+                personenbezogenen Daten bestreiten, ben&ouml;tigen wir in der
+                Regel Zeit, um dies zu &uuml;berpr&uuml;fen. F&uuml;r die Dauer
+                der Pr&uuml;fung haben Sie das Recht, die Einschr&auml;nkung der
+                Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
+              </p>{" "}
+              <p className="py-2  max-w-[600px] flex justify-start">
+                Wenn die Verarbeitung Ihrer personenbezogenen Daten
+                unrechtm&auml;&szlig;ig geschah/geschieht, k&ouml;nnen Sie statt
+                der L&ouml;schung die Einschr&auml;nkung der Datenverarbeitung
+                verlangen.
+              </p>{" "}
+              <p className="py-2  max-w-[600px] flex justify-start">
+                Wenn wir Ihre personenbezogenen Daten nicht mehr ben&ouml;tigen,
+                Sie sie jedoch zur Aus&uuml;bung, Verteidigung oder
+                Geltendmachung von Rechtsanspr&uuml;chen ben&ouml;tigen, haben
+                Sie das Recht, statt der L&ouml;schung die Einschr&auml;nkung
+                der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
+              </p>{" "}
+              <p className="py-2  max-w-[600px] flex justify-start">
+                Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt
+                haben, muss eine Abw&auml;gung zwischen Ihren und unseren
+                Interessen vorgenommen werden. Solange noch nicht feststeht,
+                wessen Interessen &uuml;berwiegen, haben Sie das Recht, die
+                Einschr&auml;nkung der Verarbeitung Ihrer personenbezogenen
+                Daten zu verlangen.
+              </p>{" "}
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten
                 eingeschr&auml;nkt haben, d&uuml;rfen diese Daten &ndash; von
                 ihrer Speicherung abgesehen &ndash; nur mit Ihrer Einwilligung
@@ -328,10 +323,10 @@ export function DatenschutzComponent() {
                 Europ&auml;ischen Union oder eines Mitgliedstaats verarbeitet
                 werden.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Widerspruch gegen Werbe-E-Mails
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justifyr">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Der Nutzung von im Rahmen der Impressumspflicht
                 ver&ouml;ffentlichten Kontaktdaten zur &Uuml;bersendung von
                 nicht ausdr&uuml;cklich angeforderter Werbung und
@@ -340,13 +335,13 @@ export function DatenschutzComponent() {
                 Schritte im Falle der unverlangten Zusendung von
                 Werbeinformationen, etwa durch Spam-E-Mails, vor.
               </p>
-              <h2 className="py-4 flex justify-center underline underline-offset-2 font-medium">
+              <h2 className="py-4 flex justify-start underline underline-offset-2 font-medium">
                 3. Datenerfassung auf dieser Website
               </h2>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Cookies
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Unsere Internetseiten verwenden so genannte
                 &bdquo;Cookies&ldquo;. Cookies sind kleine Datenpakete und
                 richten auf Ihrem Endger&auml;t keinen Schaden an. Sie werden
@@ -358,7 +353,7 @@ export function DatenschutzComponent() {
                 selbst l&ouml;schen oder eine automatische L&ouml;schung durch
                 Ihren Webbrowser erfolgt.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Cookies k&ouml;nnen von uns (First-Party-Cookies) oder von
                 Drittunternehmen stammen (sog. Third-Party-Cookies).
                 Third-Party-Cookies erm&ouml;glichen die Einbindung bestimmter
@@ -366,7 +361,7 @@ export function DatenschutzComponent() {
                 (z.&nbsp;B. Cookies zur Abwicklung von
                 Zahlungsdienstleistungen).
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Cookies haben verschiedene Funktionen. Zahlreiche Cookies sind
                 technisch notwendig, da bestimmte Webseitenfunktionen ohne diese
                 nicht funktionieren w&uuml;rden (z.&nbsp;B. die
@@ -374,7 +369,7 @@ export function DatenschutzComponent() {
                 k&ouml;nnen zur Auswertung des Nutzerverhaltens oder zu
                 Werbezwecken verwendet werden.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Cookies, die zur Durchf&uuml;hrung des elektronischen
                 Kommunikationsvorgangs, zur Bereitstellung bestimmter, von Ihnen
                 erw&uuml;nschter Funktionen (z.&nbsp;B. f&uuml;r die
@@ -391,7 +386,7 @@ export function DatenschutzComponent() {
                 dieser Einwilligung (Art. 6 Abs. 1 lit. a DSGVO und &sect; 25
                 Abs. 1 TTDSG); die Einwilligung ist jederzeit widerrufbar.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Sie k&ouml;nnen Ihren Browser so einstellen, dass Sie &uuml;ber
                 das Setzen von Cookies informiert werden und Cookies nur im
                 Einzelfall erlauben, die Annahme von Cookies f&uuml;r bestimmte
@@ -400,14 +395,14 @@ export function DatenschutzComponent() {
                 Browsers aktivieren. Bei der Deaktivierung von Cookies kann die
                 Funktionalit&auml;t dieser Website eingeschr&auml;nkt sein.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Welche Cookies und Dienste auf dieser Website eingesetzt werden,
                 k&ouml;nnen Sie dieser Datenschutzerkl&auml;rung entnehmen.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Kontaktformular
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Wenn Sie uns per Kontaktformular Anfragen zukommen lassen,
                 werden Ihre Angaben aus dem Anfrageformular inklusive der von
                 Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der
@@ -415,7 +410,7 @@ export function DatenschutzComponent() {
                 gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung
                 weiter.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6
                 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erf&uuml;llung
                 eines Vertrags zusammenh&auml;ngt oder zur Durchf&uuml;hrung
@@ -426,7 +421,7 @@ export function DatenschutzComponent() {
                 Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt
                 wurde; die Einwilligung ist jederzeit widerrufbar.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben
                 bei uns, bis Sie uns zur L&ouml;schung auffordern, Ihre
                 Einwilligung zur Speicherung widerrufen oder der Zweck f&uuml;r
@@ -435,17 +430,17 @@ export function DatenschutzComponent() {
                 gesetzliche Bestimmungen &ndash; insbesondere
                 Aufbewahrungsfristen &ndash; bleiben unber&uuml;hrt.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Anfrage per E-Mail, Telefon oder Telefax
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird
                 Ihre Anfrage inklusive aller daraus hervorgehenden
                 personenbezogenen Daten (Name, Anfrage) zum Zwecke der
                 Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet.
                 Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6
                 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erf&uuml;llung
                 eines Vertrags zusammenh&auml;ngt oder zur Durchf&uuml;hrung
@@ -456,7 +451,7 @@ export function DatenschutzComponent() {
                 Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt
                 wurde; die Einwilligung ist jederzeit widerrufbar.
               </p>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die von Ihnen an uns per Kontaktanfragen &uuml;bersandten Daten
                 verbleiben bei uns, bis Sie uns zur L&ouml;schung auffordern,
                 Ihre Einwilligung zur Speicherung widerrufen oder der Zweck
@@ -465,19 +460,19 @@ export function DatenschutzComponent() {
                 gesetzliche Bestimmungen &ndash; insbesondere gesetzliche
                 Aufbewahrungsfristen &ndash; bleiben unber&uuml;hrt.
               </p>
-              <h3 className="py-6 flex justify-center underline underline-offset-2 font-semibold">
+              <h3 className="py-6 flex justify-start underline underline-offset-2 font-semibold">
                 Kommentar&shy;funktion auf dieser Website
               </h3>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 F&uuml;r die Kommentarfunktion auf dieser Seite werden neben
                 Ihrem Kommentar auch Angaben zum Zeitpunkt der Erstellung des
                 Kommentars, Ihre E-Mail-Adresse und, wenn Sie nicht anonym
                 posten, der von Ihnen gew&auml;hlte Nutzername gespeichert.
               </p>
-              <h4 className="py-8 flex justify-center">
-                Speicherung der IP-Adresse
+              <h4 className="py-8 flex justify-start">
+                1. Speicherung der IP-Adresse
               </h4>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Unsere Kommentarfunktion speichert die IP-Adressen der Nutzer,
                 die Kommentare verfassen. Da wir Kommentare auf dieser Website
                 nicht vor der Freischaltung pr&uuml;fen, ben&ouml;tigen wir
@@ -485,18 +480,18 @@ export function DatenschutzComponent() {
                 Beleidigungen oder Propaganda gegen den Verfasser vorgehen zu
                 k&ouml;nnen.
               </p>
-              <h4 className="py-8 flex justify-center">
-                Speicherdauer der Kommentare
+              <h4 className="py-8 flex justify-start">
+                2. Speicherdauer der Kommentare
               </h4>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die Kommentare und die damit verbundenen Daten werden
                 gespeichert und verbleiben auf dieser Website, bis der
                 kommentierte Inhalt vollst&auml;ndig gel&ouml;scht wurde oder
                 die Kommentare aus rechtlichen Gr&uuml;nden gel&ouml;scht werden
                 m&uuml;ssen (z.&nbsp;B. beleidigende Kommentare).
               </p>
-              <h4 className="py-8 flex justify-center">Rechtsgrundlage</h4>{" "}
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <h4 className="py-8 flex justify-start">3. Rechtsgrundlage</h4>{" "}
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Die Speicherung der Kommentare erfolgt auf Grundlage Ihrer
                 Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie k&ouml;nnen eine
                 von Ihnen erteilte Einwilligung jederzeit widerrufen. Dazu
@@ -505,7 +500,7 @@ export function DatenschutzComponent() {
                 Datenverarbeitungsvorg&auml;nge bleibt vom Widerruf
                 unber&uuml;hrt.
               </p>
-              <p className="py-8 mx-auto max-w-[600px] text-justify">
+              <p className="py-8  max-w-[600px] flex justify-start">
                 Quelle:{" "}
                 <a href="https://www.e-recht24.de">https://www.e-recht24.de</a>
               </p>
