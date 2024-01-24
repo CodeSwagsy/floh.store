@@ -1,12 +1,12 @@
 import { HeaderComponent } from "../../components/header/header.component.jsx";
 import { FooterComponent } from "../../components/footer/footer.component.jsx";
-import { ConfirmCodeComponent } from "../../components/sign-in/resetPassword/confirmcode.component.jsx";
+import { ErrorCodeComponent } from "../../components/sign-in/resetPassword/errorcode.component.jsx";
 
-export function ConfirmCodedContainer() {
+export function ErrorCodeContainer() {
   return (
     <>
       <HeaderComponent />
-      <ConfirmCodeComponent />
+      <ErrorCodeComponent />
       <FooterComponent />
     </>
   );
