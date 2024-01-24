@@ -119,9 +119,9 @@ export function DatenschutzComponent() {
               </p>{" "}
               <p className="py-8 flex justify-start">Offener Handel</p>
               <p className="py-8  max-w-[600px] flex justify-start">
-                Telefon: &#91;Telefonnummer der verantwortlichen Stelle&#93;
+                Telefon: &#91;1-800-225-5324&#93;
                 <br />
-                E-Mail: &#91;E-Mail-Adresse der verantwortlichen Stelle&#93;
+                E-Mail: &#91;Walter.white@googlemail.com&#93;
               </p>
               <p className="py-8  max-w-[600px] flex justify-start">
                 Verantwortliche Stelle ist die nat&uuml;rliche oder juristische
