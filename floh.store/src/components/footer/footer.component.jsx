@@ -5,9 +5,9 @@ import {Link} from "react-router-dom";
 export function FooterComponent() {
     return (
         <>
-            <footer>
+            <footer className="flex flex-col my-4 lg:my-8">
                 <div
-                    className="container mx-auto mt-6 lg:mt-12 mb-4 lg:mb-12
+                    className="container mx-auto border-t border-gray-300 pt-4
                      flex justify-between max-lg:items-center max-lg:flex-col">
                     <div className="flex flex-col max-lg:items-center max-lg:justify-center">
                         <h1 className="font-bold">FLOH.STORE</h1>
@@ -34,9 +34,9 @@ export function FooterComponent() {
                         </ul>
                     </div>
                 </div>
-                <div className="container mx-auto border-t border-gray-300 w-11/12 flex gap-4 mb-4 lg:mb-12">
-                    <a href=""><FontAwesomeIcon icon={faSquareFacebook} className="mt-4 lg:mt-12 fa-2xl text-emerald hover:text-jet transition-all" /></a>
-                    <a href=""><FontAwesomeIcon icon={faSquareInstagram} className="mt-4 lg:mt-12 fa-2xl text-emerald hover:text-jet transition-all" /></a>
+                <div className="container mx-auto border-t border-gray-300 mt-4 flex gap-4">
+                    <a href=""><FontAwesomeIcon icon={faSquareFacebook} className="mt-4  fa-2xl text-emerald hover:text-jet transition-all" /></a>
+                    <a href=""><FontAwesomeIcon icon={faSquareInstagram} className="mt-4  fa-2xl text-emerald hover:text-jet transition-all" /></a>
                 </div>
             </footer>
         </>

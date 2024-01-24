@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 
 export const ProductComponent = ({ product }) => {
   const { name, description, price, images } = product;
@@ -13,7 +13,7 @@ export const ProductComponent = ({ product }) => {
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2">
       <div
-        className={`relative group opacity-${isHovered ? "120" : "100"}`}
+        className={`relative group opacity-${isHovered ? "120" : "00"}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
