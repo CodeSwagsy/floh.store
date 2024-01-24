@@ -23,7 +23,6 @@ export function ImpressumCompotent() {
               <p className=" flex justify-start">
                 Internetadresse: FlohStore.com
               </p>
-              I
               <h2 className="py-8 flex justify-center font-bold">
                 Haftungsausschluss:
               </h2>

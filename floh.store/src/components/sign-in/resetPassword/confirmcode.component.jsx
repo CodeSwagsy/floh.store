@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../../hero/button.component";
 
-export function ForgotPasswordComponent() {
+export function ConfirmCodeComponent() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
@@ -9,32 +9,31 @@ export function ForgotPasswordComponent() {
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-10">
             Passwort Wiederherstellen
             <p>
-              Gib die Email adresse von deinem Konto ein für Passwort
-              wiederherstellung
+              Gib den Code ein der auf deine Email adresse gesendet worden ist!
             </p>
           </h2>
           <form className="space-y-6" action="#" method="POST">
             <div>
               <label
-                htmlFor="email"
+                htmlFor="code"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Deine Email
+                Bestätigungs Code
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="code"
+                  name="code"
+                  type="code"
+                  autoComplete="code"
                   required
-                  placeholder="Email@adresse.com"
+                  placeholder="••••••••"
                   className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
             <div>
-              <Link to="/profile/confirmcode">
+              <Link to="/profile/newpassword">
                 <ButtonComponent
                   spantxt="Absenden"
                   size="large"
