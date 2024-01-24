@@ -46,7 +46,7 @@ export const AllProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://api.floh.store/product/all", {
+        const response = await fetch(`${import.meta.env.VITE_API}/product/all`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

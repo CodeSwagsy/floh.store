@@ -10,14 +10,17 @@ export function CategoryComponent({additionalClasses, selectClasses}) {
                 defaultValue="kategorien"
             >
                 <option className="text-left pr-3" disabled value="kategorien">Kategorien</option>
-                <option className="text-left pr-3" value="elektronik">Elektronik</option>
-                <option className="text-left pr-3" value="kleidung">Kleidung & Accessoires</option>
-                <option className="text-left pr-3" value="haushalt">Haushalt & Möbel</option>
-                <option className="text-left pr-3" value="sport">Sport & Freizeit</option>
-                <option className="text-left pr-3" value="fahrzeuge">Fahrzeuge</option>
-                <option className="text-left pr-3" value="buecher">Bücher & Medien</option>
-                <option className="text-left pr-3" value="hobby">Hobby & Sammeln</option>
-                <option className="text-left pr-3" value="garten">Garten & Pflanzen</option>
+                <option className="text-left pr-3" value="Elektronik">Elektronik</option>
+                <option className="text-left pr-3" value="Kleidung & Accessoires">Kleidung & Accessoires</option>
+                <option className="text-left pr-3" value="Haushalt & Möbel">Haushalt & Möbel</option>
+                <option className="text-left pr-3" value="Sport & Freizeit">Sport & Freizeit</option>
+                <option className="text-left pr-3" value="Fahrzeuge">Fahrzeuge</option>
+                <option className="text-left pr-3" value="Bücher & Medien">Bücher & Medien</option>
+                <option className="text-left pr-3" value="Hobby & Sammeln">Hobby & Sammeln</option>
+                <option className="text-left pr-3" value="Garten & Pflanzen">Garten & Pflanzen</option>
+                <option className="text-left pr-3" value="Tierbedarf">Tierbedarf</option>
+                <option className="text-left pr-3" value="Dienstleistungen">Dienstleistungen</option>
+                <option className="text-left pr-3" value="Sonstiges">Sonstiges</option>
             </select>
         </div>
     )
