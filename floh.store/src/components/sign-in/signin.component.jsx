@@ -65,6 +65,7 @@ export function SigninComponent() {
                 const data = await response.json();
                 if (data.code === 200) {
                     updateUserData(data);
+                    console.log(data)
                     console.log("User geupdated")
                 } else {
                     console.error("Error fetching users:", data.message);
