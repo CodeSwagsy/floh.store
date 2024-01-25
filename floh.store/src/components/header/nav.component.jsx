@@ -62,7 +62,7 @@ export function NavComponent() {
                     className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-4 py-3">
                         <p className="text-sm">Angemeldet als:</p>
-                        <p className="truncate text-sm font-medium text-gray-900">LOGIK EINFÜGEN</p>
+                        <p className="truncate text-sm font-medium text-gray-900">{userData ? userData.doc.info.about.username : "nicht angemeldet"}</p>
                     </div>
                     <div className="py-1">
                         <Menu.Item>
