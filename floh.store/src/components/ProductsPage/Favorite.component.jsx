@@ -13,9 +13,7 @@ export const FavoriteComponent = ({ favorite }) => {
 
     return (
         <div
-            className={`bg-gray-100 p-4 border rounded-lg hover:shadow-md transition duration-300 mb-4 ${
-                isHovered ? "shadow-md" : ""
-            }`}
+            className={`bg-gray-100 p-4 border rounded-lg hover:shadow-md transition duration-300 mb-4 flex flex-col justify-between hover:shadow-md transition-all`}
         >
             <div className="flex justify-center mb-3">
                 <img src={images[0]} alt={title} className="w-40 h-40 rounded" />
@@ -31,13 +29,9 @@ export const FavoriteComponent = ({ favorite }) => {
                 <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Location: ${location.city}, ${location.zip}`}</p>
                 <Link
                     to={`/favoriteproducts/${favorite._id}`}
-                    className={`bg-green-500 text-white px-5 py-2 rounded mt-4 ${
-                        isHovered ? "bg-green-600" : "bg-gray-800"
-                    }`}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
+                    className={`bg-green-500 text-white px-5 py-2 rounded mt-4 bg-emerald hover:bg-springgreen transition-all`}
                 >
-                    View Details
+                    Produkt anzeigen
                 </Link>
             </div>
         </div>
