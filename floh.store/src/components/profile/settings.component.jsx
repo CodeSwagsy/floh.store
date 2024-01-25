@@ -46,7 +46,7 @@ export function SettingsComponent() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`http://localhost:4000/user/about/${uid}`, {
+                const response = await fetch(`${import.meta.env.VITE_API}/user/about/${uid}`, {
                     method: "GET",
                     credentials: "include",
                     headers: {
