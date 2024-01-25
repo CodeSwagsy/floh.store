@@ -1,11 +1,10 @@
 ﻿import {useEffect, useState} from "react";
-import {FavoriteComponent} from "./Favorite.component.jsx";
 import {ProductCard} from "./ProductCard.component.jsx";
 import {useParams} from "react-router";
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
-    const [favorites, setFavorites] = useState([]);
+    const [favoriteTexts, setFavoriteTexts] = useState({});
     const {id} = useParams();
     const categoryTitle = id ? id : 'Alle Produkte';
 
@@ -26,12 +25,17 @@ export const AllProductsPage = () => {
                 });
                 const data = await response.json();
                 if (data.code === 200) {
+                    const initialFavoriteTexts = {};
+                    data.products.forEach((product) => {
+                        initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
+                    });
+                    setFavoriteTexts(initialFavoriteTexts);
                     setProducts(data.products);
                 } else {
                     console.error(data.error.message);
                 }
             } catch (error) {
-                console.error("Error fetching products catchblock:", error);
+                console.error("Error fetching products:", error);
             }
         };
 
@@ -39,7 +43,7 @@ export const AllProductsPage = () => {
     }, [id]);
 
 
-    const handleAddToFavorites = async (product) => {
+   const handleAddToFavorites = async (product) => {
         try {
             if (!product) {
                 console.error("Product is undefined or null.");
@@ -60,7 +64,11 @@ export const AllProductsPage = () => {
 
             const data = await response.json();
             if (data.code === 200) {
-                console.log("FAVORITE HINZUGEFÜGT")
+                // Update the favoriteTexts state for the specific product
+                setFavoriteTexts((prevFavoriteTexts) => ({
+                    ...prevFavoriteTexts,
+                    [product._id]: "Zur Merkliste hinzugefügt",
+                }));
             } else {
                 console.error("Error adding to favorites: ELSE", data.message);
             }
@@ -78,6 +86,7 @@ export const AllProductsPage = () => {
                         key={product._id}
                         product={product}
                         onAddToFavorites={handleAddToFavorites}
+                        favoriteText={favoriteTexts[product._id]}
                     />
                 ))}
             </div>
