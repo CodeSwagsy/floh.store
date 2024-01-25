@@ -2,7 +2,7 @@
 import {useParams} from "react-router";
 import {ProductCard} from "./productcard.component.jsx";
 
-
+// asdasd
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
     const {id} = useParams();
