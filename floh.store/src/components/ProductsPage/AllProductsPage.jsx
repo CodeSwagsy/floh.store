@@ -38,31 +38,6 @@ export const AllProductsPage = () => {
         fetchProducts();
     }, [id]);
 
-    useEffect(() => {
-        const fetchFavorites = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API}/about/:id`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-
-                const data = await response.json();
-                console.log(data.doc);
-                if (data.code === 200) {
-                    setFavorites(data.favorites);
-                } else {
-                    console.error("Error fetching favorites:", data.message);
-                }
-            } catch (error) {
-                console.error("Error fetching favorites:", error);
-            }
-        };
-
-        fetchFavorites();
-    }, []);
-
 
     const handleAddToFavorites = async (product) => {
         try {
@@ -72,9 +47,10 @@ export const AllProductsPage = () => {
             }
 
             const response = await fetch(
-                `${import.meta.env.VITE_API}/update/favorites/:item`,
+                `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
                 {
                     method: "PUT",
+                    credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -84,13 +60,12 @@ export const AllProductsPage = () => {
 
             const data = await response.json();
             if (data.code === 200) {
-                // Update the favorites list
-                setFavorites([...favorites, product]);
+                console.log("FAVORITE HINZUGEFÜGT")
             } else {
-                console.error("Error adding to favorites:", data.message);
+                console.error("Error adding to favorites: ELSE", data.message);
             }
         } catch (error) {
-            console.error("Error adding to favorites:", error);
+            console.error("Error adding to favorites: CATCH", error);
         }
     };
 
@@ -104,12 +79,6 @@ export const AllProductsPage = () => {
                         product={product}
                         onAddToFavorites={handleAddToFavorites}
                     />
-                ))}
-            </div>
-            <h2 className="text-3xl font-bold mb-4 mt-8">All Favorites</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {favorites.map((favorite) => (
-                    <FavoriteComponent key={favorite._id} favorite={favorite}/>
                 ))}
             </div>
         </div>
