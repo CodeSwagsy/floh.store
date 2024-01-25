@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import {LinkButtonComponent} from "../header/button.component.jsx";
+import {Link} from "react-router-dom";
 
 export function SingleProductComponent() {
     const {id} = useParams();
@@ -95,7 +96,7 @@ export function SingleProductComponent() {
         <>
             <div className="container mx-auto lg:mt-12">
                 <div className="flex pb-4">
-                    <h2 className="lg:text-2xl font-semibold underline">{product ? product.category : " "}</h2>
+                    <Link to={product ? `/products/gallery/category/${product.category}` : "/"} className="lg:text-2xl font-semibold underline">{product ? product.category : " "}</Link>
                     <h2 className="lg:text-2xl no-underline">&nbsp; / {product ? product.title : " "}</h2>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-between lg:pb-4">
