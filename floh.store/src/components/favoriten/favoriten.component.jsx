@@ -1,10 +1,13 @@
-// AllProductsPage.jsx
-import React, { useEffect, useState } from "react";
+// FavoriteComponent.jsx
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const FavoriteComponent = ({ favorite }) => {
-  const { title, category, condition, price, description, location, images } =
-    favorite;
+  if (!favorite) {
+    return null; 
+  }
+
+  const { title, category, condition, price, description, location, images } = favorite;
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -40,44 +43,6 @@ export const FavoriteComponent = ({ favorite }) => {
         >
           View Details
         </Link>
-      </div>
-    </div>
-  );
-};
-
-export const AllFavoritePage = () => {
-  const [favorite, setFavorite] = useState([]);
-
-  useEffect(() => {
-    const fetchFavorite = async () => {
-      try {
-        const response = await fetch("", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await response.json();
-        if (data.code === 200) {
-          setFavorite(data.favorite);
-        } else {
-          console.error("Error fetching favorite:", data.message);
-        }
-      } catch (error) {
-        console.error("Error fetching favortie:", error);
-      }
-    };
-
-    fetchFavorite();
-  }, []);
-
-  return (
-    <div className="container mx-auto my-8 mt-16">
-      <h2 className="text-3xl font-bold mb-4">All Favorite</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {favorite.map((favorite) => (
-          <FavoriteCard key={favorite._id} favorite={favorite} />
-        ))}
       </div>
     </div>
   );
