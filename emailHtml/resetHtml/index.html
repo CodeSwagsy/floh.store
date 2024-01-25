@@ -1,90 +1,128 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Passwort Zurücksetzen</title>
+    <style>
+      @media screen {
+        @font-face {
+          font-family: "Source Sans Pro";
+          font-style: normal;
+          font-weight: 400;
+          src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"),
+            url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff)
+              format("woff");
+        }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Passwort Zurücksetzen</title>
-  <style>
-    @media screen {
-      @font-face {
-        font-family: "Source Sans Pro";
-        font-style: normal;
-        font-weight: 400;
-        src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"),
-          url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format("woff");
+        @font-face {
+          font-family: "Source Sans Pro";
+          font-style: normal;
+          font-weight: 700;
+          src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"),
+            url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff)
+              format("woff");
+        }
       }
 
-      @font-face {
-        font-family: "Source Sans Pro";
-        font-style: normal;
-        font-weight: 700;
-        src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"),
-          url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format("woff");
-      }
-    }
-
-    /**
+      /**
        * Avoid browser level font resizing.
        * 1. Windows Mobile
        * 2. iOS / OSX
        */
-    body,
-    table,
-    td,
-    a {
-      -ms-text-size-adjust: 100%;
-      /* 1 */
-      -webkit-text-size-adjust: 100%;
-      /* 2 */
-    }
+      table {
+        border-collapse: separate;
+      }
+      a,
+      a:link,
+      a:visited {
+        text-decoration: none;
+        color: #005f30;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h2,
+      h2 a,
+      h2 a:visited,
+      h3,
+      h3 a,
+      h3 a:visited,
+      h4,
+      h5,
+      h6,
+      .t_cht {
+        color: #000 !important;
+      }
+      .ExternalClass p,
+      .ExternalClass span,
+      .ExternalClass font,
+      .ExternalClass td {
+        line-height: 100%;
+      }
 
-    /**
+      .ExternalClass {
+        width: 100%;
+      }
+
+      body,
+      table,
+      td,
+      a {
+        -ms-text-size-adjust: 100%;
+        /* 1 */
+        -webkit-text-size-adjust: 100%;
+        /* 2 */
+      }
+
+      /**
         /**
        * Better fluid images in Internet Explorer.
        */
-    img {
-      -ms-interpolation-mode: bicubic;
-    }
+      img {
+        -ms-interpolation-mode: bicubic;
+      }
 
-    /**
+      /**
        * Remove blue links for iOS devices.
        */
-    a[x-apple-data-detectors] {
-      font-family: inherit !important;
-      font-size: inherit !important;
-      font-weight: inherit !important;
-      line-height: inherit !important;
-      color: inherit !important;
-      text-decoration: none !important;
-    }
+      a[x-apple-data-detectors] {
+        font-family: inherit !important;
+        font-size: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+        color: inherit !important;
+        text-decoration: none !important;
+      }
 
-    /**
+      /**
        * Fix centering issues in Android 4.4.
        */
-    div[style*="margin: 16px 0;"] {
-      margin: 0 !important;
-    }
+      div[style*="margin: 16px 0;"] {
+        margin: 0 !important;
+      }
 
-    body {
-      width: 100% !important;
-      height: 100% !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
+      body {
+        width: 100% !important;
+        height: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
 
-    /**
+      /**
        * Collapse table borders to avoid space between cells.
        */
-    table {
-      border-collapse: collapse !important;
-    }
-  </style>
-</head>
+      table {
+        border-collapse: collapse !important;
+      }
+    </style>
+  </head>
 
-<body>
-  <table style="
+  <body>
+    <table
+      style="
         width: 100%;
         max-width: 600px;
         border-collapse: collapse;
@@ -92,42 +130,48 @@
         background-color: #dadada;
         font-family: Source Sans Pro, -apple-system, system-ui, 'Segoe UI',
           Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-
-      ">
-    <tr>
-      <td style="
+      "
+    >
+      <tr>
+        <td
+          style="
             background-color: #333333;
             padding: 20px 40px;
             color: #f5f5f5;
             height: 100%;
-          ">
-        <table style="max-width: 1200px; text-align: left; margin: 0 auto">
-          <h1 style="
-                float:inline-start;
-                font: normal 2em Cookie, Arial, Helvetica, sans-serif;
+          "
+        >
+          <table style="max-width: 1200px; text-align: left; margin: 0 auto">
+            <h1
+              style="
+                align-items: end;
+                font: normal 2rem Cookie, Arial, Helvetica, sans-serif;
                 line-height: 40px;
                 margin: 0 0 0 0px;
                 color: #00bd5e;
                 font-size: 1.7rem;
-              ">
-            <a href="https://floh.store/" style="color: #00bd5e; text-decoration: none" 
+              "
+            >
+              <a
+                href="https://floh.store/"
+                style="color: #00bd5e; text-decoration: none; "
               >
-                FLOH<span style=" 
-                            color: #f5f5f5;
-                            margin-right: 20px;
-                            font-size: 1.7rem;
-                            ">.STORE</span>
-            </a>
-          </h1>
-        </table>
-      </td>
-    </tr>
+                FLOH<span
+                  style="color: #f5f5f5; margin-right: 20px; font-size: 1.6rem"
+                  >.STORE</span
+                >
+              </a>
+            </h1>
+          </table>
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        <table style="width: 100%; border-collapse: collapse">
-          <tr>
-            <td style="
+      <tr>
+        <td>
+          <table style="width: 100%; border-collapse: collapse">
+            <tr>
+              <td
+                style="
                   max-width: 600px;
                   margin: 20px auto;
                   padding: 40px;
@@ -136,25 +180,31 @@
                   font-size: 1.2rem;
                   text-align: center;
                   margin: auto;
-                ">
-              <p style="
+                "
+              >
+                <p
+                  style="
                     line-height: 1.5rem;
                     text-align: center;
                     font-size: 3rem;
                     font-family: Source Sans Pro Bold, 'Segoe UI', Tahoma,
                       Geneva, Verdana, sans-serif;
                     font-weight: 300;
-                  ">
-                Hallo!
-              </p>
-              <p style="line-height: 1.5rem;">Sie erhalten diese nachricht weil sie ein Passwort-Reset angefordert
-                haben.</p>
-              <p style="line-height: 1,5rem;">
-                Bitte klicken Sie auf die Schaltfläche unten, um den Vorgang
-                abzuschließen:
-              </p>
+                  "
+                >
+                  Hallo!
+                </p>
+                <p style="line-height: 1.5rem">
+                  Sie erhalten diese nachricht weil sie ein Passwort-Reset
+                  angefordert haben.
+                </p>
+                <p style="line-height: 1, 5rem">
+                  Bitte klicken Sie auf die Schaltfläche unten, um den Vorgang
+                  abzuschließen:
+                </p>
 
-              <button style="
+                <button
+                  style="
                     appearance: none;
                     background-color: #2ea44f;
                     border: 1px solid #333333;
@@ -171,7 +221,7 @@
                     font-weight: 500;
                     line-height: 20px;
                     padding: 14px 28px;
-                    
+
                     text-align: center;
                     text-decoration: none;
                     user-select: none;
@@ -179,34 +229,44 @@
                     touch-action: manipulation;
                     vertical-align: middle;
                     white-space: nowrap;
-                  ">
-                <a href="link_to_replace" style="color: inherit; text-decoration: none">Passwort Zurücksetzen</a>
-              </button>
-              <p style="line-height: 1,5rem;">
-                Wenn das nicht funktioniert, kopieren Sie den folgenden Link
-                und fügen Sie ihn in Ihren Browser ein:
-              </p>
+                  "
+                >
+                  <a
+                    href="link_to_replace"
+                    style="color: inherit; text-decoration: none"
+                    >Passwort Zurücksetzen</a
+                  >
+                </button>
+                <p style="line-height: 1, 5rem">
+                  Wenn das nicht funktioniert, kopieren Sie den folgenden Link
+                  und fügen Sie ihn in Ihren Browser ein:
+                </p>
 
-              <p style="color: #00bd5e; text-decoration: none">
-                link_to_replace
-              </p>
-              <p style="line-height: 1,5rem;">
-                Bei weiteren Fragen können Sie unseren Support via
-                <a style="color: inherit; text-decoration: none" href="mailto:flohstore@gmail.com">support@gmail.com</a>
-                kontaktieren
-              </p>
-              <p style="line-height: 1,5rem;">
-                Mit freundlichen Grüßen <br />
-                Ihr Dev Team
-              </p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+                <p style="color: #00bd5e; text-decoration: none">
+                  link_to_replace
+                </p>
+                <p style="line-height: 1, 5rem">
+                  Bei weiteren Fragen können Sie unseren Support via
+                  <a
+                    style="color: inherit; text-decoration: none"
+                    href="mailto:flohstore@gmail.com"
+                    >support@gmail.com</a
+                  >
+                  kontaktieren
+                </p>
+                <p style="line-height: 1, 5rem">
+                  Mit freundlichen Grüßen <br />
+                  Ihr Dev Team
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
 
-  <table style="
+    <table
+      style="
         width: 100%;
         max-width: 600px;
         border-collapse: collapse;
@@ -214,9 +274,11 @@
         background-color: #f5f5f5;
         font-family: Source Sans Pro, -apple-system, system-ui, 'Segoe UI',
           Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-      ">
-    <tr>
-      <td style="
+      "
+    >
+      <tr>
+        <td
+          style="
             text-align: center;
             max-width: 600px;
             margin: 20px auto;
@@ -224,17 +286,23 @@
             background-color: #333333;
             color: #dadada;
             font-size: 1.2rem;
-          ">
-        <p style="line-height: 1,5rem;">Du brauchst mehr Hilfe?</p>
-        <p>
-          <a href="https://floh.store/" style="color: #00bd5e; text-decoration: none">Wir sind für dich da!</a>
-        </p>
-      </td>
-    </tr>
-  </table>
-  <table style="width: 100%; max-width: 600px; margin: auto">
-    <tr>
-      <td style="
+          "
+        >
+          <p style="line-height: 1, 5rem">Du brauchst mehr Hilfe?</p>
+          <p>
+            <a
+              href="https://floh.store/"
+              style="color: #00bd5e; text-decoration: none"
+              >Wir sind für dich da!</a
+            >
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table style="width: 100%; max-width: 600px; margin: auto">
+      <tr>
+        <td
+          style="
             text-align: center;
             max-width: 600px;
             margin: 20px auto;
@@ -244,16 +312,20 @@
               Helvetica, Arial, sans-serif, 'Apple Color Emoji',
               'Segoe UI Emoji';
             color: #333333;
-          ">
-        <p style="line-height: 1,5rem;">
-          Wenn Sie kein Passwort-Reset angefordert haben, empfehlen wir, sich
-          umgehend mit unserem Support in Verbindung zu setzen.
-          <a style="color: inherit; text-decoration: none" href="mailto:flohstore@gmail.com">support@gmail.com</a>
-        </p>
-        <p style="line-height: 1,5rem;">&copy; 2024 Made in Germany</p>
-      </td>
-    </tr>
-  </table>
-</body>
-
+          "
+        >
+          <p style="line-height: 1, 5rem">
+            Wenn Sie kein Passwort-Reset angefordert haben, empfehlen wir, sich
+            umgehend mit unserem Support in Verbindung zu setzen.
+            <a
+              style="color: inherit; text-decoration: none"
+              href="mailto:flohstore@gmail.com"
+              >support@gmail.com</a
+            >
+          </p>
+          <p style="line-height: 1, 5rem">&copy; 2024 Made in Germany</p>
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>
