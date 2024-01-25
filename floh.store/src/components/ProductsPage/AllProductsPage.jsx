@@ -72,7 +72,7 @@ export const AllProductsPage = () => {
             }
 
             const response = await fetch(
-                `${import.meta.env.VITE_API}/update/favorites/:item`,
+                `${import.meta.env.VITE_API}/update/favorites/${product._id}`,
                 {
                     method: "PUT",
                     headers: {
