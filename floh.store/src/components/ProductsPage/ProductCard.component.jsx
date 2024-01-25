@@ -13,9 +13,7 @@ export const ProductCard = ({ product, onAddToFavorites }) => {
 
     return (
         <div
-            className={`bg-gray-100 p-4 border rounded-lg hover:shadow-md transition duration-300 mb-4 flex flex-col justify-between ${
-                isHovered ? "shadow-md" : ""
-            }`}
+            className={`bg-gray-100 p-4 border rounded-lg hover:shadow-md transition duration-300 mb-4 flex flex-col justify-between hover:shadow-md transition-all`}
         >
             <div className="flex justify-center mb-3 h-1/3">
                 <img src={images[0]} alt={title} className="object-cover rounded" />
@@ -31,23 +29,15 @@ export const ProductCard = ({ product, onAddToFavorites }) => {
                 <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl mb-2">{`Location: ${location.city}, ${location.zip}`}</p>
                 <button
                     onClick={handleAddToFavorites}
-                    className={`bg-blue-500 text-white px-5 py-2 rounded mt-4 ${
-                        isHovered ? "bg-blue-600" : "bg-gray-800"
-                    }`}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
+                    className={`bg-blue-500 text-white px-5 py-2 rounded mt-4 bg-jet hover:bg-springgreen transition-all`}
                 >
-                    Add to Favorites
+                    Zu Favoriten hinzufügen
                 </button>
                 <Link
                     to={`/products/${product._id}`}
-                    className={`bg-green-500 text-white px-5 py-2 rounded mt-4 ${
-                        isHovered ? "bg-green-600" : "bg-gray-800"
-                    }`}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
+                    className={`bg-green-500 text-white px-5 py-2 rounded mt-4 bg-emerald hover:bg-springgreen transition-all`}
                 >
-                    View Details
+                    Produkt anzeigen
                 </Link>
             </div>
         </div>
