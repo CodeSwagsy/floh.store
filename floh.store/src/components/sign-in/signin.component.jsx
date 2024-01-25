@@ -26,7 +26,7 @@ export function SigninComponent() {
     e.preventDefault();
     console.log(credentials);
     try {
-      const response = await fetch("http://localhost:4000/user/login", {
+      const response = await fetch(`${import.meta.env.VITE_API}/user/login`, {
         method: "POST",
         mode: "cors",
         headers: {
