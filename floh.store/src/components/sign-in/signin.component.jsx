@@ -1,17 +1,18 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ButtonComponent} from "../hero/button.component";
 import {useEffect, useState} from "react";
 import {useData} from "../../context/signin.context.jsx";
 
 export function SigninComponent() {
     const {userData, updateUserData} = useData();
+    const {login, updateLogin} = useData()
+    const navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
     });
 
-    const [login, setLogin] = useState(false);
     const [error, setError] = useState("");
     const uid = localStorage.getItem("responseData");
 
@@ -26,7 +27,6 @@ export function SigninComponent() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(credentials);
         try {
             const response = await fetch(`${import.meta.env.VITE_API}/user/login`, {
                 method: "POST",
@@ -40,9 +40,7 @@ export function SigninComponent() {
 
             const data = await response.json();
             if (response.status === 200) {
-                setLogin(true);
-                updateUserData(data);
-                setLogin(true)
+                updateLogin(true)
                 localStorage.setItem("responseData", data.uid);
             } else {
                 setError(error);
@@ -51,6 +49,7 @@ export function SigninComponent() {
             console.error("Error:", error);
         }
     };
+
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -65,11 +64,11 @@ export function SigninComponent() {
                 const data = await response.json();
                 if (data.code === 200) {
                     updateUserData(data);
-                    console.log(data)
-                    console.log("User geupdated")
+                    if (login) {
+                        navigate("/")
+                    }
                 } else {
                     console.error("Error fetching users:", data.message);
-                    console.log(uid)
                 }
             } catch (error) {
                 console.error("Error fetching users:", error.message);
