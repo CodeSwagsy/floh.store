@@ -17,9 +17,7 @@ export function ImpressumCompotent() {
               </p>
               <p className=" py-4 flex justify-start">Kontakt:</p>
               <p className="flex justify-start">Telefon: 1-800-225-5324</p>
-              <p className=" flex justify-start">
-                E-Mail: Walter.white@googlemail.com
-              </p>
+              <p className=" flex justify-start">E-Mail: flohstore@gmail.com</p>
               <p className=" flex justify-start">
                 Internetadresse: FlohStore.com
               </p>
