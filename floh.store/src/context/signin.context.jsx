@@ -4,13 +4,18 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
     const [userData, setUserData] = useState(null);
+    const [login, setLogin] = useState(false);
 
     const updateUserData = (newData) => {
         setUserData(newData);
     };
 
+    const updateLogin = (newData) => {
+        setLogin(newData);
+    };
+
     return (
-        <DataContext.Provider value={{ userData, updateUserData }}>
+        <DataContext.Provider value={{ userData, login, updateUserData, updateLogin }}>
             {children}
         </DataContext.Provider>
     );
