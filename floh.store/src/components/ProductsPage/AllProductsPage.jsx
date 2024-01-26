@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+﻿﻿import React, { useEffect, useState } from "react";
 import { ProductCard } from "./ProductCard.component.jsx";
 import { useParams } from "react-router";
 
@@ -27,12 +27,17 @@ export const AllProductsPage = () => {
                 });
                 const data = await response.json();
                 if (data.code === 200) {
+                    const initialFavoriteTexts = {};
+                    data.products.forEach((product) => {
+                        initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
+                    });
+                    setFavoriteTexts(initialFavoriteTexts);
                     setProducts(data.products);
                 } else {
                     console.error(data.error.message);
                 }
             } catch (error) {
-                console.error("Error fetching products catchblock:", error);
+                console.error("Error fetching products:", error);
             }
         };
 
@@ -103,6 +108,7 @@ export const AllProductsPage = () => {
                         key={product._id}
                         product={product}
                         onAddToFavorites={handleAddToFavorites}
+                        favoriteText={favoriteTexts[product._id]}
                     />
                 ))}
             </div>
