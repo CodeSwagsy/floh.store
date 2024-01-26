@@ -21,7 +21,6 @@ export function SettingsComponent() {
     const [saveButtonText, setSaveButtonText] = useState("Ändern")
 
     const uid = localStorage.getItem("responseData");
-    console.log(uid)
 
     const toggleForm = () => {
         setIsFormEnabled(!isFormEnabled);
