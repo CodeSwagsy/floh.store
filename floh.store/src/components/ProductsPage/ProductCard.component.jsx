@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
-export const ProductCard = ({ product, onAddToFavorites }) => {
+export const ProductCard = ({ product, onAddToFavorites, favoriteText }) => {
     const { title, category, condition, price, description, location, images } =
         product;
 
-    const [isHovered, setIsHovered] = useState(false);
 
     const handleAddToFavorites = () => {
         onAddToFavorites(product);
@@ -31,7 +30,7 @@ export const ProductCard = ({ product, onAddToFavorites }) => {
                     onClick={handleAddToFavorites}
                     className={`bg-blue-500 text-white px-5 py-2 rounded mt-4 bg-jet hover:bg-springgreen transition-all`}
                 >
-                    Zu Favoriten hinzufügen
+                    {favoriteText}
                 </button>
                 <Link
                     to={`/products/${product._id}`}

@@ -15,6 +15,31 @@ export function SingleProductComponent() {
         month: 'long',
         day: 'numeric',
     };
+    const handleAddToFavorites = async () => {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
+                {
+                    method: "PUT",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            const data = await response.json();
+            if (data.code === 200) {
+                console.log("FAVORITE HINZUGEFÜGT")
+            } else {
+                console.log(data)
+                console.log(product)
+                console.error("Error adding to favorites: ELSE", data.message);
+            }
+        } catch (error) {
+            console.error("Error adding to favorites: CATCH", error);
+        }
+    };
 
     useEffect(() => {
             const fetchProduct = async () => {
@@ -37,7 +62,6 @@ export function SingleProductComponent() {
                 }
             };
             fetchProduct();
-
         }, []
     )
     ;
@@ -59,9 +83,7 @@ export function SingleProductComponent() {
                     const data = await response.json();
                     if (data.code === 200) {
                         setOwner(data.doc);
-                        console.log(data.doc);
                     } else {
-                        console.log(product.owner)
                         console.error("Error fetching owner:", data.message);
                     }
                 } catch (error) {
@@ -96,7 +118,8 @@ export function SingleProductComponent() {
         <>
             <div className="container mx-auto lg:mt-12">
                 <div className="flex pb-4">
-                    <Link to={product ? `/products/gallery/category/${product.category}` : "/"} className="lg:text-2xl font-semibold underline">{product ? product.category : " "}</Link>
+                    <Link to={product ? `/products/gallery/category/${product.category}` : "/"}
+                          className="lg:text-2xl font-semibold underline">{product ? product.category : " "}</Link>
                     <h2 className="lg:text-2xl no-underline">&nbsp; / {product ? product.title : " "}</h2>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-between lg:pb-4">
@@ -118,9 +141,11 @@ export function SingleProductComponent() {
                             className="flex flex-col max-lg:flex-row gap-2 grow items-center md:items-start justify-center my-2">
                             <LinkButtonComponent text="Angebot machen"
                                                  additionalClasses="bg-emerald hover:bg-jet transition-all w-1/2 lg:px-2 py-1 lg:py-1.5 xl:text-xl"/>
-                            <LinkButtonComponent text="Zur Merkliste hinzufügen"
-                                                 additionalClasses="bg-emerald hover:bg-jet transition-all w-1/2 lg:px-2 py-1 lg:py-1.5 xl:text-xl"/>
-
+                            <button
+                                className="flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-emerald hover:bg-jet transition-all w-1/2 lg:px-2 py-1 lg:py-1.5 xl:text-xl"
+                                onClick={handleAddToFavorites}>Zur
+                                Merkliste hinzufügen
+                            </button>
                         </div>
 
                         <div className="">
@@ -132,7 +157,8 @@ export function SingleProductComponent() {
                                 </div>
                                 <div className="flex gap-4">
                                     <h3 className="font-semibold w-6/12 lg:w-5/12">Durchschnittliche Bewertung</h3>
-                                    <p className="font-semibold"><span>{owner ? berechneDurchschnitt(owner.info.rating) : ""}</span> / 5</p>
+                                    <p className="font-semibold">
+                                        <span>{owner ? berechneDurchschnitt(owner.info.rating) : ""}</span> / 5</p>
                                 </div>
                                 <div className="flex gap-4">
                                     <h3 className="font-semibold w-6/12 lg:w-5/12">Mitglied seit</h3>
