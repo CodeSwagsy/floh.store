@@ -8,7 +8,7 @@ export function SingleProductContainer() {
     return (
         <>
             <HeaderComponent/>
-            <SingleProductComponent showRandomProduct={false}/>
+            <SingleProductComponent/>
             <FooterComponent/>
         </>
     )

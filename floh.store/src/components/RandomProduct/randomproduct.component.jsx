@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 
 export const RandomProductComponent = () => {
@@ -25,16 +25,9 @@ export const RandomProductComponent = () => {
                 console.error('Error:', error.message);
             }
         };
-
-        // Call the function to fetch random product on component mount
         fetchRandomProduct();
-    }, []); // Empty dependency array to run the effect only once on mount
+    }, []);
     if (randomProduct) {
         navigate(`/products/${randomProduct._id}`)
     }
-
-    return (
-        <>
-        </>
-    );
 };
