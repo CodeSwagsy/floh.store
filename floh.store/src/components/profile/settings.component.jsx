@@ -20,7 +20,7 @@ export function SettingsComponent() {
     const [cancelButtonClass, setCancelButtonClass] = useState("bg-jet/20");
     const [saveButtonText, setSaveButtonText] = useState("Ändern")
 
-    const uid = localStorage.getItem("responseData");
+    const uid = localStorage.getItem("uid");
 
     const toggleForm = () => {
         setIsFormEnabled(!isFormEnabled);

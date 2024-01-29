@@ -4,7 +4,7 @@ import {ProductCard} from "../ProductsPage/ProductCard.component.jsx";
 
 export const FavoriteComponent = () => {
     const [products, setProducts] = useState([]);
-    const uid = localStorage.getItem("responseData");
+    const uid = localStorage.getItem("uid");
     const [favorites, setFavorites] = useState({})
 
     const handleRemoveFavorite = async (product) => {
