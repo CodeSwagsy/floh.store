@@ -49,7 +49,7 @@ export function ForgotPasswordComponent() {
           <div>
             <div className=" pb-0 w-full border-t border-gray-200"> </div>
             <p className="mt-10 text-center text-sm text-gray-500">
-              Noch kein mitglied?{" "}
+              Noch kein Mitglied?{" "}
               <Link
                 to="/profile/register"
                 className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
