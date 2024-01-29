@@ -4,10 +4,11 @@ import {SingleProductComponent} from "../../components/singleProduct/singleprodu
 
 
 export function SingleProductContainer() {
+
     return (
         <>
             <HeaderComponent/>
-            <SingleProductComponent/>
+            <SingleProductComponent showRandomProduct={false}/>
             <FooterComponent/>
         </>
     )

@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 export function SingleProductComponent() {
     const {id} = useParams();
+
     const [product, setProduct] = useState(null);
     const [formattedDate, setFormattedDate] = useState(null);
     const [owner, setOwner] = useState(null)
