@@ -14,7 +14,7 @@ export function SigninComponent() {
     });
 
     const [error, setError] = useState("");
-    const uid = localStorage.getItem("responseData");
+    const uid = localStorage.getItem("uid");
 
 
     const handleInputChange = (e) => {
@@ -41,7 +41,7 @@ export function SigninComponent() {
             const data = await response.json();
             if (response.status === 200) {
                 updateLogin(true)
-                localStorage.setItem("responseData", data.uid);
+                localStorage.setItem("uid", data.uid);
             } else {
                 setError(error);
             }

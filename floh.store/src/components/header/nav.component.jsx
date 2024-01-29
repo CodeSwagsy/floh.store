@@ -30,7 +30,7 @@ export function NavComponent() {
             if (data.code === 200) {
                 updateLogin(false);
                 updateUserData(null)
-                localStorage.removeItem("responseData");
+                localStorage.removeItem("uid");
                 console.log("Logged out")
                 navigate("/")
             } else {
