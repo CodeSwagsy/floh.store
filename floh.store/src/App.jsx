@@ -36,7 +36,7 @@ const router = createBrowserRouter(
             <Route path="/datenschutz" element={<DatenschutzContainer/>}/>
             <Route path="/impressum" element={<ImpressumContainer/>}/>
             <Route path="/profile" element={<ProfileContainer/>}/>
-            <Route path="/profile/settings/:id" element={<SettingsContainer/>}/>
+            <Route path="/profile/settings/" element={<SettingsContainer/>}/>
             <Route path="/profile/signin" element={<SignInContainer/>}/>
             <Route
                 path="/profile/forgotpassword"
