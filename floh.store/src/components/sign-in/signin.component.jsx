@@ -2,6 +2,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {ButtonComponent} from "../hero/button.component";
 import {useEffect, useState} from "react";
 import {useData} from "../../context/signin.context.jsx";
+import placeholder from "lodash/fp/placeholder.js";
 
 export function SigninComponent() {
     const {userData, updateUserData} = useData();
@@ -15,6 +16,12 @@ export function SigninComponent() {
 
     const [error, setError] = useState("");
     const uid = localStorage.getItem("uid");
+
+    const [rememberMe, setRememberMe] = useState(false);
+
+    const handleCheckboxChange = (e) => {
+        setRememberMe(e.target.checked);
+    };
 
 
     const handleInputChange = (e) => {
@@ -42,14 +49,28 @@ export function SigninComponent() {
             if (response.status === 200) {
                 updateLogin(true)
                 localStorage.setItem("uid", data.uid);
+                if (rememberMe) {
+                    localStorage.setItem("rememberedEmail", credentials.email);
+                    console.log(localStorage.getItem("rememberedEmail"))
+                }
             } else {
                 setError(error);
+
             }
         } catch (error) {
             console.error("Error:", error);
         }
     };
 
+    useEffect(() => {
+        const rememberedEmail = localStorage.getItem("rememberedEmail");
+        if (rememberedEmail) {
+            setCredentials((prevCredentials) => ({
+                ...prevCredentials,
+                email: rememberedEmail,
+            }));
+        }
+    }, []);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -75,6 +96,7 @@ export function SigninComponent() {
             }
         };
         fetchUser();
+
     }, [login]);
 
     return (
@@ -101,7 +123,8 @@ export function SigninComponent() {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    placeholder="Email@adresse.com"
+                                    value={credentials ? credentials.email : ""}
+                                    placeholder={credentials.email || "Email@adresse.com"}
                                     className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -133,6 +156,8 @@ export function SigninComponent() {
                                     name="remember-me"
                                     type="checkbox"
                                     className="h-4 w-4 rounded border-0 text-indigo-600 focus:ring-indigo-600"
+                                    checked={rememberMe}
+                                    onChange={handleCheckboxChange}
                                 />
                                 <label
                                     htmlFor="remember-me"
