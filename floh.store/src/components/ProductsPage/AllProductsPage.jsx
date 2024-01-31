@@ -55,19 +55,24 @@ export const AllProductsPage = () => {
             }
 
             const response = await fetch(
-                `${import.meta.env.VITE_API}/update/favorites/:item`,
+                `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
                 {
                     method: "PUT",
                     credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ product }),
+                    body: JSON.stringify({product}),
                 }
             );
 
             const data = await response.json();
             if (data.code === 200) {
+                // Update the favoriteTexts state for the specific product
+                setFavoriteTexts((prevFavoriteTexts) => ({
+                    ...prevFavoriteTexts,
+                    [product._id]: "Zur Merkliste hinzugefügt",
+                }));
                 console.log("FAVORITE HINZUGEFÜGT");
             } else {
                 console.error("Error adding to favorites: ELSE", data.message);
@@ -80,30 +85,33 @@ export const AllProductsPage = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        const fetchProducts = async (pageNumber) => {
+        const fetchProducts = async () => {
             try {
                 let url;
                 if (id) {
-                    url = `${import.meta.env.VITE_API}/product/category/${id}?page=${pageNumber}&limit=${productsPerPage}`;
+                    url = `${import.meta.env.VITE_API}/product/category/${id}`;
                 } else {
-                    url = `${import.meta.env.VITE_API}/product/all?page=${pageNumber}&limit=${productsPerPage}`;
+                    url = `${import.meta.env.VITE_API}/product/all`;
                 }
-
                 const response = await fetch(url, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                     },
                 });
-
                 const data = await response.json();
                 if (data.code === 200) {
+                    const initialFavoriteTexts = {};
+                    data.products.forEach((product) => {
+                        initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
+                    });
+                    setFavoriteTexts(initialFavoriteTexts);
                     setProducts(data.products);
                 } else {
                     console.error(data.error.message);
                 }
             } catch (error) {
-                console.error("Error fetching products catchblock:", error);
+                console.error("Error fetching products:", error);
             }
         };
 
