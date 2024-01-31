@@ -54,8 +54,13 @@ export function SigninComponent() {
                     console.log(localStorage.getItem("rememberedEmail"))
                 }
             } else {
-                setError(error);
+                setError(data);
+                if (data.error.message === "Invalid user data") {
+                    setError("E-Mail / Passwort falsch oder Nutzerkonto nicht vorhanden!")
 
+                } else if (data.error.code === 401) {
+                    setError("Account ist nicht aktiviert. Check deine E-Mails und bestätige die Registrierung!")
+                }
             }
         } catch (error) {
             console.error("Error:", error);
@@ -104,7 +109,7 @@ export function SigninComponent() {
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
                 <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                     <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-10">
-                        Mit deinem Konto Anmelden
+                        Mit deinem Konto anmelden
                     </h2>
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
@@ -175,7 +180,7 @@ export function SigninComponent() {
                                 </Link>
                             </div>
                         </div>
-                        <div className="pb-8  flex w-full justify-center rounded-md">
+                        <div className="flex w-full justify-center rounded-md">
                             <ButtonComponent
                                 text="Anmelden"
                                 size="large"
@@ -183,11 +188,12 @@ export function SigninComponent() {
                                 height="height"
                             />
                         </div>
+                        <p className="text-red-600 text-center pb-4">{error}</p>
                     </form>
                     <div>
                         <div className=" pb-0 w-full border-t border-gray-200"></div>
                         <p className="mt-10 text-center text-sm text-gray-500">
-                            Noch kein mitglied?{" "}
+                            Noch kein Nutzerkonto vorhanden?{" "}
                             <Link
                                 to="/profile/register"
                                 className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
