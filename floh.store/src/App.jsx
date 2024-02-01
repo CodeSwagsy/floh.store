@@ -22,8 +22,9 @@ import {ImpressumContainer} from "./routes/Impressum/impressum.container.jsx";
 import {ForgotPasswordContainer} from "./routes/ForgotPassword/forgotpassword.container.jsx";
 import {NewPasswordContainer} from "./routes/NewPassword/newpassword.container.jsx";
 import {SingleProductContainer} from "./routes/SingleProduct/singleproduct.container.jsx";
-import {DataProvider} from "./context/signin.context.jsx";
+import {DataProvider, useData} from "./context/signin.context.jsx";
 import {ErrorCodeContainer} from "./routes/ErrorCode/errorcode.container.jsx";
+import {useEffect} from "react";
 
 const router = createBrowserRouter(
     createRoutesFromElements(

@@ -1,11 +1,17 @@
 import React, {useEffect, useState} from "react";
 import {ProductCard} from "../ProductsPage/ProductCard.component.jsx";
+import {useData} from "../../context/signin.context.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 export const FavoriteComponent = () => {
     const [products, setProducts] = useState([]);
-    const uid = localStorage.getItem("uid");
     const [favorites, setFavorites] = useState({})
+    const loginData = JSON.parse(localStorage.getItem("loginData"));
+    const uid = loginData ? loginData.uid : null;
+    const timestamp = loginData ? loginData.timestamp : null;
+
+
 
     const handleRemoveFavorite = async (product) => {
         try {
