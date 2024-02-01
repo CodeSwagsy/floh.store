@@ -71,6 +71,7 @@ function App() {
             </DataProvider>
         </>
     );
+
 }
 
 export default App;
