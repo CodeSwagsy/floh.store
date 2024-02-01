@@ -1,17 +1,18 @@
-﻿import React, { useEffect, useState } from "react";
-import { ProductCard } from "./ProductCard.component.jsx";
-import { useParams } from "react-router";
+﻿import React, {useEffect, useState} from "react";
+import {ProductCard} from "./ProductCard.component.jsx";
+import {useParams} from "react-router";
+import {LoaderComponent} from "../loader/loader.component.jsx";
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
     const [favorites, setFavorites] = useState([]);
-    const { id } = useParams();
+    const {id} = useParams();
     const categoryTitle = id ? id : "Alle Produkte";
     const [currentPage, setCurrentPage] = useState(1);
 
     const [favoriteTexts, setFavoriteTexts] = useState({});
 
-    const productsPerPage = 20;  
+    const productsPerPage = 20;
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -125,42 +126,45 @@ export const AllProductsPage = () => {
     return (
         <div className="container mx-auto my-8 mt-16">
             <h2 className="text-3xl font-bold mb-4">{categoryTitle}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {currentProducts.map((product) => (
-                    <ProductCard
-                        key={product._id}
-                        product={product}
-                        onAddToFavorites={handleAddToFavorites}
-                        favoriteText={favoriteTexts[product._id]}
-                    />
-                ))}
-            </div>
-            <div className="flex items-center justify-center mt-4">
-                <button
-                    onClick={() => paginate(currentPage - 1)}
-                    className="px-4 py-2 mr-2 bg-green-500 text-white rounded"
-                    disabled={currentPage === 1}
-                >
-                    &larr; Prev
-                </button>
-                {Array.from({ length: Math.ceil(products.length / productsPerPage) }, (_, index) => (
+            {products ? (<>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {currentProducts.map((product) => (
+                        <ProductCard
+                            key={product._id}
+                            product={product}
+                            onAddToFavorites={handleAddToFavorites}
+                            favoriteText={favoriteTexts[product._id]}
+                        />
+                    ))}
+                </div>
+                <div className="flex items-center justify-center mt-4">
                     <button
-                        key={index + 1}
-                        onClick={() => paginate(index + 1)}
-                        className={`px-4 py-2 mx-1 focus:outline-none ${currentPage === index + 1 ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-700'
-                            } rounded`}
+                        onClick={() => paginate(currentPage - 1)}
+                        className="px-4 py-2 mr-2 bg-green-500 text-white rounded"
+                        disabled={currentPage === 1}
                     >
-                        {index + 1}
+                        &larr; Prev
                     </button>
-                ))}
-                <button
-                    onClick={() => paginate(currentPage + 1)}
-                    className="px-4 py-2 ml-2 bg-green-500 text-white rounded"
-                    disabled={currentPage === Math.ceil(products.length / productsPerPage)}
-                >
-                    Next &rarr;
-                </button>
-            </div>
+                    {Array.from({length: Math.ceil(products.length / productsPerPage)}, (_, index) => (
+                        <button
+                            key={index + 1}
+                            onClick={() => paginate(index + 1)}
+                            className={`px-4 py-2 mx-1 focus:outline-none ${currentPage === index + 1 ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-700'
+                            } rounded`}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                    <button
+                        onClick={() => paginate(currentPage + 1)}
+                        className="px-4 py-2 ml-2 bg-green-500 text-white rounded"
+                        disabled={currentPage === Math.ceil(products.length / productsPerPage)}
+                    >
+                        Next &rarr;
+                    </button>
+                </div>
+            </>) : <LoaderComponent/>}
+
         </div>
     );
 };
