@@ -7,10 +7,9 @@ import {LoaderComponent} from "../loader/loader.component.jsx";
 
 export const FavoriteComponent = () => {
     const [products, setProducts] = useState([]);
-    const [favorites, setFavorites] = useState({})
+    const [favorites, setFavorites] = useState([])
     const loginData = JSON.parse(localStorage.getItem("loginData"));
     const uid = loginData ? loginData.uid : null;
-    const timestamp = loginData ? loginData.timestamp : null;
 
 
 
@@ -94,9 +93,9 @@ export const FavoriteComponent = () => {
     )
     ;
 
-    const filteredProducts = products.filter((product) =>
-        favorites.includes(product._id)
-    );
+    const filteredProducts = Array.isArray(favorites)
+        ? products.filter((product) => favorites.includes(product._id))
+        : [];
 
     return (
         <div className=" container mx-auto my-8 mt-16">
