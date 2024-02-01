@@ -36,15 +36,17 @@ const router = createBrowserRouter(
             <Route path="/datenschutz" element={<DatenschutzContainer/>}/>
             <Route path="/impressum" element={<ImpressumContainer/>}/>
             <Route path="/profile" element={<ProfileContainer/>}/>
-            <Route path="/profile/settings/:id" element={<SettingsContainer/>}/>
+            <Route path="/profile/settings/" element={<SettingsContainer/>}/>
             <Route path="/profile/signin" element={<SignInContainer/>}/>
             <Route
                 path="/profile/forgotpassword"
                 element={<ForgotPasswordContainer/>}
             />
+            <Route
+                path="/profile/recover-password/:token"
+                element={<NewPasswordContainer/>}
+            />
             <Route path="/profile/errorcode" element={<ErrorCodeContainer/>}/>
-            <Route path="/profile/newpassword" element={<NewPasswordContainer/>}/>
-
             <Route path="/profile/register" element={<RegisterContainer/>}/>
             <Route path="/profile/ownproducts" element={<OwnProductsContainer/>}/>
             <Route

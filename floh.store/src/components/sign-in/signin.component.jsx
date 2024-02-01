@@ -2,6 +2,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {ButtonComponent} from "../hero/button.component";
 import {useEffect, useState} from "react";
 import {useData} from "../../context/signin.context.jsx";
+import placeholder from "lodash/fp/placeholder.js";
 
 export function SigninComponent() {
     const {userData, updateUserData} = useData();
@@ -14,7 +15,13 @@ export function SigninComponent() {
     });
 
     const [error, setError] = useState("");
-    const uid = localStorage.getItem("responseData");
+    const uid = localStorage.getItem("uid");
+
+    const [rememberMe, setRememberMe] = useState(false);
+
+    const handleCheckboxChange = (e) => {
+        setRememberMe(e.target.checked);
+    };
 
 
     const handleInputChange = (e) => {
@@ -41,15 +48,34 @@ export function SigninComponent() {
             const data = await response.json();
             if (response.status === 200) {
                 updateLogin(true)
-                localStorage.setItem("responseData", data.uid);
+                localStorage.setItem("uid", data.uid);
+                if (rememberMe) {
+                    localStorage.setItem("rememberedEmail", credentials.email);
+                    console.log(localStorage.getItem("rememberedEmail"))
+                }
             } else {
-                setError(error);
+                setError(data);
+                if (data.error.message === "Invalid user data") {
+                    setError("E-Mail / Passwort falsch oder Nutzerkonto nicht vorhanden!")
+
+                } else if (data.error.code === 401) {
+                    setError("Account ist nicht aktiviert. Check deine E-Mails und bestätige die Registrierung!")
+                }
             }
         } catch (error) {
             console.error("Error:", error);
         }
     };
 
+    useEffect(() => {
+        const rememberedEmail = localStorage.getItem("rememberedEmail");
+        if (rememberedEmail) {
+            setCredentials((prevCredentials) => ({
+                ...prevCredentials,
+                email: rememberedEmail,
+            }));
+        }
+    }, []);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -75,6 +101,7 @@ export function SigninComponent() {
             }
         };
         fetchUser();
+
     }, [login]);
 
     return (
@@ -82,7 +109,7 @@ export function SigninComponent() {
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
                 <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                     <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-10">
-                        Mit deinem Konto Anmelden
+                        Mit deinem Konto anmelden
                     </h2>
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
@@ -101,7 +128,8 @@ export function SigninComponent() {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    placeholder="Email@adresse.com"
+                                    value={credentials ? credentials.email : ""}
+                                    placeholder={credentials.email || "Email@adresse.com"}
                                     className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -133,6 +161,8 @@ export function SigninComponent() {
                                     name="remember-me"
                                     type="checkbox"
                                     className="h-4 w-4 rounded border-0 text-indigo-600 focus:ring-indigo-600"
+                                    checked={rememberMe}
+                                    onChange={handleCheckboxChange}
                                 />
                                 <label
                                     htmlFor="remember-me"
@@ -150,7 +180,7 @@ export function SigninComponent() {
                                 </Link>
                             </div>
                         </div>
-                        <div className="pb-8  flex w-full justify-center rounded-md">
+                        <div className="flex w-full justify-center rounded-md">
                             <ButtonComponent
                                 text="Anmelden"
                                 size="large"
@@ -158,11 +188,12 @@ export function SigninComponent() {
                                 height="height"
                             />
                         </div>
+                        <p className="text-red-600 text-center pb-4">{error}</p>
                     </form>
                     <div>
                         <div className=" pb-0 w-full border-t border-gray-200"></div>
                         <p className="mt-10 text-center text-sm text-gray-500">
-                            Noch kein mitglied?{" "}
+                            Noch kein Nutzerkonto vorhanden?{" "}
                             <Link
                                 to="/profile/register"
                                 className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
