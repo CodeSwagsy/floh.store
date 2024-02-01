@@ -126,7 +126,7 @@ export const AllProductsPage = () => {
     return (
         <div className="container mx-auto my-8 mt-16">
             <h2 className="text-3xl font-bold mb-4">{categoryTitle}</h2>
-            {products ? (<>
+            {products.length !== 0 ? (<>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     {currentProducts.map((product) => (
                         <ProductCard
