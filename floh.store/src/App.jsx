@@ -22,8 +22,10 @@ import {ImpressumContainer} from "./routes/Impressum/impressum.container.jsx";
 import {ForgotPasswordContainer} from "./routes/ForgotPassword/forgotpassword.container.jsx";
 import {NewPasswordContainer} from "./routes/NewPassword/newpassword.container.jsx";
 import {SingleProductContainer} from "./routes/SingleProduct/singleproduct.container.jsx";
-import {DataProvider} from "./context/signin.context.jsx";
+import {DataProvider, useData} from "./context/signin.context.jsx";
 import {ErrorCodeContainer} from "./routes/ErrorCode/errorcode.container.jsx";
+import {useEffect} from "react";
+import {LoaderContainer} from "./routes/Loader/loader.container.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -58,6 +60,7 @@ const router = createBrowserRouter(
             <Route path="/products/gallery" element={<GalleryContainer/>}/>
             <Route path="/products/add" element={<AddProductContainer/>}/>
             <Route path="/products/random" element={<RandomProductContainer/>}/>
+            <Route path="/loader" element={<LoaderContainer/>}/>
             <Route path="/*" element="404 - Seite nicht vorhanden"/>
         </Route>
     )

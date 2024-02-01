@@ -2,23 +2,21 @@ import {Link, useNavigate} from "react-router-dom";
 import {ButtonComponent} from "../hero/button.component";
 import {useEffect, useState} from "react";
 import {useData} from "../../context/signin.context.jsx";
-import placeholder from "lodash/fp/placeholder.js";
 
 export function SigninComponent() {
-    const {userData, updateUserData} = useData();
-    const {login, updateLogin} = useData()
+
+    const { userData, login, updateUserData, updateLogin } = useData()
     const navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
     });
-
     const [error, setError] = useState("");
-    const uid = localStorage.getItem("uid");
-
     const [rememberMe, setRememberMe] = useState(false);
-
+    const loginData = JSON.parse(localStorage.getItem("loginData"));
+    const uid = loginData ? loginData.uid : null;
+    const timestamp = loginData ? loginData.timestamp : null;
     const handleCheckboxChange = (e) => {
         setRememberMe(e.target.checked);
     };
@@ -48,10 +46,12 @@ export function SigninComponent() {
             const data = await response.json();
             if (response.status === 200) {
                 updateLogin(true)
-                localStorage.setItem("uid", data.uid);
+                localStorage.setItem("loginData", JSON.stringify({
+                    uid: data.uid,
+                    timestamp: Date.now(),
+                }));
                 if (rememberMe) {
                     localStorage.setItem("rememberedEmail", credentials.email);
-                    console.log(localStorage.getItem("rememberedEmail"))
                 }
             } else {
                 setError(data);
@@ -75,31 +75,44 @@ export function SigninComponent() {
                 email: rememberedEmail,
             }));
         }
+
+        // Überprüfe, ob der Benutzer bereits eingeloggt ist
+        const loginData = JSON.parse(localStorage.getItem("loginData"));
+        if (loginData && loginData.uid) {
+            updateLogin(true);
+        }
     }, []);
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API}/user/about/${uid}`, {
-                    method: "GET",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                const data = await response.json();
-                if (data.code === 200) {
-                    updateUserData(data);
-                    if (login) {
-                        navigate("/")
+                const loginData = JSON.parse(localStorage.getItem("loginData"));
+                const uid = loginData ? loginData.uid : null;
+
+                if (uid && login) {
+                    const response = await fetch(`${import.meta.env.VITE_API}/user/about/${uid}`, {
+                        method: "GET",
+                        credentials: "include",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    const data = await response.json();
+                    if (data.code === 200) {
+                        updateUserData(data);
+                        if (login) {
+                            navigate("/");
+                        }
+                    } else {
+                        console.error("Error fetching users:", data.message);
                     }
-                } else {
-                    console.error("Error fetching users:", data.message);
                 }
             } catch (error) {
                 console.error("Error fetching users:", error.message);
             }
         };
+
         fetchUser();
 
     }, [login]);

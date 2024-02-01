@@ -8,7 +8,7 @@ import {useData} from "../../context/signin.context.jsx";
 
 export function HeaderComponent() {
 
-    const {login, updateLogin} = useData()
+    const { userData, login, updateUserData, updateLogin } = useData()
     return (
         <header>
             <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">  {/*whitesmoke im css als body!*/}
