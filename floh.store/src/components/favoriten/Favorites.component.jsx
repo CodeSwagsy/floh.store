@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {ProductCard} from "../ProductsPage/ProductCard.component.jsx";
 import {useData} from "../../context/signin.context.jsx";
 import {useNavigate} from "react-router-dom";
