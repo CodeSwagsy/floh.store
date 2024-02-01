@@ -1,10 +1,8 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({ product, onAddToFavorites, favoriteText }) => {
-    const { title, category, condition, price, description, location, images } =
-        product;
-
+    const { title, category, condition, price, description, location, images } = product;
 
     const handleAddToFavorites = () => {
         onAddToFavorites(product);

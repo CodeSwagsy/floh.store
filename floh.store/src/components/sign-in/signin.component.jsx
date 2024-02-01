@@ -4,17 +4,22 @@ import {useEffect, useState} from "react";
 import {useData} from "../../context/signin.context.jsx";
 
 export function SigninComponent() {
-    const {userData, updateUserData} = useData();
-    const {login, updateLogin} = useData()
+
+    const { userData, login, updateUserData, updateLogin } = useData()
     const navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
     });
-
     const [error, setError] = useState("");
-    const uid = localStorage.getItem("responseData");
+    const [rememberMe, setRememberMe] = useState(false);
+    const loginData = JSON.parse(localStorage.getItem("loginData"));
+    const uid = loginData ? loginData.uid : null;
+    const timestamp = loginData ? loginData.timestamp : null;
+    const handleCheckboxChange = (e) => {
+        setRememberMe(e.target.checked);
+    };
 
 
     const handleInputChange = (e) => {
@@ -41,40 +46,75 @@ export function SigninComponent() {
             const data = await response.json();
             if (response.status === 200) {
                 updateLogin(true)
-                localStorage.setItem("responseData", data.uid);
+                localStorage.setItem("loginData", JSON.stringify({
+                    uid: data.uid,
+                    timestamp: Date.now(),
+                }));
+                if (rememberMe) {
+                    localStorage.setItem("rememberedEmail", credentials.email);
+                }
             } else {
-                setError(error);
+                setError(data);
+                if (data.error.message === "Invalid user data") {
+                    setError("E-Mail / Passwort falsch oder Nutzerkonto nicht vorhanden!")
+
+                } else if (data.error.code === 401) {
+                    setError("Account ist nicht aktiviert. Check deine E-Mails und bestätige die Registrierung!")
+                }
             }
         } catch (error) {
             console.error("Error:", error);
         }
     };
 
+    useEffect(() => {
+        const rememberedEmail = localStorage.getItem("rememberedEmail");
+        if (rememberedEmail) {
+            setCredentials((prevCredentials) => ({
+                ...prevCredentials,
+                email: rememberedEmail,
+            }));
+        }
+
+        // Überprüfe, ob der Benutzer bereits eingeloggt ist
+        const loginData = JSON.parse(localStorage.getItem("loginData"));
+        if (loginData && loginData.uid) {
+            updateLogin(true);
+        }
+    }, []);
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API}/user/about/${uid}`, {
-                    method: "GET",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                const data = await response.json();
-                if (data.code === 200) {
-                    updateUserData(data);
-                    if (login) {
-                        navigate("/")
+                const loginData = JSON.parse(localStorage.getItem("loginData"));
+                const uid = loginData ? loginData.uid : null;
+
+                if (uid && login) {
+                    const response = await fetch(`${import.meta.env.VITE_API}/user/about/${uid}`, {
+                        method: "GET",
+                        credentials: "include",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    const data = await response.json();
+                    if (data.code === 200) {
+                        updateUserData(data);
+                        if (login) {
+                            navigate("/");
+                        }
+                    } else {
+                        console.error("Error fetching users:", data.message);
                     }
-                } else {
-                    console.error("Error fetching users:", data.message);
                 }
             } catch (error) {
                 console.error("Error fetching users:", error.message);
             }
         };
+
         fetchUser();
+
     }, [login]);
 
     return (
@@ -82,7 +122,7 @@ export function SigninComponent() {
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
                 <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                     <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 pb-10">
-                        Mit deinem Konto Anmelden
+                        Mit deinem Konto anmelden
                     </h2>
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
@@ -101,7 +141,8 @@ export function SigninComponent() {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    placeholder="Email@adresse.com"
+                                    value={credentials ? credentials.email : ""}
+                                    placeholder={credentials.email || "Email@adresse.com"}
                                     className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -133,6 +174,8 @@ export function SigninComponent() {
                                     name="remember-me"
                                     type="checkbox"
                                     className="h-4 w-4 rounded border-0 text-indigo-600 focus:ring-indigo-600"
+                                    checked={rememberMe}
+                                    onChange={handleCheckboxChange}
                                 />
                                 <label
                                     htmlFor="remember-me"
@@ -150,7 +193,7 @@ export function SigninComponent() {
                                 </Link>
                             </div>
                         </div>
-                        <div className="pb-8  flex w-full justify-center rounded-md">
+                        <div className="flex w-full justify-center rounded-md">
                             <ButtonComponent
                                 text="Anmelden"
                                 size="large"
@@ -158,11 +201,12 @@ export function SigninComponent() {
                                 height="height"
                             />
                         </div>
+                        <p className="text-red-600 text-center pb-4">{error}</p>
                     </form>
                     <div>
                         <div className=" pb-0 w-full border-t border-gray-200"></div>
                         <p className="mt-10 text-center text-sm text-gray-500">
-                            Noch kein mitglied?{" "}
+                            Noch kein Nutzerkonto vorhanden?{" "}
                             <Link
                                 to="/profile/register"
                                 className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"

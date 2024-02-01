@@ -1,11 +1,17 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {ProductCard} from "../ProductsPage/ProductCard.component.jsx";
+import {useData} from "../../context/signin.context.jsx";
+import {useNavigate} from "react-router-dom";
+import {LoaderComponent} from "../loader/loader.component.jsx";
 
 
 export const FavoriteComponent = () => {
     const [products, setProducts] = useState([]);
-    const uid = localStorage.getItem("responseData");
-    const [favorites, setFavorites] = useState({})
+    const [favorites, setFavorites] = useState([])
+    const loginData = JSON.parse(localStorage.getItem("loginData"));
+    const uid = loginData ? loginData.uid : null;
+
+
 
     const handleRemoveFavorite = async (product) => {
         try {
@@ -87,22 +93,26 @@ export const FavoriteComponent = () => {
     )
     ;
 
-    const filteredProducts = products.filter((product) =>
-        favorites.includes(product._id)
-    );
+    const filteredProducts = Array.isArray(favorites)
+        ? products.filter((product) => favorites.includes(product._id))
+        : [];
 
     return (
         <div className=" container mx-auto my-8 mt-16">
             <h2 className="text-3xl font-bold mb-4">Meine Favoriten</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {filteredProducts.length > 0 ? (
-                    filteredProducts.map((product) => (
-                        <ProductCard key={product._id} product={product} favoriteText="Aus Favoriten entfernen" onAddToFavorites={handleRemoveFavorite}/>
-                    ))
-                ) : (
-                    <p>Keine Produkte vorhanden.</p>
-                )}
-            </div>
+            {products.length !== 0 ? (<>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {filteredProducts.length > 0 ? (
+                        filteredProducts.map((product) => (
+                            <ProductCard key={product._id} product={product} favoriteText="Aus Favoriten entfernen"
+                                         onAddToFavorites={handleRemoveFavorite}/>
+                        ))
+                    ) : (
+                        <p>Keine Produkte vorhanden.</p>
+                    )}
+                </div>
+            </>) : (<LoaderComponent/>)}
+
         </div>
     );
 };

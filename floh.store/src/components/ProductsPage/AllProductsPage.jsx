@@ -1,16 +1,18 @@
-﻿import React, { useState, useEffect } from "react";
+﻿// AllProductsPage.jsx
+import React, { useState, useEffect } from "react";
 import { ProductCard } from "./ProductCard.component.jsx";
 import { useParams } from "react-router";
 import { SearchfieldComponent } from "../header/searchfield.component.jsx";
+import { LoaderComponent } from "../loader/loader.component.jsx";
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
-    const [favorites, setFavorites] = useState([]);
     const { id } = useParams();
     const categoryTitle = id ? id : "Alle Produkte";
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState("");
     const [favoriteTexts, setFavoriteTexts] = useState({});
+    const [loading, setLoading] = useState(true); // Added loading state
     const productsPerPage = 20;
 
     useEffect(() => {
@@ -50,12 +52,15 @@ export const AllProductsPage = () => {
                 }
             } catch (error) {
                 console.error("Error fetching products:", error);
+            } finally {
+                setLoading(false); // Set loading to false after fetching data
             }
         };
 
         fetchProducts();
     }, [id, searchQuery]);
 
+ 
     const handleAddToFavorites = async (product) => {
         try {
             if (!product) {
@@ -77,12 +82,17 @@ export const AllProductsPage = () => {
 
             const data = await response.json();
             if (data.code === 200) {
+                // Update the favoriteTexts state for the specific product
+                setFavoriteTexts((prevFavoriteTexts) => ({
+                    ...prevFavoriteTexts,
+                    [product._id]: "Zur Merkliste hinzugefügt",
+                }));
                 console.log("FAVORITE HINZUGEFÜGT");
             } else {
-                console.error("Error adding to favorites: ELSE", data.message);
+                console.error("Error adding to favorites:", data.message);
             }
         } catch (error) {
-            console.error("Error adding to favorites: CATCH", error);
+            console.error("Error adding to favorites:", error);
         }
     };
 
@@ -114,53 +124,58 @@ export const AllProductsPage = () => {
             <SearchfieldComponent
                 additionalClasses="mt-4"
                 onSearchInputChange={(value) => setSearchQuery(value)}
-                
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {currentProducts.map((product) => (
-                    <ProductCard
-                        key={product._id}
-                        product={product}
-                        onAddToFavorites={handleAddToFavorites}
-                        favoriteText={favoriteTexts[product._id]}
-                    />
-                ))}
-            </div>
+            {loading ? (
+                <LoaderComponent />
+            ) : (
+                <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        {currentProducts.map((product) => (
+                            <ProductCard
+                                key={product._id}
+                                product={product}
+                                onAddToFavorites={handleAddToFavorites}
+                                favoriteText={favoriteTexts[product._id]}
+                            />
+                        ))}
+                    </div>
 
-            <div className="flex items-center justify-center mt-4">
-                <button
-                    onClick={() => paginate(currentPage - 1)}
-                    className="px-4 py-2 mr-2 bg-green-500 text-white rounded"
-                    disabled={currentPage === 1}
-                >
-                    &larr; Prev
-                </button>
-                {Array.from(
-                    { length: Math.ceil(products.length / productsPerPage) },
-                    (_, index) => (
+                    <div className="flex items-center justify-center mt-4">
                         <button
-                            key={index + 1}
-                            onClick={() => paginate(index + 1)}
-                            className={`px-4 py-2 mx-1 focus:outline-none ${currentPage === index + 1
-                                    ? "bg-green-500 text-white"
-                                    : "bg-gray-200 text-gray-700"
-                                } rounded`}
+                            onClick={() => paginate(currentPage - 1)}
+                            className="px-4 py-2 mr-2 bg-green-500 text-white rounded"
+                            disabled={currentPage === 1}
                         >
-                            {index + 1}
+                            &larr; Prev
                         </button>
-                    )
-                )}
-                <button
-                    onClick={() => paginate(currentPage + 1)}
-                    className="px-4 py-2 ml-2 bg-green-500 text-white rounded"
-                    disabled={
-                        currentPage === Math.ceil(products.length / productsPerPage)
-                    }
-                >
-                    Next &rarr;
-                </button>
-            </div>
+                        {Array.from(
+                            { length: Math.ceil(products.length / productsPerPage) },
+                            (_, index) => (
+                                <button
+                                    key={index + 1}
+                                    onClick={() => paginate(index + 1)}
+                                    className={`px-4 py-2 mx-1 focus:outline-none ${currentPage === index + 1
+                                            ? "bg-green-500 text-white"
+                                            : "bg-gray-200 text-gray-700"
+                                        } rounded`}
+                                >
+                                    {index + 1}
+                                </button>
+                            )
+                        )}
+                        <button
+                            onClick={() => paginate(currentPage + 1)}
+                            className="px-4 py-2 ml-2 bg-green-500 text-white rounded"
+                            disabled={
+                                currentPage === Math.ceil(products.length / productsPerPage)
+                            }
+                        >
+                            Next &rarr;
+                        </button>
+                    </div>
+                </>
+            )}
         </div>
     );
 };
