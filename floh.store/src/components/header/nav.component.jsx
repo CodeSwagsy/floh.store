@@ -28,11 +28,12 @@ export function NavComponent() {
             });
             const data = await response.json()
             if (data.code === 200) {
-                updateLogin(false);
-                updateUserData(null)
-                localStorage.removeItem("uid");
-                console.log("Logged out")
-                navigate("/")
+                updateLogin(false);  // Aktualisieren Sie den Anmeldestatus
+                updateUserData(null);  // Setzen Sie Benutzerdaten auf null
+                localStorage.removeItem("uid");  // Entfernen Sie die UID aus dem Local Storage
+                localStorage.removeItem("loginData");  // Optional: Entfernen Sie auch die Anmeldedaten mit dem Zeitstempel
+                console.log("Logged out");
+                navigate("/");
             } else {
                 console.log("Logout failed")
             }
