@@ -28,11 +28,12 @@ export function NavComponent() {
             });
             const data = await response.json()
             if (data.code === 200) {
-                updateLogin(false);
-                updateUserData(null)
-                localStorage.removeItem("responseData");
-                console.log("Logged out")
-                navigate("/")
+                updateLogin(false);  // Aktualisieren Sie den Anmeldestatus
+                updateUserData(null);  // Setzen Sie Benutzerdaten auf null
+                localStorage.removeItem("uid");  // Entfernen Sie die UID aus dem Local Storage
+                localStorage.removeItem("loginData");  // Optional: Entfernen Sie auch die Anmeldedaten mit dem Zeitstempel
+                console.log("Logged out");
+                navigate("/");
             } else {
                 console.log("Logout failed")
             }
@@ -141,7 +142,7 @@ export function NavComponent() {
                                     <Menu.Item>
                                         {({active}) => (
                                             <Link
-                                                to={`/profile/settings/${userData.uid}`}
+                                                to={`/profile/settings/`}
                                                 className={classNames(
                                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                     'block px-4 py-2 text-sm'
