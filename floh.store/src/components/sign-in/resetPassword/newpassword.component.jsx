@@ -63,7 +63,7 @@ export function NewPasswordComponent() {
                     console.error("Passwortänderung fehlgeschlagen:", data);
                 }
             } catch (error) {
-                console.error("Fehler bei der Passwortänderung::", error);
+                console.error("Fehler bei der Passwortänderung:", error);
 
             }
         }

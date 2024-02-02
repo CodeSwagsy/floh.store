@@ -10,6 +10,15 @@ export const FavoriteComponent = () => {
     const [favorites, setFavorites] = useState([])
     const loginData = JSON.parse(localStorage.getItem("loginData"));
     const uid = loginData ? loginData.uid : null;
+    const {login, updateLogin} = useData()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+
+        if (!login) {
+            navigate("/")
+        }
+    }, []);
 
 
 

@@ -33,6 +33,7 @@ const router = createBrowserRouter(
             <Route index element={<IndexContainer/>}/>
             <Route path="/home" element={<IndexContainer/>}/>
             <Route path="/start" element={<IndexContainer/>}/>
+            <Route path="/new-email" element={<IndexContainer/>}/>
             <Route path="/about" element={<AboutContainer/>}/>
             <Route path="/kontakt" element={<KontaktContainer/>}/>
             <Route path="/datenschutz" element={<DatenschutzContainer/>}/>
