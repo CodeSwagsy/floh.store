@@ -1,0 +1,47 @@
+.i-own-send-message {
+  background-color: #000000bd;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.i-own-message-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.i-own-message-header img {
+  width: 70px;
+  border-radius: 5px;
+}
+
+.i-own-message-header .close {
+  color: gray;
+  font-size: 1.55rem;
+  padding: 0 0.75rem;
+  border: 1px solid gray;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: baseline;
+  margin-left: auto;
+}
+
+.i-own-message-header .close:hover {
+  color: whitesmoke;
+  background-color: #00bd5d;
+  border: 1px solid whitesmoke;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.i-own-message-text:focus {
+  outline: none !important;
+  border: 1px solid green;
+}
