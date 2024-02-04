@@ -9,12 +9,15 @@ export const ProductSectionComponent = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API}/product/all`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API}/product/all`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const data = await response.json();
         if (data.code === 200) {
           setProducts(data.products);
@@ -78,7 +81,7 @@ export const ProductSectionComponent = () => {
             .slice(currentIndex, currentIndex + visibleProducts)
             .map((product, index) => (
               <ProductComponent
-                key={product.id}
+                key={product._id}
                 product={product}
                 className={`w-full md:w-1/2 lg:w-1/4 xl:w-1/5 transition-transform ease-in-out transform ${
                   index === 0 ? "scale-110" : "scale-100 opacity-50"
