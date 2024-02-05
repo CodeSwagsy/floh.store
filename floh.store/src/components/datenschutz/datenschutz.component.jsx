@@ -6,7 +6,7 @@ export function DatenschutzComponent() {
         <div className="container mx-auto">
           <div className="mt-10 ">
             <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-              <h1 className="py-2 flex justify-start underline underline-offset-2 font-bold">
+              <h1 className="py-2 text-center underline underline-offset-2 font-bold">
                 Datenschutz&shy;erkl&auml;rung
               </h1>
               <h2 className="py-4 flex justify-start underline underline-offset-2 font-medium">
