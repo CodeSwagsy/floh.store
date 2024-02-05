@@ -48,6 +48,22 @@ export function SettingsComponent() {
         setIsModalOpen(false);
     };
 
+    const openSuccess = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+        if (!showSuccessModal) {
+            setShowSuccessModal(true);
+        }
+    };
+
+    const closeSuccess = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+        setShowSuccessModal(false);
+    };
+
     const handlePasswordChange = (e) => {
         const {name, value} = e.target;
         setPasswords((prevPasswords) => ({
@@ -84,8 +100,7 @@ export function SettingsComponent() {
                 const data = await response.json();
                 if (data.code === 200) {
                     console.log("Passwort erfolgreich aktualisiert");
-                    setShowSuccessModal(false);
-                    setShowSuccessModal(true);
+                    openSuccess()
                 } else {
                     console.error("Fehler beim Aktualisieren des Passwort:", data.message);
                 }
@@ -118,8 +133,7 @@ export function SettingsComponent() {
                 const data = await response.json();
                 if (data.code === 200) {
                     console.log("Emailadresse erfolgreich aktualisiert");
-                    setShowSuccessModal(false);
-                    setShowSuccessModal(true);
+                    openSuccess()
                 } else {
                     console.error("Fehler beim Aktualisieren der Emailadresse:", data.message);
                 }
@@ -159,8 +173,7 @@ export function SettingsComponent() {
             const data = await response.json();
             if (data.code === 200) {
                 updateUserData(data);
-                setShowSuccessModal(false);
-                setShowSuccessModal(true);
+                openSuccess()
             } else {
                 console.error("Error fetching users:", data.message);
             }
@@ -173,11 +186,11 @@ export function SettingsComponent() {
     return (
         <>
             <div className="container mx-auto">
-                <h1 className="text-3xl font-bold  lg:mt-12 my-4 lg:mb-8">Profileinstellungen</h1>
+                <h1 className="text-3xl font-bold  lg:mt-12 max-lg:my-2 my-4 lg:mb-8">Profileinstellungen</h1>
                 <form className="flex flex-col flex-wrap gap-y-2 justify-between border-t pt-4 pb-8"
                       onSubmit={handleUpdateUser}>
                     <div>
-                        <h2 className="text-2xl font-semibold my-4">Benutzerdaten</h2>
+                        <h2 className="text-2xl font-semibold max-lg:my-2 my-4">Benutzerdaten</h2>
                         <div className="flex w-full lg:justify-between border-b py-4">
                             <label htmlFor="username" className="max-lg:w-7/12 w-4/12">Benutzername</label>
                             <input type="text" name="username"
@@ -262,7 +275,7 @@ export function SettingsComponent() {
                 </form>
                 <form className="flex flex-col flex-wrap gap-y-2 justify-between border-t pt-4 pb-8"
                       onSubmit={handleUpdateEmail}>
-                    <h2 className="text-2xl font-semibold my-4">E-Mail Adresse</h2>
+                    <h2 className="text-2xl font-semibold max-lg:my-2 my-4">E-Mail Adresse</h2>
                     <div className="flex w-full lg:justify-between">
                         <label htmlFor="name" className="max-lg:w-7/12 w-4/12">E-Mail Adresse</label>
                         <input type="email" name="email"
@@ -283,7 +296,7 @@ export function SettingsComponent() {
 
                 <form className="flex flex-col flex-wrap gap-y-2 justify-between border-y pt-4
                 pb-8" onSubmit={handleUpdatePassword}>
-                    <h2 className="text-2xl font-semibold my-4">Passwort</h2>
+                    <h2 className="text-2xl font-semibold max-lg:my-2 my-4">Passwort</h2>
 
                     <div className="flex w-full lg:justify-between">
                         <label htmlFor="password" className="max-lg:w-7/12 w-4/12">Altes Passwort</label>
@@ -311,7 +324,7 @@ export function SettingsComponent() {
                     </div>
                 </form>
                 <form action="">
-                    <h1 className="text-2xl font-semibold my-4">Account löschen</h1>
+                    <h1 className="text-2xl font-semibold max-lg:my-2 my-4">Account löschen</h1>
                     <div className="flex flex-row max-lg:flex-col justify-between lg:items-center mt-4">
                         <p className="text-justify lg:w-11/12">Wenn sie ihren Account löschen ist das unwiderruflich!
                             Nach einem Klick auf den Button werden Sie nochmals gefragt ob Sie dies wirklich tun
@@ -329,7 +342,8 @@ export function SettingsComponent() {
                         {isModalOpen && (
                             <DeleteAccountModalComponent closeModal={closeModal} modalOpen={setIsModalOpen}/>
                         )}
-                        {showSuccessModal && <SuccessModalComponent onClose={() => setShowSuccessModal(false)}/>}
+                        {showSuccessModal &&
+                            <SuccessModalComponent closeSuccess={closeSuccess} successOpen={setShowSuccessModal}/>}
                     </div>
                 </form>
             </div>

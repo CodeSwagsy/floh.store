@@ -37,7 +37,7 @@ function MessagesComponent({ messages, socket, setActiveChat, setShowChat }) {
   return (
     <>
       <div className="container mx-auto">
-        <h6 className="text-lg font-bold dark:text-white mb-6">Nachrichten</h6>
+        <h6 className="text-lg font-bold mb-6">Nachrichten</h6>
         {conversations.map((con, i) => (
           <Conversation
             key={i}
