@@ -32,8 +32,8 @@ export function HeaderComponent() {
                     />
                     <NavComponent/>
                 </div>
-                <div className="flex flex-row justify-between w-full lg:hidden bg-jet/25 p-2 mt-2">
-                    <SearchfieldComponent additionalClasses="placeholder:text-white w-7/12"/>
+                <div className="flex flex-row items-center justify-between lg:hidden bg-jet/25 p-1.5 mt-2">
+                    <SearchfieldComponent additionalClasses="placeholder:text-white"/>
                     <CategoryComponent additionalClasses="" selectClasses="text-right"/>
                 </div>
             </div>

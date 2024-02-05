@@ -63,6 +63,7 @@ export function SigninComponent({ socket }) {
               userID: data.uid,
               username: info.doc.info.about.username,
             });
+
           });
       } else {
         setError(data);
@@ -90,7 +91,6 @@ export function SigninComponent({ socket }) {
       }));
     }
 
-    // Überprüfe, ob der Benutzer bereits eingeloggt ist
     const loginData = JSON.parse(localStorage.getItem("loginData"));
     if (loginData && loginData.uid) {
       updateLogin(true);
@@ -129,7 +129,6 @@ export function SigninComponent({ socket }) {
         console.error("Error fetching users:", error.message);
       }
     };
-
     fetchUser();
   }, [login]);
 
