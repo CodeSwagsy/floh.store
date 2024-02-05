@@ -1,9 +1,42 @@
-import { Fragment, useState } from 'react'
+import {Fragment, useEffect, useRef, useState} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
+import {useNavigate} from "react-router-dom";
+import {useData} from "../../context/signin.context.jsx";
 
-export  function SuccessModalComponent() {
-    const [open, setOpen] = useState(true)
+export  function SuccessModalComponent({closeSuccess}) {
+    const [open, setOpen] = useState(true);
+    const dialogRef = useRef();
+
+
+
+    const handleCloseModal = () => {
+        setOpen(false);
+        closeSuccess();
+    };
+
+    const handleClickOutside = (event) => {
+        if (dialogRef.current && !dialogRef.current.contains(event.target)) {
+            handleCloseModal();
+        }
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Escape') {
+            handleCloseModal();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
+
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -46,7 +79,7 @@ export  function SuccessModalComponent() {
                                     <button
                                         type="button"
                                         className="inline-flex w-full justify-center rounded-md bg-emerald px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-springgreen focus-visible:outline-none  transition-all"
-                                        onClick={() => setOpen(false)}
+                                        onClick={handleCloseModal}
                                     >
                                         Zurück zu den Einstellungen
                                     </button>

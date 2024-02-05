@@ -12,6 +12,7 @@ export const FavoriteComponent = () => {
     const uid = loginData ? loginData.uid : null;
     const {login, updateLogin} = useData()
     const navigate = useNavigate()
+    const [updateFavorites, setUpdateFavorites] = useState(false);
 
     useEffect(() => {
 
@@ -19,7 +20,6 @@ export const FavoriteComponent = () => {
             navigate("/")
         }
     }, []);
-
 
 
     const handleRemoveFavorite = async (product) => {
@@ -43,7 +43,7 @@ export const FavoriteComponent = () => {
 
             const data = await response.json();
             if (data.code === 200) {
-                console.log("FAVORITE ENTFERNT")
+                setUpdateFavorites(true);
             } else {
                 console.error("Error removing from favorites:", data.message);
             }
@@ -69,7 +69,7 @@ export const FavoriteComponent = () => {
                         console.error(data.error.message);
                     }
                 } catch (error) {
-                    console.error("Error fetching products catchblock:", error);
+                    console.error("Error fetching products:", error);
                 }
             };
 
@@ -98,13 +98,14 @@ export const FavoriteComponent = () => {
 
             fetchProducts();
             fetchFavoriteProducts();
-        }, [handleRemoveFavorite]
+            setUpdateFavorites(false);
+        }, [updateFavorites]
     )
     ;
 
-    const filteredProducts = Array.isArray(favorites)
-        ? products.filter((product) => favorites.includes(product._id))
-        : [];
+    const filteredProducts = products.filter((product) =>
+        favorites.includes(product._id)
+    );
 
     return (
         <div className=" container mx-auto my-8 mt-16">
