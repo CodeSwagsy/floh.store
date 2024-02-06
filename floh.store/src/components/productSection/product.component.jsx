@@ -1,11 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {Tooltip} from "../ProductsPage/Tooltip.component.jsx";
 
 
 export const ProductComponent = ({product}) => {
-    const {title, category, condition, price, description, location, images} =
+    const {title, category, condition, price, description, location, images, type } =
         product;
+    const [productType, setProductType] = useState("")
+
+    useEffect(() => {
+        if (type === "need") {
+            setProductType("Gesuch")
+        } else if (type === "offer") {
+            setProductType("Angebot")
+        }
+    }, []);
 
     return (
         <div className="w-full  bg-gray-100 p-2 lg:p-4 max-lg:mx-12 border rounded-lg hover:shadow-md mb-4 flex flex-col justify-between hover:shadow-md transition-all">
@@ -16,6 +25,7 @@ export const ProductComponent = ({product}) => {
                 <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2">
                     {title}
                 </h3>
+                <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2 text-emerald font-semibold">{`${productType}`}</p>
                 <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Kategorie: ${category}`}</p>
                 <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Zustand: ${condition}`}</p>
                 <p className="font-bold text-base md:text-lg lg:text-xl xl:text-2xl mb-2">{`Preis: ${price} €`}</p>
@@ -30,6 +40,6 @@ export const ProductComponent = ({product}) => {
                 </Link>
             </div>
         </div>
-)
-    ;
+    )
+        ;
 };
