@@ -2,26 +2,24 @@
 import React, { useState, useEffect } from "react";
 import { ProductCard } from "./ProductCard.component.jsx";
 import { useParams } from "react-router";
-import { SearchfieldComponent } from "../header/searchfield.component.jsx";
 import { LoaderComponent } from "../loader/loader.component.jsx";
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
+    const [favorites, setFavorites] = useState([]);
     const { id } = useParams();
     const categoryTitle = id ? id : "Alle Produkte";
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchQuery, setSearchQuery] = useState("");
     const [favoriteTexts, setFavoriteTexts] = useState({});
-    const [loading, setLoading] = useState(true); // Added loading state
+    const [loading, setLoading] = useState(true);
     const productsPerPage = 20;
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 let url;
-                if (searchQuery) {
-                    url = `${import.meta.env.VITE_API}/product/search?query=${searchQuery}`;
-                } else if (id) {
+
+                if (id) {
                     url = `${import.meta.env.VITE_API}/product/category/${id}`;
                 } else {
                     url = `${import.meta.env.VITE_API}/product/all`;
@@ -45,22 +43,21 @@ export const AllProductsPage = () => {
                         initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
                     });
                     setFavoriteTexts(initialFavoriteTexts);
+
                     setProducts(data.products);
-                    console.log(data.products);
                 } else {
                     console.error(data.error.message);
                 }
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {
-                setLoading(false); // Set loading to false after fetching data
+                setLoading(false);
             }
         };
 
         fetchProducts();
-    }, [id, searchQuery]);
+    }, [id]);
 
- 
     const handleAddToFavorites = async (product) => {
         try {
             if (!product) {
@@ -69,7 +66,7 @@ export const AllProductsPage = () => {
             }
 
             const response = await fetch(
-                `${import.meta.env.VITE_API}/update/favorites/:item`,
+                `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
                 {
                     method: "PUT",
                     credentials: "include",
@@ -82,17 +79,16 @@ export const AllProductsPage = () => {
 
             const data = await response.json();
             if (data.code === 200) {
-                // Update the favoriteTexts state for the specific product
                 setFavoriteTexts((prevFavoriteTexts) => ({
                     ...prevFavoriteTexts,
                     [product._id]: "Zur Merkliste hinzugefügt",
                 }));
                 console.log("FAVORITE HINZUGEFÜGT");
             } else {
-                console.error("Error adding to favorites:", data.message);
+                console.error("Error adding to favorites: ELSE", data.message);
             }
         } catch (error) {
-            console.error("Error adding to favorites:", error);
+            console.error("Error adding to favorites: CATCH", error);
         }
     };
 
@@ -100,38 +96,18 @@ export const AllProductsPage = () => {
 
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const filteredProducts = searchQuery
-        ? products.filter(
-            (product) =>
-                product.title &&
-                product.title.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-        : products;
-
-    const displayedProducts = filteredProducts.slice(
-        indexOfFirstProduct,
-        indexOfLastProduct
-    );
-
-    const currentProducts = searchQuery
-        ? displayedProducts
-        : products.slice(indexOfFirstProduct, indexOfLastProduct);
+    const displayedProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
     return (
         <div className="container mx-auto my-8 mt-16">
             <h2 className="text-3xl font-bold mb-4">{categoryTitle}</h2>
-
-            <SearchfieldComponent
-                additionalClasses="mt-4"
-                onSearchInputChange={(value) => setSearchQuery(value)}
-            />
 
             {loading ? (
                 <LoaderComponent />
             ) : (
                 <>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                        {currentProducts.map((product) => (
+                        {displayedProducts.map((product) => (
                             <ProductCard
                                 key={product._id}
                                 product={product}
@@ -156,9 +132,9 @@ export const AllProductsPage = () => {
                                     key={index + 1}
                                     onClick={() => paginate(index + 1)}
                                     className={`px-4 py-2 mx-1 focus:outline-none ${currentPage === index + 1
-                                            ? "bg-green-500 text-white"
-                                            : "bg-gray-200 text-gray-700"
-                                        } rounded`}
+                                        ? "bg-green-500 text-white"
+                                        : "bg-gray-200 text-gray-700"
+                                    } rounded`}
                                 >
                                     {index + 1}
                                 </button>
