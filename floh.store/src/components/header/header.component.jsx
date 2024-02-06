@@ -6,7 +6,7 @@ import { NavComponent } from "./nav.component.jsx";
 import { Link } from "react-router-dom";
 import { useData } from "../../context/signin.context.jsx";
 import { ProductCard } from "../ProductsPage/ProductCard.component.jsx";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { LoaderComponent } from "../loader/loader.component.jsx";
 
 export function HeaderComponent() {
@@ -174,7 +174,13 @@ export function HeaderComponent() {
                         }
                         link="/profile/signin"
                     />
-                    <NavComponent />
+
+                    <NavComponent/>
+                </div>
+                <div className="flex flex-row items-center justify-between lg:hidden bg-jet/25 p-1.5 mt-2">
+                    <SearchfieldComponent additionalClasses="placeholder:text-white"/>
+                    <CategoryComponent additionalClasses="" selectClasses="text-right"/>
+
                 </div>
 
                 {loading && <LoaderComponent />}

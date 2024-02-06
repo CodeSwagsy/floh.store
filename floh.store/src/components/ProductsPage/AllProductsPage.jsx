@@ -1,8 +1,8 @@
-﻿// AllProductsPage.jsx
-import React, { useState, useEffect } from "react";
-import { ProductCard } from "./ProductCard.component.jsx";
-import { useParams } from "react-router";
-import { LoaderComponent } from "../loader/loader.component.jsx";
+
+import React, {useEffect, useState} from "react";
+import {ProductCard} from "./ProductCard.component.jsx";
+import {useParams} from "react-router-dom";
+import {LoaderComponent} from "../loader/loader.component.jsx";
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
@@ -86,9 +86,11 @@ export const AllProductsPage = () => {
                 console.log("FAVORITE HINZUGEFÜGT");
             } else {
                 console.error("Error adding to favorites: ELSE", data.message);
+                console.log("NEIN")
             }
         } catch (error) {
             console.error("Error adding to favorites: CATCH", error);
+            console.log("NEIN")
         }
     };
 
