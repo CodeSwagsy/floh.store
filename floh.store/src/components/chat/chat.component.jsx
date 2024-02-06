@@ -130,7 +130,7 @@ function ChatComponent({
             <h3 className="flex items-center h-10 w-full rounded px-3 text-sm pr-10">
               <a href={`/products/${product?._id}`}>{product?.title}</a>
             </h3>
-            <div onClick={closeChat} className="close">
+            <div onClick={closeChat} className="close flex items-center justify-center">
               ×
             </div>
           </div>
