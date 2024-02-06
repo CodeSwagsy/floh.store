@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
-import {ProductCard} from "../ProductsPage/ProductCard.component.jsx";
-import {useData} from "../../context/signin.context.jsx";
-import {useNavigate} from "react-router-dom";
-import {LoaderComponent} from "../loader/loader.component.jsx";
+import { useEffect, useState } from "react";
+import { ProductCard } from "../ProductsPage/ProductCard.component.jsx";
+import { useData } from "../../context/signin.context.jsx";
+import { useNavigate } from "react-router-dom";
+import { LoaderComponent } from "../loader/loader.component.jsx";
 
 
 export const FavoriteComponent = () => {
@@ -10,7 +10,7 @@ export const FavoriteComponent = () => {
     const [favorites, setFavorites] = useState([])
     const loginData = JSON.parse(localStorage.getItem("loginData"));
     const uid = loginData ? loginData.uid : null;
-    const {login, updateLogin} = useData()
+    const { login, updateLogin } = useData()
     const navigate = useNavigate()
     const [updateFavorites, setUpdateFavorites] = useState(false);
 
@@ -37,7 +37,7 @@ export const FavoriteComponent = () => {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({product}),
+                    body: JSON.stringify({ product }),
                 }
             );
 
@@ -53,55 +53,55 @@ export const FavoriteComponent = () => {
     };
 
     useEffect(() => {
-            const fetchProducts = async () => {
-                try {
+        const fetchProducts = async () => {
+            try {
 
-                    const response = await fetch(`${import.meta.env.VITE_API}/product/all`, {
+                const response = await fetch(`${import.meta.env.VITE_API}/product/all`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                const data = await response.json();
+                if (data.code === 200) {
+                    setProducts(data.products);
+                } else {
+                    console.error(data.error.message);
+                }
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
+        };
+
+        const fetchFavoriteProducts = async () => {
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API}/user/about/${uid}`,
+                    {
                         method: "GET",
+                        credentials: "include",
                         headers: {
                             "Content-Type": "application/json",
                         },
-                    });
-                    const data = await response.json();
-                    if (data.code === 200) {
-                        setProducts(data.products);
-                    } else {
-                        console.error(data.error.message);
                     }
-                } catch (error) {
-                    console.error("Error fetching products:", error);
+                );
+                const data = await response.json();
+                if (data.code === 200) {
+                    setFavorites(data.doc.info.favorites);
+                } else {
+                    console.error(data.error.message);
                 }
-            };
+            } catch (error) {
+                console.error("Error fetching favorites catch block:", error);
+            }
+        };
 
-            const fetchFavoriteProducts = async () => {
-                try {
-                    const response = await fetch(
-                        `${import.meta.env.VITE_API}/user/about/${uid}`,
-                        {
-                            method: "GET",
-                            credentials: "include",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        }
-                    );
-                    const data = await response.json();
-                    if (data.code === 200) {
-                        setFavorites(data.doc.info.favorites);
-                    } else {
-                        console.error(data.error.message);
-                    }
-                } catch (error) {
-                    console.error("Error fetching favorites catch block:", error);
-                }
-            };
-
-            fetchProducts();
-            fetchFavoriteProducts();
-            setUpdateFavorites(false);
-        }, [updateFavorites]
+        fetchProducts();
+        fetchFavoriteProducts();
+        setUpdateFavorites(false);
+    }, [updateFavorites]
     )
-    ;
+        ;
 
     const filteredProducts = products.filter((product) =>
         favorites.includes(product._id)
@@ -115,13 +115,13 @@ export const FavoriteComponent = () => {
                     {filteredProducts.length > 0 ? (
                         filteredProducts.map((product) => (
                             <ProductCard key={product._id} product={product} favoriteText="Aus Favoriten entfernen"
-                                         onAddToFavorites={handleRemoveFavorite}/>
+                                onAddToFavorites={handleRemoveFavorite} />
                         ))
                     ) : (
                         <p>Keine Produkte vorhanden.</p>
                     )}
                 </div>
-            </>) : (<LoaderComponent/>)}
+            </>) : (<LoaderComponent />)}
 
         </div>
     );
