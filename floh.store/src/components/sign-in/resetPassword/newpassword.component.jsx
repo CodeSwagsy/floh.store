@@ -1,6 +1,6 @@
 import {Link, useNavigate} from "react-router-dom";
 import {ButtonComponent} from "../../hero/button.component";
-import {useParams} from "react-router";
+import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 export function NewPasswordComponent() {
@@ -63,7 +63,7 @@ export function NewPasswordComponent() {
                     console.error("Passwortänderung fehlgeschlagen:", data);
                 }
             } catch (error) {
-                console.error("Fehler bei der Passwortänderung::", error);
+                console.error("Fehler bei der Passwortänderung:", error);
 
             }
         }

@@ -1,42 +1,35 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import {Tooltip} from "../ProductsPage/Tooltip.component.jsx";
 
 
 export const ProductComponent = ({product}) => {
-    const {name, description, price, images} = product;
-
-    const [isHovered, setIsHovered] = useState(false);
-
+    const {title, category, condition, price, description, location, images} =
+        product;
 
     return (
-        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2">
-            <div
-                className={`relative group opacity-${isHovered ? "120" : "00"}`}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-            >
-                <div className="bg-white p-4 border rounded-lg overflow-hidden">
-                    <div className="flex justify-center mb-3">
-                        <img
-                            src={images[0]}
-                            alt={name}
-                            className="w-full h-60 object-cover rounded mb-3"
-                        />
-                    </div>
-                    <div className="text-center">
-                        <h3 className="text-xl md:text-2xl lg:text-3xl mb-2">{name}</h3>
-                        <p className="text-sm md:text-base lg:text-lg mb-2 h-20 overflow-hidden">
-                            {description}
-                        </p>
-                        <p className="font-bold text-base md:text-lg lg:text-xl mb-2">{`Price: $${price}`}</p>
-                        <Link to={`/products/${product._id}`}
-                              className="`bg-white text-gray-800 border border-gray-800 px-5 py-2 rounded mt-4 transition-colors hover:bg-green-400 hover:text-white hover:border-green-400 text-gray-800 border-gray-800">
-                            View Details
-                        </Link>
-                    </div>
+        <div className="w-full  bg-gray-100 p-2 lg:p-4 max-lg:mx-12 border rounded-lg hover:shadow-md mb-4 flex flex-col justify-between hover:shadow-md transition-all">
+            <div className="flex justify-center mb-2 lg:h-1/3">
+                <img src={images[0]} alt={title} className="object-cover rounded"/>
+            </div>
+            <div className="text-center flex flex-col items-center">
+                <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2">
+                    {title}
+                </h3>
+                <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Kategorie: ${category}`}</p>
+                <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Zustand: ${condition}`}</p>
+                <p className="font-bold text-base md:text-lg lg:text-xl xl:text-2xl mb-2">{`Preis: ${price} €`}</p>
+                <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2 line-clamp-4">{`${description}`}</p>
+                <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`PLZ / Ort: ${location.city}, ${location.zip}`}</p>
 
-                </div>
+                <Link
+                    to={`/products/${product._id}`}
+                    className={`bg-green-500 text-white px-5 py-2 rounded mt-4 bg-emerald hover:bg-springgreen transition-all w-full`}
+                >
+                    Produkt anzeigen
+                </Link>
             </div>
         </div>
-    );
+)
+    ;
 };
