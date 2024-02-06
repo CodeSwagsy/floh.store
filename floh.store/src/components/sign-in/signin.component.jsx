@@ -44,13 +44,7 @@ export function SigninComponent({ socket }) {
       const data = await response.json();
       if (response.status === 200) {
         updateLogin(true);
-        localStorage.setItem(
-          "loginData",
-          JSON.stringify({
-            uid: data.uid,
-            timestamp: Date.now(),
-          })
-        );
+        localStorage.setItem("uid", data.uid);
         if (rememberMe) {
           localStorage.setItem("rememberedEmail", credentials.email);
         }
@@ -100,8 +94,7 @@ export function SigninComponent({ socket }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const loginData = JSON.parse(localStorage.getItem("loginData"));
-        const uid = loginData ? loginData.uid : null;
+        const uid = localStorage.getItem("uid");
 
         if (uid && login) {
           const response = await fetch(
