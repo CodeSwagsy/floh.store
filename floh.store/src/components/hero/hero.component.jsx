@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 
 export function HeroComponent() {
   return (
-    <div className="bg-[url('/floh2.png')] bg-cover w-screen border-2 border-black pb-48 pt-12">
+    <div className="bg-[url('/floh2.png')] bg-cover w-screen pb-72 pt-12 shadow-2xl opacity-90 drop-shadow-lg">
       <div className="pt-8 pb-8 py-0 container max-lg:flex max-lg:items-center max-lg:justify-center mx-auto lg:pl-36">
-        <div className="flex flex-col items-center justify-around  w-96 h-56 bg-emerald/70 rounded-lg px-8 pt-6 ">
+        <div className="flex flex-col items-center justify-around  w-96 h-56 bg-emerald/80 rounded-lg px-8 pt-6 ">
             <Link to="/products/gallery" className="w-full">
                 <ButtonComponent
                     text="Finde deinen "
