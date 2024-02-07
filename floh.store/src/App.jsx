@@ -11,7 +11,6 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [showChat, setShowChat] = useState(false);
   const [activeChat, setActiveChat] = useState(null);
-
   const [audio] = useState(new Audio("/notification.mp3"));
 
   useEffect(() => {
@@ -34,7 +33,7 @@ function App() {
     }
 
     function usersHandler(arr) {
-      console.log("user", arr);
+      // console.log("user", arr);
       setUsers(arr);
     }
 
@@ -72,9 +71,9 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("messages", messages);
-  }, [messages]);
+  // useEffect(() => {
+  //   console.log("messages", messages);
+  // }, [messages]);
 
   const router = createRouter(
     socket,
@@ -90,7 +89,7 @@ function App() {
       <DataProvider>
         <RouterProvider router={router} />
 
-        {showChat ? (
+        {showChat && (
           <ChatComponent
             users={users}
             socket={socket}
@@ -100,8 +99,6 @@ function App() {
             activeChat={activeChat}
             setActiveChat={setActiveChat}
           />
-        ) : (
-          ""
         )}
       </DataProvider>
     </>
