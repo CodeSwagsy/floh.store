@@ -67,7 +67,6 @@ export function createRouter(
         />
         <Route
           path="/products/:id"
-
           element={
             <SingleProductContainer
               socket={socket}

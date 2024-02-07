@@ -1,89 +1,103 @@
-import {createContext, useContext, useEffect, useState} from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-    const [userData, setUserData] = useState(null);
-    const [login, setLogin] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [login, setLogin] = useState(false);
+  const [counter, setCounter] = useState(false);
 
-    const updateUserData = (newData) => {
-        setUserData(newData);
-    };
+  const updateCounter = (count) => {
+    setCounter(count);
+  };
 
-    const updateLogin = (newData) => {
-        setLogin(newData);
-    };
+  const updateUserData = (newData) => {
+    setUserData(newData);
+  };
 
-    const handleLogout = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API}/user/logout`, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-            });
-            const data = await response.json()
-            if (data.code === 200) {
-                updateLogin(false);
-                updateUserData(null);
-                localStorage.removeItem("uid");
-                localStorage.removeItem("loginData");
-                console.log("Logged out");
-            } else {
-                console.log("Logout failed")
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    };
+  const updateLogin = (newData) => {
+    setLogin(newData);
+  };
 
-    useEffect(() => {
-        const storedUserData = JSON.parse(localStorage.getItem('userData'));
-        const storedLogin = localStorage.getItem('login') === 'true';
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API}/user/logout`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      const data = await response.json();
+      if (data.code === 200) {
+        updateLogin(false);
+        updateUserData(null);
+        localStorage.removeItem("uid");
+        localStorage.removeItem("loginData");
+        console.log("Logged out");
+      } else {
+        console.log("Logout failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
-        if (storedUserData) {
-            setUserData(storedUserData);
-        }
+  useEffect(() => {
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    const storedLogin = localStorage.getItem("login") === "true";
 
-        if (storedLogin) {
-            setLogin(storedLogin);
-        }
+    if (storedUserData) {
+      setUserData(storedUserData);
+    }
 
-        if (storedLogin) {
-            const logoutTimer = setTimeout(() => {
-                handleLogout();
-            }, 59 * 60 * 1000);
+    if (storedLogin) {
+      setLogin(storedLogin);
+    }
 
-            return () => clearTimeout(logoutTimer);
-        }
-    }, []);
+    if (storedLogin) {
+      const logoutTimer = setTimeout(() => {
+        handleLogout();
+      }, 59 * 60 * 1000);
 
-    useEffect(() => {
-        localStorage.setItem('userData', JSON.stringify(userData));
-        localStorage.setItem('login', login.toString());
+      return () => clearTimeout(logoutTimer);
+    }
+  }, []);
 
-        if (login) {
-            const logoutTimer = setTimeout(() => {
-                handleLogout();
-            }, 59* 60 * 1000);
+  useEffect(() => {
+    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("login", login.toString());
 
-            return () => clearTimeout(logoutTimer);
-        }
-    }, [userData, login]);
+    if (login) {
+      const logoutTimer = setTimeout(() => {
+        handleLogout();
+      }, 59 * 60 * 1000);
 
-    return (
-        <DataContext.Provider value={{ userData, login, updateUserData, updateLogin }}>
-            {children}
-        </DataContext.Provider>
-    );
+      return () => clearTimeout(logoutTimer);
+    }
+  }, [userData, login]);
+
+  return (
+    <DataContext.Provider
+      value={{
+        userData,
+        login,
+        updateUserData,
+        updateLogin,
+        counter,
+        updateCounter,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
+  );
 };
 
 export const useData = () => {
-    const context = useContext(DataContext);
-    if (!context) {
-        throw new Error('useData must be used within a DataProvider');
-    }
-    return context;
+  const context = useContext(DataContext);
+  if (!context) {
+    throw new Error("useData must be used within a DataProvider");
+  }
+  return context;
 };
