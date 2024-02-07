@@ -46,6 +46,7 @@ export function HeaderComponent() {
 
                 const response = await fetch(url, {
                     method: "GET",
+                    mode: "cors",
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -99,6 +100,7 @@ export function HeaderComponent() {
                 {
                     method: "PUT",
                     credentials: "include",
+                    mode: "cors",
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -143,7 +145,7 @@ export function HeaderComponent() {
     return (
         <header>
             <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">
-                <div className="flex flex-row items-center justify-around mt-2 lg:mt-4">
+                <div className="flex flex-row items-center justify-between mt-2 lg:mt-4">
                     <Link to="/">
                         <img src="/logo.svg" alt="Floh.store" className="mt-2" />
                     </Link>
@@ -159,10 +161,10 @@ export function HeaderComponent() {
                         />
                     </div>
                     <LinkButtonComponent
-                        text="+ Anzeige erstellen"
+                        text="Anzeige erstellen"
                         additionalClasses={
                             login
-                                ? "w-1/4 bg-jet lg:px-2 xl:px-4 xl:py-2"
+                                ? "w-1/3 lg:w-1/4 bg-jet max-lg:py-2 lg:px-2 xl:px-4 xl:py-2"
                                 : "max-lg:w-4/12 max-lg:py-2 bg-jet lg:px-2 xl:px-4 xl:py-2"
                         }
                         link="/products/add"

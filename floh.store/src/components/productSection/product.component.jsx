@@ -17,7 +17,7 @@ export const ProductComponent = ({product}) => {
     }, []);
 
     return (
-        <div className="w-full lg:h-[720px] bg-gray-100 p-2 lg:p-4 max-lg:mx-12 border rounded-lg hover:shadow-md mb-4 flex flex-col justify-between hover:shadow-md transition-all">
+        <div className="w-full lg:h-[720px] bg-whitesmoke p-2 lg:p-4 max-lg:mx-12 border rounded-lg hover:shadow-md mb-4 flex flex-col justify-between hover:shadow-md transition-all">
             <div className="flex justify-center mb-2 lg:h-1/3">
                 <img src={images[0]} alt={title} className="object-cover rounded"/>
             </div>
