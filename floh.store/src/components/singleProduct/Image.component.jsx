@@ -66,20 +66,21 @@ export function ImageComponent({images}) {
                 </IconButton>
             )}
         >
-            <div className="flex justify-center mb-2 h-[300px]">
-                {images.length > 0 ? (
-                    images.map((image, index) => (
-                        <img
-                            key={index}
-                            src={image}
-                            alt={`image ${index + 1}`}
-                            className="h-full w-full object-cover"
-                        />
-                    ))
-                ) : (
+
+            {images.length > 0 ? (
+                images.map((image, index) => (
                     <img
-                        src="https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E" alt="Kein Bild vorhanden"/>)};
-            </div>
+                        key={index}
+                        src={image}
+                        alt={`image ${index + 1}`}
+                        className="h-full w-full object-cover"
+                    />
+                ))
+            ) : (
+                <img
+                    src="https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E"
+                    alt="Kein Bild vorhanden"/>)};
+
         </Carousel>
     );
 }
