@@ -28,7 +28,6 @@ export const ProductSectionComponent = () => {
                 console.error("Error fetching products:", error);
             }
         };
-
         fetchProducts();
     }, []);
 
@@ -73,10 +72,10 @@ export const ProductSectionComponent = () => {
     };
 
     return (
-        <div className="bg-emerald ">
-            <div className="container mx-auto flex flex-col items-center py-4 lg:py-8 mt-8 md:mt-12 lg:mt-16">
-                <h2 className="text-2xl lg:text-3xl mb-4 md:mb-6 lg:mb-8 font-bold">Neue Produkte</h2>
-                <div className="relative w-full ">
+        <div className="">
+            <div className="container mx-auto">
+                <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">Neue Produkte</h2>
+                <div className="relative w-full bg-emerald p-4 drop-shadow-lg rounded-lg  flex flex-col items-center">
                     <div className="flex gap-2.5 md:gap-4 lg:gap-6 justify-center lg:justify-between">
                         {products
                             .slice(currentIndex, currentIndex + visibleProducts)

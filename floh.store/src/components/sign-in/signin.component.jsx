@@ -44,13 +44,7 @@ export function SigninComponent({ socket }) {
       const data = await response.json();
       if (response.status === 200) {
         updateLogin(true);
-        localStorage.setItem(
-          "loginData",
-          JSON.stringify({
-            uid: data.uid,
-            timestamp: Date.now(),
-          })
-        );
+        localStorage.setItem("uid", data.uid);
         if (rememberMe) {
           localStorage.setItem("rememberedEmail", credentials.email);
         }
@@ -100,8 +94,7 @@ export function SigninComponent({ socket }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const loginData = JSON.parse(localStorage.getItem("loginData"));
-        const uid = loginData ? loginData.uid : null;
+        const uid = localStorage.getItem("uid");
 
         if (uid && login) {
           const response = await fetch(
@@ -158,7 +151,7 @@ export function SigninComponent({ socket }) {
                   required
                   value={credentials ? credentials.email : ""}
                   placeholder={credentials.email || "Email@adresse.com"}
-                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset focus:outline-none ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -178,7 +171,7 @@ export function SigninComponent({ socket }) {
                   placeholder=" ••••••••"
                   autoComplete="current-password"
                   required
-                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                  className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset focus:outline-none ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -188,7 +181,7 @@ export function SigninComponent({ socket }) {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-0 text-indigo-600 focus:ring-indigo-600"
+                  className="h-4 w-4 rounded border-0 text-indigo-600 focus:ring-emerald"
                   checked={rememberMe}
                   onChange={handleCheckboxChange}
                 />

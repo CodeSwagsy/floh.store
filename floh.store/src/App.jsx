@@ -46,9 +46,16 @@ function App() {
 
     function backupMsgHandler(messages) {
       setMessages(messages);
-      if (messages.find((m) => m.notRead && m.to_uid === socket.userID)) {
+      const notReadMsg = messages.find(
+        (m) => m.notRead && m.to_uid === socket.userID
+      );
+      if (notReadMsg) {
         setShowChat(true);
         audio.play();
+        setActiveChat({
+          product: notReadMsg.product,
+          uid: notReadMsg.from,
+        });
       }
     }
 
@@ -82,21 +89,21 @@ function App() {
     <>
       <DataProvider>
         <RouterProvider router={router} />
-      </DataProvider>
 
-      {showChat ? (
-        <ChatComponent
-          users={users}
-          socket={socket}
-          messages={messages}
-          setMessages={setMessages}
-          setShowChat={setShowChat}
-          activeChat={activeChat}
-          setActiveChat={setActiveChat}
-        />
-      ) : (
-        ""
-      )}
+        {showChat ? (
+          <ChatComponent
+            users={users}
+            socket={socket}
+            messages={messages}
+            setMessages={setMessages}
+            setShowChat={setShowChat}
+            activeChat={activeChat}
+            setActiveChat={setActiveChat}
+          />
+        ) : (
+          ""
+        )}
+      </DataProvider>
     </>
   );
 }

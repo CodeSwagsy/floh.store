@@ -1,4 +1,4 @@
-
+﻿
 import React, {useEffect, useState} from "react";
 import {ProductCard} from "./ProductCard.component.jsx";
 import {useParams} from "react-router-dom";
@@ -6,11 +6,9 @@ import {LoaderComponent} from "../loader/loader.component.jsx";
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
-    const [favorites, setFavorites] = useState([]);
     const { id } = useParams();
     const categoryTitle = id ? id : "Alle Produkte";
     const [currentPage, setCurrentPage] = useState(1);
-    const [favoriteTexts, setFavoriteTexts] = useState({});
     const [loading, setLoading] = useState(true);
     const productsPerPage = 20;
 
@@ -38,12 +36,6 @@ export const AllProductsPage = () => {
 
                 const data = await response.json();
                 if (data.code === 200) {
-                    const initialFavoriteTexts = {};
-                    data.products.forEach((product) => {
-                        initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
-                    });
-                    setFavoriteTexts(initialFavoriteTexts);
-
                     setProducts(data.products);
                 } else {
                     console.error(data.error.message);
@@ -57,42 +49,6 @@ export const AllProductsPage = () => {
 
         fetchProducts();
     }, [id]);
-
-    const handleAddToFavorites = async (product) => {
-        try {
-            if (!product) {
-                console.error("Product is undefined or null.");
-                return;
-            }
-
-            const response = await fetch(
-                `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
-                {
-                    method: "PUT",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ product }),
-                }
-            );
-
-            const data = await response.json();
-            if (data.code === 200) {
-                setFavoriteTexts((prevFavoriteTexts) => ({
-                    ...prevFavoriteTexts,
-                    [product._id]: "Zur Merkliste hinzugefügt",
-                }));
-                console.log("FAVORITE HINZUGEFÜGT");
-            } else {
-                console.error("Error adding to favorites: ELSE", data.message);
-                console.log("NEIN")
-            }
-        } catch (error) {
-            console.error("Error adding to favorites: CATCH", error);
-            console.log("NEIN")
-        }
-    };
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -113,8 +69,6 @@ export const AllProductsPage = () => {
                             <ProductCard
                                 key={product._id}
                                 product={product}
-                                onAddToFavorites={handleAddToFavorites}
-                                favoriteText={favoriteTexts[product._id]}
                             />
                         ))}
                     </div>

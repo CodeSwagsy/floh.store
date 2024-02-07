@@ -1,14 +1,13 @@
-// HeaderComponent.jsx
 import React, { useState, useEffect } from "react";
-import { useData } from "../../context/signin.context.jsx";
-import { ProductCard } from "../ProductsPage/ProductCard.component";
-import { LoaderComponent } from "../loader/loader.component.jsx";
-import { PLZinRadiusComponent } from "../header/PLZinRadiusComponent.jsx";
 import { CategoryComponent } from "./category.component.jsx";
 import { SearchfieldComponent } from "../header/searchfield.component.jsx";
 import { LinkButtonComponent } from "./button.component.jsx";
 import { NavComponent } from "./nav.component.jsx";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useData } from "../../context/signin.context.jsx";
+import { ProductCard } from "../ProductsPage/ProductCard.component.jsx";
+import { useParams } from "react-router";
+import { LoaderComponent } from "../loader/loader.component.jsx";
 
 export function HeaderComponent() {
     const { userData, login, updateUserData, updateLogin } = useData();
@@ -25,8 +24,6 @@ export function HeaderComponent() {
 
     const handleSearchInputChange = async (value) => {
         setSearchQuery(value);
-        // Set products to an empty array when search query changes
-        setProducts([]);
     };
 
     const handleCategoryChange = (category) => {
@@ -34,59 +31,59 @@ export function HeaderComponent() {
         setSearchQuery("");
     };
 
-    const fetchProducts = async () => {
-        try {
-            setLoading(true);
-
-            let url;
-
-            if (id) {
-                url = `${import.meta.env.VITE_API}/product/category/${id}`;
-            } else {
-                url = `${import.meta.env.VITE_API}/product/all`;
-            }
-
-            const response = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error`);
-            }
-
-            const data = await response.json();
-            if (data.code === 200) {
-                const initialFavoriteTexts = {};
-                data.products.forEach((product) => {
-                    initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
-                });
-                setFavoriteTexts(initialFavoriteTexts);
-
-                // Filter products based on search query if it exists
-                const filteredProducts = searchQuery
-                    ? data.products.filter(
-                        (product) =>
-                            product.title &&
-                            product.title.toLowerCase().includes(searchQuery.toLowerCase())
-                    )
-                    : data.products;
-
-                setProducts(filteredProducts);
-                console.log(filteredProducts);
-            } else {
-                console.error(data.error.message);
-            }
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
     useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                setLoading(true);
+
+                let url;
+
+                if (id) {
+                    url = `${import.meta.env.VITE_API}/product/category/${id}`;
+                } else {
+                    url = `${import.meta.env.VITE_API}/product/all`;
+                }
+
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error`);
+                }
+
+                const data = await response.json();
+                if (data.code === 200) {
+                    const initialFavoriteTexts = {};
+                    data.products.forEach((product) => {
+                        initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
+                    });
+                    setFavoriteTexts(initialFavoriteTexts);
+
+                    // Filter products based on search query if it exists
+                    const filteredProducts = searchQuery
+                        ? data.products.filter(
+                            (product) =>
+                                product.title &&
+                                product.title.toLowerCase().includes(searchQuery.toLowerCase())
+                        )
+                        : data.products;
+
+                    setProducts(filteredProducts);
+                    console.log(filteredProducts);
+                } else {
+                    console.error(data.error.message);
+                }
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
         fetchProducts();
     }, [selectedCategory, searchQuery]);
 
@@ -158,13 +155,8 @@ export function HeaderComponent() {
                         />
                         <SearchfieldComponent
                             additionalClasses="mt-4"
-                            onSearchInputChange={(value) => handleSearchInputChange(value)}
+                            onSearchInputChange={(value) => setSearchQuery(value)}
                         />
-                           <PLZinRadiusComponent
-        setProducts={setProducts}
-        setLoading={setLoading}
-        setSearchQuery={setSearchQuery}
-      />
                     </div>
                     <LinkButtonComponent
                         text="+ Anzeige erstellen"
@@ -182,14 +174,7 @@ export function HeaderComponent() {
                         }
                         link="/profile/signin"
                     />
-                    <NavComponent/>
-                </div>
-                <div className="flex flex-row items-center justify-between lg:hidden bg-jet/25 p-1.5 mt-2">
-                <SearchfieldComponent
-              additionalClasses="mt-4"
-              onSearchInputChange={(value) => handleSearchInputChange(value)}
-            />
-                                <CategoryComponent additionalClasses="" selectClasses="text-right"/>
+                    <NavComponent />
                 </div>
 
                 {loading && <LoaderComponent />}
@@ -210,7 +195,6 @@ export function HeaderComponent() {
                     </div>
                 )}
             </div>
-       
         </header>
     );
 }

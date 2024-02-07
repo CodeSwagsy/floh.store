@@ -5,11 +5,13 @@ import SendMessage from "../sendMessage/sendMessage.component.jsx";
 import {useData} from "../../context/signin.context.jsx";
 import {Tooltip} from "./Tooltip.component.jsx";
 import {useParams} from "react-router-dom";
+import {ImageComponent} from "./Image.component.jsx";
 
 export function SingleProductComponent({socket, users, setMessages}) {
     const {id} = useParams();
     const {login, updateLogin} = useData()
     const [product, setProduct] = useState(null);
+    const [type, setType] = useState("")
     const [formattedDate, setFormattedDate] = useState(null);
     const [owner, setOwner] = useState(null);
     const [durchschnittsRating, setDurchschnittsRating] = useState(0);
@@ -86,8 +88,6 @@ export function SingleProductComponent({socket, users, setMessages}) {
             setDisableButton(true)
             setDisabledClasses("bg-gray-400 cursor-default")
         }
-        console.log(disableButton)
-        console.log(id)
     }, []);
 
     useEffect(() => {
@@ -109,6 +109,11 @@ export function SingleProductComponent({socket, users, setMessages}) {
                     const data = await response.json();
                     if (data.code === 200) {
                         setOwner(data.doc);
+                        if (product.type === "need") {
+                            setType("Gesuch")
+                        } else if (product.type === "offer") {
+                            setType("Angebot")
+                        }
                     } else {
                         console.error("Error fetching owner:", data.message);
                     }
@@ -118,6 +123,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
             };
             fetchOwner();
         }
+
     }, [product]);
 
     function berechneDurchschnitt(ratings) {
@@ -138,6 +144,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
         } else {
             setDurchschnittsRating(0);
         }
+
     }, [owner]);
 
     useEffect(() => {
@@ -169,16 +176,13 @@ export function SingleProductComponent({socket, users, setMessages}) {
                             </h2>
                         </div>
                         <div className="flex flex-col lg:flex-row justify-between lg:pb-4">
-                            <div className="max-lg:px-2 lg:w-5/12 flex ">
-                                <img
-                                    src={product ? product.images[0] : " "}
-                                    alt={product ? product.title : " "}
-                                    className="max-h-96"
-                                />
+                            <div className="lg:w-5/12 ">
+                                <ImageComponent images={product.images}/>
                             </div>
                             <div
                                 className="max-lg:mb-2 max-lg:px-2 flex flex-col lg:justify-center lg:w-5/12 max-lg:mt-4">
                                 <div className="w-1/2">
+                                    <h2 className="text-2xl font-bold text-emerald lg:mb-4">{type}</h2>
                                     <h1 className="text-lg font-bold">
                                         {product ? product.title : " "}
                                     </h1>
