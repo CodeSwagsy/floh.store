@@ -5,6 +5,7 @@ import SendMessage from "../sendMessage/sendMessage.component.jsx";
 import {useData} from "../../context/signin.context.jsx";
 import {Tooltip} from "./Tooltip.component.jsx";
 import {useParams} from "react-router-dom";
+import {ImageComponent} from "./Image.component.jsx";
 
 export function SingleProductComponent({socket, users, setMessages}) {
     const {id} = useParams();
@@ -175,12 +176,8 @@ export function SingleProductComponent({socket, users, setMessages}) {
                             </h2>
                         </div>
                         <div className="flex flex-col lg:flex-row justify-between lg:pb-4">
-                            <div className="max-lg:px-2 lg:w-5/12 flex ">
-                                <img
-                                    src={product ? product.images[0] : " "}
-                                    alt={product ? product.title : " "}
-                                    className="max-h-96"
-                                />
+                            <div className="lg:w-5/12 ">
+                                <ImageComponent images={product.images}/>
                             </div>
                             <div
                                 className="max-lg:mb-2 max-lg:px-2 flex flex-col lg:justify-center lg:w-5/12 max-lg:mt-4">
