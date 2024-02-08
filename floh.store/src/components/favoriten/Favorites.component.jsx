@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {ProductCard} from "../ProductsPage/ProductCard.component.jsx";
 import {useData} from "../../context/signin.context.jsx";
 import {useNavigate} from "react-router-dom";
 import {LoaderComponent} from "../loader/loader.component.jsx";
-import {Tooltip} from "../ProductsPage/Tooltip.component.jsx";
+
 
 
 export const FavoriteComponent = () => {
@@ -139,7 +138,7 @@ export const FavoriteComponent = () => {
                                     <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Zustand: ${product.condition}`}</p>
                                     <p className="font-bold text-base md:text-lg lg:text-xl xl:text-2xl mb-2">{`Preis: ${product.price} €`}</p>
                                     {/*<p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2 line-clamp-2 ">{`${description}`}</p>*/}
-                                    <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`PLZ / Ort: ${location.city}, ${location.zip}`}</p>
+                                    <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`PLZ / Ort: ${product.location.city}, ${product.location.zip}`}</p>
 
                                     <button
                                         onClick={(event) => handleRemoveFavorite(product, event)}

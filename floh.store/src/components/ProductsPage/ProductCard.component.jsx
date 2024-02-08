@@ -107,7 +107,7 @@ export const ProductCard = ({product, onClickHandler}) => {
             onClick={handleLinkClick}>
 
             <div className="flex justify-center mb-2 h-[300px]">
-                <img src={images[0]} alt={title} className="object-cover rounded h-full"/>
+                <img src={images.length > 0 ? images[0] : "https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E"} alt={title} className="object-cover rounded h-full"/>
             </div>
             <div className="text-center flex flex-col items-center lg:h-3/5 justify-between">
                 <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2 line-clamp-1">
