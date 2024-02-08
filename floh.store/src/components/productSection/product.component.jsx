@@ -24,19 +24,19 @@ export const ProductComponent = ({product}) => {
 
     return (
         <div className="w-full lg:h-[450px] bg-whitesmoke p-2 lg:p-4  border rounded-lg hover:shadow-md flex flex-col justify-between hover:shadow-md transition-all cursor-pointer" onClick={handleLinkClick}>
-            <div className="flex justify-center mb-2 lg:h-1/2">
-                <img src={images.length > 0 ? images[0] : "https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E"} alt={title} className="object-fit rounded"/>
+            <div className="flex justify-center mb-2 h-1/2 lg:h-[180px]">
+                <img src={images.length > 0 ? images[0] : "https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E"} alt={title} className="object-cover rounded"/>
             </div>
-            <div className="text-center flex flex-col items-center justify-between">
+            <div className="grow text-center flex flex-col items-center justify-between">
                 <h3 className="text-lg md:text-xl lg:text-2xl mb-2 line-clamp-1">
                     {title}
                 </h3>
-                <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2 text-emerald font-semibold ">{`${productType}`}</p>
+                <p className="text-sm text-base lg:text-lg mb-2 text-emerald font-semibold ">{`${productType}`}</p>
                 {/*<p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Kategorie: ${category}`}</p>*/}
                 {/*<p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Zustand: ${condition}`}</p>*/}
-                <p className="font-bold text-base md:text-lg lg:text-xl  mb-2">{`Preis: ${price} €`}</p>
+                <p className="font-bold text-base lg:text-lg  mb-2">{`Preis: ${price} €`}</p>
                 {/*<p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2 line-clamp-3">{`${description}`}</p>*/}
-                <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`PLZ / Ort: ${location.zip}, ${location.city}`}</p>
+                <p className="text-sm text-base lg:text-lg">{`PLZ / Ort: ${location.zip}, ${location.city}`}</p>
 
                 <Link
                     to={`/products/${product._id}`}
