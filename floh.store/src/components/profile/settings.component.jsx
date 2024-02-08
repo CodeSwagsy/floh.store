@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom";
 
 export function SettingsComponent() {
     const navigate = useNavigate()
-    const {login, updateLogin} = useData()
     const {userData, updateUserData} = useData();
     const [passwords, setPasswords] = useState({
         currentPass: "",
@@ -23,7 +22,10 @@ export function SettingsComponent() {
         gender: userData ? userData.doc.info.about.gender : "",
         birthday: userData ? userData.doc.info.about.birthday : "",
     });
-
+    const login = localStorage.getItem("login")
+    useEffect(() => {
+        if (localStorage.getItem("login") !== "true") return navigate("/");
+    }, []);
     const options = [
         {value: "keine Angabe", label: "keine Angabe"},
         {value: "male", label: "männlich"},
@@ -110,10 +112,7 @@ export function SettingsComponent() {
         }
     };
     useEffect(() => {
-
-        if (!login) {
-            navigate("/")
-        }
+        if (localStorage.getItem("login") !== "true") return navigate("/");
     }, []);
 
 

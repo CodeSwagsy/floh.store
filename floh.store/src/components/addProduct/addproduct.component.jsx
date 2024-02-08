@@ -43,8 +43,8 @@ export function AddProductComponent() {
 
     const [credentials, setCredentials] = useState({
         location: {
-            zip: "",
-            city: "",
+            zip: userData ? userData.doc.info.about.location.zip : "",
+            city: userData ? userData.doc.info.about.location.city : "",
         },
         type: "",
         title: "",
@@ -440,7 +440,7 @@ export function AddProductComponent() {
                             <div className="flex flex-row-reverse space-x-4 space-x-reverse">
                                 <ButtonComponent size="large" spantxt="Jetzt Anzeige erstellen" height="height"/>
                             </div>
-                            <p className="text-red-600 text-center mt-4">{error}</p>
+                            <p className="text-red-600 text-center pb-4">{error}</p>
                         </form>
                         <div className="max-md:hidden pb-0 w-full border-t border-gray-200"></div>
                     </>)}
