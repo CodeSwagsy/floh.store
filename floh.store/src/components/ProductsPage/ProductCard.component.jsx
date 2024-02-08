@@ -77,10 +77,47 @@ export const ProductCard = ({ product }) => {
     }
   };
 
+
+            <div className="flex justify-center mb-2 h-[300px]">
+                <img src={images.length > 0 ? images[0] : "https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E"} alt={title} className="object-cover rounded h-full"/>
+            </div>
+            <div className="text-center flex flex-col items-center lg:h-3/5 justify-between">
+                <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2 line-clamp-1">
+                    {title}
+                </h3>
+                <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2 text-emerald font-semibold">{`${productType}`}</p>
+                <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Kategorie: ${category}`}</p>
+                <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Zustand: ${condition}`}</p>
+                <p className="font-bold text-base md:text-lg lg:text-xl xl:text-2xl mb-2">{`Preis: ${price} €`}</p>
+                {/*<p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2 line-clamp-2 ">{`${description}`}</p>*/}
+                <p className="text-justify text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`PLZ / Ort: ${location.city}, ${location.zip}`}</p>
+                {login ? (
+                    <>
+                        <button
+                            onClick={(event) => handleAddToFavorites(product, event)} disabled={disableButton}
+                            className={`bg-blue-500 w-full text-white px-5 py-2 rounded mt-2 lg:mt-4 transition-all ${disabledClasses}`}
+                        >
+                            {favoriteText}
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <Tooltip text="Anmeldung notwendig um Produkte zur Merkliste hinzuzufügen">
+                            <button
+                                disabled={disableButton}
+                                className={`bg-blue-500 w-full text-white px-5 py-2 rounded mt-2 lg:mt-4 transition-all ${disabledClasses}`}
+                            >
+                                {favoriteText}
+                            </button>
+                        </Tooltip>
+                    </>
+                )}
+
   const handleLinkClick = (event) => {
     event.preventDefault();
     navigate(`/products/${product._id}`);
   };
+
 
   return (
     <div

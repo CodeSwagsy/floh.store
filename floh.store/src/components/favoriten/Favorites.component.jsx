@@ -1,7 +1,9 @@
+
 import { useEffect, useState } from "react";
 import { useData } from "../../context/signin.context.jsx";
 import { useNavigate } from "react-router-dom";
 import { LoaderComponent } from "../loader/loader.component.jsx";
+
 
 export const FavoriteComponent = () => {
   const [products, setProducts] = useState([]);
@@ -95,7 +97,6 @@ export const FavoriteComponent = () => {
         console.error("Error fetching favorites catch block:", error);
       }
     };
-
     fetchProducts();
     fetchFavoriteProducts();
     setUpdateFavorites(false);
