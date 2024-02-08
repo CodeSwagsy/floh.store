@@ -94,8 +94,9 @@ function ChatComponent({
 
   async function sendAnswer(event) {
     event.preventDefault();
-    const incomingMsg = roomMessages.find((m) => m.from !== socket.userID);
-    const to_uid = incomingMsg.from !== socket.userID ? incomingMsg.to : incomingMsg.from
+    const incomingMsg =
+      roomMessages.find((m) => m.from !== socket.userID) || roomMessages[0]; // if there are no incoming messages, take the first one
+    const to_uid = incomingMsg.from;
     const to = users.find((user) => user.userID === to_uid)?.socketID;
     const message = {
       product: incomingMsg.product, // id

@@ -10,7 +10,7 @@ function UserProductsComponent() {
   const { id } = useParams();
 
   useEffect(() => {
-    if (!localStorage.getItem("login")) navigate("/");
+    if (localStorage.getItem("login") === "false") return navigate("/");
 
     id &&
       fetch(`${import.meta.env.VITE_API}/user/about/${id}`)
@@ -40,16 +40,12 @@ function UserProductsComponent() {
         <h2 className="text-3xl font-bold mb-4">
           {id ? `Anzeigen von ${userName}` : "Eigene Produkte"}
         </h2>
-        {products.length !== 0 ? (
+        {products?.length !== 0 ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {products.length > 0 ? (
+              {products?.length > 0 ? (
                 products.map((product) => (
-                  <ProductCard
-                    key={product._id}
-                    product={product}
-                    favoriteText="Aus Favoriten entfernen"
-                  />
+                  <ProductCard key={product._id} product={product} />
                 ))
               ) : (
                 <p>Keine Produkte vorhanden.</p>
