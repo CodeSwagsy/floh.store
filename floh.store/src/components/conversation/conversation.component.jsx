@@ -69,4 +69,5 @@ Conversation.propTypes = {
   text: PropTypes.string,
   uid: PropTypes.string,
   clickHandler: PropTypes.func,
+  notRead: PropTypes.bool,
 };
