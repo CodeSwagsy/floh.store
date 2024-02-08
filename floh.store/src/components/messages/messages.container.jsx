@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Conversation from "../conversation/conversation.component.jsx";
+import {useNavigate} from "react-router-dom";
 
 function MessagesComponent({ messages, socket, setActiveChat, setShowChat }) {
   const [conversations, setConversations] = useState([]);
-
+  const navigate = useNavigate()
   useEffect(() => {
+
+      if (localStorage.getItem("login") !== "true") return navigate("/");
+
     function getLastMessagesByConversation(messages, myId) {
       const conversations = {};
 

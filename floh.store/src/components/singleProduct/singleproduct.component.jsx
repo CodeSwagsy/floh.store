@@ -1,320 +1,323 @@
-import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import {LoaderComponent} from "../loader/loader.component.jsx";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { LoaderComponent } from "../loader/loader.component.jsx";
 import SendMessage from "../sendMessage/sendMessage.component.jsx";
-import {useData} from "../../context/signin.context.jsx";
-import {Tooltip} from "./Tooltip.component.jsx";
-import {useParams} from "react-router-dom";
-import {ImageComponent} from "./Image.component.jsx";
+import { useData } from "../../context/signin.context.jsx";
+import { Tooltip } from "./Tooltip.component.jsx";
+import { useParams } from "react-router-dom";
+import { ImageComponent } from "./Image.component.jsx";
 
-export function SingleProductComponent({socket, users, setMessages}) {
-    const {id} = useParams();
-    const {login, updateLogin} = useData()
-    const [product, setProduct] = useState(null);
-    const [type, setType] = useState("")
-    const [formattedDate, setFormattedDate] = useState(null);
-    const [owner, setOwner] = useState(null);
-    const [durchschnittsRating, setDurchschnittsRating] = useState(0);
-    const [isConnected, setIsConnected] = useState(false);
-    const [showPopup, setShowPopup] = useState(false);
-    const [favoriteText, setFavoriteText] = useState("Zur Merkliste hinzufügen")
-    const options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    };
-    const [disableButton, setDisableButton] = useState(false)
-    const [disabledClasses, setDisabledClasses] = useState("bg-gray-400 cursor-default")
+export function SingleProductComponent({ socket, users, setMessages }) {
+  const { id } = useParams();
+  const { login } = useData();
+  const [product, setProduct] = useState(null);
+  const [type, setType] = useState("");
+  const [formattedDate, setFormattedDate] = useState(null);
+  const [owner, setOwner] = useState(null);
+  const [durchschnittsRating, setDurchschnittsRating] = useState(0);
+  const [isConnected, setIsConnected] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [favoriteText, setFavoriteText] = useState("Zur Merkliste hinzufügen");
+  const [disableButton, setDisableButton] = useState(false);
+  const [disabledClasses, setDisabledClasses] = useState(
+    "bg-gray-400 cursor-default"
+  );
 
-    const handleAddToFavorites = async () => {
-        if (login) {
-            try {
-                const response = await fetch(
-                    `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
-                    {
-                        method: "PUT",
-                        credentials: "include",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
+  const handleAddToFavorites = async () => {
+    if (login) {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
+          {
+            method: "PUT",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
-                const data = await response.json();
-                if (data.code === 200) {
-                    console.log("FAVORITE HINZUGEFÜGT");
-                    setFavoriteText("Zur Merkliste hinzugefügt")
-                } else {
-                    console.log(data);
-                    console.log(product);
-                    console.error("Error adding to favorites:", data.message);
-                }
-            } catch (error) {
-                console.error("Error adding to favorites:", error);
-            }
+        const data = await response.json();
+        if (data.code === 200) {
+          console.log("FAVORITE HINZUGEFÜGT");
+          setFavoriteText("Zur Merkliste hinzugefügt");
         } else {
-            console.log("NICHT EINGELOGGT!")
+          console.log(data);
+          console.log(product);
+          console.error("Error adding to favorites:", data.message);
         }
-    };
+      } catch (error) {
+        console.error("Error adding to favorites:", error);
+      }
+    } else {
+      console.log("NICHT EINGELOGGT!");
+    }
+  };
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await fetch(
-                    `${import.meta.env.VITE_API}/product/id/${id}`,
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-                const data = await response.json();
-                if (data.code === 200) {
-                    setProduct(data.product);
-                } else {
-                    console.error("Error fetching products:", data.message);
-                }
-            } catch (error) {
-                console.error("Error fetching products:", error.message);
-            }
-        };
-        fetchProduct();
-        if (login) {
-            setDisableButton(false)
-            setDisabledClasses("bg-emerald cursor-pointer hover:bg-springgreen")
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API}/product/id/${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        if (data.code === 200) {
+          setProduct(data.product);
         } else {
-            setDisableButton(true)
-            setDisabledClasses("bg-gray-400 cursor-default")
+          console.error("Error fetching products:", data.message);
         }
-    }, []);
+      } catch (error) {
+        console.error("Error fetching products:", error.message);
+      }
+    };
+    fetchProduct();
+    if (login) {
+      setDisableButton(false);
+      setDisabledClasses("bg-emerald cursor-pointer hover:bg-springgreen");
+    } else {
+      setDisableButton(true);
+      setDisabledClasses("bg-gray-400 cursor-default");
+    }
+  }, []);
 
-    useEffect(() => {
-        if (product) {
-            const createdAtDate = new Date(product.createdAt);
-            setFormattedDate(createdAtDate.toLocaleString());
-            const fetchOwner = async () => {
-                try {
-                    const response = await fetch(
-                        `${import.meta.env.VITE_API}/user/about/${product.owner}`,
-                        {
-                            method: "GET",
-                            credentials: "include",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        }
-                    );
-                    const data = await response.json();
-                    if (data.code === 200) {
-                        setOwner(data.doc);
-                        if (product.type === "need") {
-                            setType("Gesuch")
-                        } else if (product.type === "offer") {
-                            setType("Angebot")
-                        }
-                    } else {
-                        console.error("Error fetching owner:", data.message);
-                    }
-                } catch (error) {
-                    console.error("Error fetching owner:", error.message);
-                }
-            };
-            fetchOwner();
+  useEffect(() => {
+    if (product) {
+      const createdAtDate = new Date(product.createdAt);
+      setFormattedDate(createdAtDate.toLocaleString());
+      const fetchOwner = async () => {
+        try {
+          const response = await fetch(
+            `${import.meta.env.VITE_API}/user/about/${product.owner}`,
+            {
+              method: "GET",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await response.json();
+          if (data.code === 200) {
+            setOwner(data.doc);
+            if (product.type === "need") {
+              setType("Gesuch");
+            } else if (product.type === "offer") {
+              setType("Angebot");
+            }
+          } else {
+            console.error("Error fetching owner:", data.message);
+          }
+        } catch (error) {
+          console.error("Error fetching owner:", error.message);
         }
+      };
+      fetchOwner();
+    }
+  }, [product]);
 
-    }, [product]);
-
-    function berechneDurchschnitt(ratings) {
-        if (!ratings || ratings.length === 0) {
-            return 0;
-        }
-
-        const summe = ratings.reduce((acc, rating) => acc + rating, 0);
-        const durchschnitt = summe / ratings.length;
-
-        return durchschnitt;
+  function berechneDurchschnitt(ratings) {
+    if (!ratings || ratings.length === 0) {
+      return 0;
     }
 
-    useEffect(() => {
-        if (owner && owner.info && owner.info.rating) {
-            const durchschnitt = berechneDurchschnitt(owner.info.rating);
-            setDurchschnittsRating(durchschnitt);
-        } else {
-            setDurchschnittsRating(0);
-        }
+    const summe = ratings.reduce((acc, rating) => acc + rating, 0);
+    const durchschnitt = summe / ratings.length;
 
-    }, [owner]);
+    return durchschnitt;
+  }
 
-    useEffect(() => {
-        if (users?.find((u) => u.userID === owner?._id)) {
-            setIsConnected(true);
-        } else {
-            setIsConnected(false);
-        }
-    }, [users, owner]);
+  useEffect(() => {
+    if (owner && owner.info && owner.info.rating) {
+      const durchschnitt = berechneDurchschnitt(owner.info.rating);
+      setDurchschnittsRating(durchschnitt);
+    } else {
+      setDurchschnittsRating(0);
+    }
+  }, [owner]);
 
-    return (
+  useEffect(() => {
+    if (users?.find((u) => u.userID === owner?._id)) {
+      setIsConnected(true);
+    } else {
+      setIsConnected(false);
+    }
+  }, [users, owner]);
+
+  return (
+    <>
+      {product !== null && product !== undefined ? (
         <>
-            {product !== null && product !== undefined ? (
-                <>
-                    <div className="container mx-auto lg:mt-12">
-                        <div className="flex pb-4">
-                            <Link
-                                to={
-                                    product
-                                        ? `/products/gallery/category/${product.category}`
-                                        : "/"
-                                }
-                                className="lg:text-2xl font-semibold underline"
-                            >
-                                {product ? product.category : " "}
-                            </Link>
-                            <h2 className="lg:text-2xl no-underline">
-                                &nbsp; / {product ? product.title : " "}
-                            </h2>
-                        </div>
-                        <div className="flex flex-col lg:flex-row justify-between lg:pb-4">
-                            <div className="lg:w-5/12 ">
-                                <ImageComponent images={product.images}/>
-                            </div>
-                            <div
-                                className="max-lg:mb-2 max-lg:px-2 flex flex-col lg:justify-center lg:w-5/12 max-lg:mt-4">
-                                <div className="w-1/2">
-                                    <h2 className="text-2xl font-bold text-emerald lg:mb-4">{type}</h2>
-                                    <h1 className="text-lg font-bold">
-                                        {product ? product.title : " "}
-                                    </h1>
-                                    <p className="text-lg font-bold">
-                                        {product ? product.price : " "} €
-                                    </p>
-                                    <div className="flex flex-row gap-2">
-                                        <h2 className="">{product ? product.location.zip : " "}</h2>
-                                        <p className="">{product ? product.location.city : " "}</p>
-                                    </div>
-                                </div>
+          <div className="container mx-auto lg:mt-12">
+            <div className="flex pb-4">
+              <Link
+                to={
+                  product
+                    ? `/products/gallery/category/${product.category}`
+                    : "/"
+                }
+                className="lg:text-2xl font-semibold underline"
+              >
+                {product ? product.category : " "}
+              </Link>
+              <h2 className="lg:text-2xl no-underline">
+                &nbsp; / {product ? product.title : " "}
+              </h2>
+            </div>
+            <div className="flex flex-col lg:flex-row justify-between lg:pb-4">
+              <div className="lg:w-5/12 relative">
+                <ImageComponent
+                  images={product.images}
+                  status={product?.status}
+                />
+              </div>
+              <div className="max-lg:mb-2 max-lg:px-2 flex flex-col lg:justify-center lg:w-5/12 max-lg:mt-4">
+                <div className="w-1/2">
+                  <h2 className="text-2xl font-bold text-emerald lg:mb-4">
+                    {type}
+                  </h2>
+                  <h1 className="text-lg font-bold">
+                    {product ? product.title : " "}
+                  </h1>
+                  <p className="text-lg font-bold">
+                    {product ? product.price : " "} €
+                  </p>
+                  <div className="flex flex-row gap-2">
+                    <h2 className="">{product ? product.location.zip : " "}</h2>
+                    <p className="">{product ? product.location.city : " "}</p>
+                  </div>
+                </div>
 
-                                <div
-                                    className="flex flex-col max-lg:flex-row gap-4 grow items-center lg:items-start justify-center my-2">
-                                    {/* code from Ihor */}
-                                    <button
-                                        onClick={() => setShowPopup(true)}
-                                        className="flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-emerald hover:bg-jet transition-all w-1/2  py-2.5 max-md:text-sm xl:text-xl"
-                                    >
-                                        Nachricht senden
-                                    </button>
-                                    {login ? (
-                                        <>
-                                            <button
-                                                onClick={handleAddToFavorites} disabled={disableButton}
-                                                className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-1/2 lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white transition-all ${disabledClasses}`}
-                                            >
-                                                {favoriteText}
-                                            </button>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Tooltip text="Anmeldung notwendig um Produkte zur Merkliste hinzuzufügen">
-                                                <button
-                                                    disabled={disableButton}
-                                                    className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white  transition-all ${disabledClasses}`}
-                                                >
-                                                    {favoriteText}
-                                                </button>
-                                            </Tooltip>
-                                        </>
-                                    )}
-                                </div>
+                <div className="flex flex-col max-lg:flex-row gap-4 grow items-center lg:items-start justify-center my-2">
+                  {/* code from Ihor */}
+                  <button
+                    onClick={() => setShowPopup(true)}
+                    className="flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-emerald hover:bg-jet transition-all w-1/2 lg:px-2 py-1 lg:py-1.5 max-md:text-sm xl:text-xl"
+                  >
+                    Nachricht senden
+                  </button>
+                  {login ? (
+                    <>
+                      <button
+                        onClick={handleAddToFavorites}
+                        disabled={disableButton}
+                        className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-1/2 lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white transition-all ${disabledClasses}`}
+                      >
+                        {favoriteText}
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Tooltip text="Anmeldung notwendig um Produkte zur Merkliste hinzuzufügen">
+                        <button
+                          disabled={disableButton}
+                          className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white  transition-all ${disabledClasses}`}
+                        >
+                          {favoriteText}
+                        </button>
+                      </Tooltip>
+                    </>
+                  )}
+                </div>
 
-                                <div className="">
-                                    <div className="flex gap-4">
-                                        {/* code from Ihor */}
-                                        <h2 className="font-bold mb-2 w-6/12 lg:w-5/12">
-                                            Verkäufer:
-                                        </h2>
-                                        <p
-                                            style={
-                                                isConnected ? {color: "green"} : {color: "red"}
-                                            }
-                                        >
-                                            {isConnected ? "online ⦿" : "offline ⦿"}
-                                        </p>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <div className="flex gap-4">
-                                            <h3 className="font-semibold w-6/12 lg:w-5/12">
-                                                Nutzername
-                                            </h3>
-                                            <p>{owner ? owner.info.about.username : ""}</p>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <h3 className="font-semibold w-6/12 lg:w-5/12">
-
-                                                Bewertung &Oslash;
-
-                                            </h3>
-                                            <p className="font-semibold">
+                <div className="">
+                  <div className="flex gap-4">
+                    {/* code from Ihor */}
+                    <h2 className="font-bold mb-2 w-6/12 lg:w-5/12">
+                      Verkäufer:
+                    </h2>
+                    <p
+                      style={
+                        isConnected ? { color: "green" } : { color: "red" }
+                      }
+                    >
+                      {isConnected ? "online ⦿" : "offline ⦿"}
+                    </p>
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex gap-4">
+                      <h3 className="font-semibold w-6/12 lg:w-5/12">
+                        Nutzername
+                      </h3>
+                      <p>{owner ? owner.info.about.username : ""}</p>
+                    </div>
+                    <div className="flex gap-4">
+                      <h3 className="font-semibold w-6/12 lg:w-5/12">
+                        Bewertung &Oslash;
+                      </h3>
+                      <p className="font-semibold">
                         <span>
                           {owner ? berechneDurchschnitt(owner.info.rating) : ""}
                         </span>{" "}
-                                                / 5
-                                            </p>
-                                        </div>
-                                        <div className="flex gap-4">
-                                            <h3 className="font-semibold w-6/12 lg:w-5/12">
-                                                Mitglied seit
-                                            </h3>
-                                            <p>
-                                                {owner && owner.createdAt
-                                                    ? new Date(owner.createdAt).toLocaleDateString()
-                                                    : ""}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="border-y border-gray-300 py-4 max-lg:px-2">
-                            <h2 className="font-bold mb-2">Produktdetails:</h2>
-                            <div className="flex gap-4">
-                                <h3 className="font-semibold w-6/12 lg:w-3/12">Preis</h3>
-                                <p>{product ? product.price : " "} €</p>
-                            </div>
-                            <div className="flex gap-4">
-                                <h3 className="font-semibold w-6/12 lg:w-3/12">Zustand</h3>
-                                <p>{product ? product.condition : " "}</p>
-                            </div>
-                            <div className="flex gap-4">
-                                <h3 className="font-semibold w-6/12 lg:w-3/12">
-                                    Inseriert seit:
-                                </h3>
-                                <p>{formattedDate}</p>
-                            </div>
-                        </div>
-                        <div className="max-lg:px-2">
-                            <h2 className="font-bold mt-4 mb-2">Beschreibung:</h2>
-                            <div className="flex gap-4">
-                                <p>{product ? product.description : " "}</p>
-                            </div>
-                        </div>
+                        / 5
+                      </p>
                     </div>
-                    {/* code von ihor */}
-                    {showPopup ? (
-                        <SendMessage
-                            product={product}
-                            setShowPopup={setShowPopup}
-                            socket={socket}
-                            users={users}
-                            setMessages={setMessages}
-                        />
-                    ) : (
-                        ""
-                    )}
-                </>
-            ) : (
-                <LoaderComponent/>
-            )}
+                    <div className="flex gap-4">
+                      <h3 className="font-semibold w-6/12 lg:w-5/12">
+                        Mitglied seit
+                      </h3>
+                      <p>
+                        {owner && owner.createdAt
+                          ? new Date(owner.createdAt).toLocaleDateString()
+                          : ""}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-y border-gray-300 py-4 max-lg:px-2">
+              <h2 className="font-bold mb-2">Produktdetails:</h2>
+              <div className="flex gap-4">
+                <h3 className="font-semibold w-6/12 lg:w-3/12">Preis</h3>
+                <p>{product ? product.price : " "} €</p>
+              </div>
+              <div className="flex gap-4">
+                <h3 className="font-semibold w-6/12 lg:w-3/12">Zustand</h3>
+                <p>{product ? product.condition : " "}</p>
+              </div>
+              <div className="flex gap-4">
+                <h3 className="font-semibold w-6/12 lg:w-3/12">
+                  Inseriert seit:
+                </h3>
+                <p>{formattedDate}</p>
+              </div>
+            </div>
+            <div className="max-lg:px-2">
+              <h2 className="font-bold mt-4 mb-2">Beschreibung:</h2>
+              <div className="flex gap-4">
+                <p>{product ? product.description : " "}</p>
+              </div>
+            </div>
+          </div>
+          {/* code von ihor */}
+          {showPopup ? (
+            <SendMessage
+              product={product}
+              setShowPopup={setShowPopup}
+              socket={socket}
+              users={users}
+              setMessages={setMessages}
+            />
+          ) : (
+            ""
+          )}
         </>
-    );
+      ) : (
+        <LoaderComponent />
+      )}
+    </>
+  );
 }
+
+SingleProductComponent.propTypes = {
+  socket: PropTypes.object,
+  users: PropTypes.array,
+  setMessages: PropTypes.func,
+};
