@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { LoaderComponent } from "../loader/loader.component.jsx";
 import SendMessage from "../sendMessage/sendMessage.component.jsx";
@@ -9,7 +10,7 @@ import { ImageComponent } from "./Image.component.jsx";
 
 export function SingleProductComponent({ socket, users, setMessages }) {
   const { id } = useParams();
-  const { login, updateLogin } = useData();
+  const { login } = useData();
   const [product, setProduct] = useState(null);
   const [type, setType] = useState("");
   const [formattedDate, setFormattedDate] = useState(null);
@@ -18,12 +19,6 @@ export function SingleProductComponent({ socket, users, setMessages }) {
   const [isConnected, setIsConnected] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [favoriteText, setFavoriteText] = useState("Zur Merkliste hinzufügen");
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
   const [disableButton, setDisableButton] = useState(false);
   const [disabledClasses, setDisabledClasses] = useState(
     "bg-gray-400 cursor-default"
@@ -199,7 +194,7 @@ export function SingleProductComponent({ socket, users, setMessages }) {
                   </div>
                 </div>
 
-                <div className="flex flex-col max-lg:flex-row gap-4 grow items-center md:items-start justify-center my-2">
+                <div className="flex flex-col max-lg:flex-row gap-4 grow items-center lg:items-start justify-center my-2">
                   {/* code from Ihor */}
                   <button
                     onClick={() => setShowPopup(true)}
@@ -212,7 +207,7 @@ export function SingleProductComponent({ socket, users, setMessages }) {
                       <button
                         onClick={handleAddToFavorites}
                         disabled={disableButton}
-                        className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-1/2 lg:px-2 py-1 lg:py-1.5 max-md:text-sm xl:text-xl text-white  rounded transition-all ${disabledClasses}`}
+                        className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-1/2 lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white transition-all ${disabledClasses}`}
                       >
                         {favoriteText}
                       </button>
@@ -222,7 +217,7 @@ export function SingleProductComponent({ socket, users, setMessages }) {
                       <Tooltip text="Anmeldung notwendig um Produkte zur Merkliste hinzuzufügen">
                         <button
                           disabled={disableButton}
-                          className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-1 lg:py-1.5 max-md:text-sm xl:text-xl text-white  rounded  transition-all ${disabledClasses}`}
+                          className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white  transition-all ${disabledClasses}`}
                         >
                           {favoriteText}
                         </button>
@@ -320,3 +315,9 @@ export function SingleProductComponent({ socket, users, setMessages }) {
     </>
   );
 }
+
+SingleProductComponent.propTypes = {
+  socket: PropTypes.object,
+  users: PropTypes.array,
+  setMessages: PropTypes.func,
+};

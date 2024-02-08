@@ -11,7 +11,7 @@ export const Tooltip = ({ text, children }) => {
         >
             {children}
             {showTooltip && (
-                <div className="absolute bg-gray-400 text-xs text-center text-white py-1 rounded-lg -mt-10">
+                <div className="absolute bg-gray-400 text-xs text-center text-white py-1 rounded-lg max-md:leading-3 max-md:ml-0 max-md:-mt-9 max-lg:ml-4 max-lg:-mt-9 lg:-mt-11">
                     {text}
                 </div>
             )}

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Carousel, IconButton } from "@material-tailwind/react";
 
 export function ImageComponent({ images, status }) {
@@ -93,3 +94,8 @@ export function ImageComponent({ images, status }) {
     </>
   );
 }
+
+ImageComponent.propTypes = {
+  images: PropTypes.array,
+  status: PropTypes.string,
+};
