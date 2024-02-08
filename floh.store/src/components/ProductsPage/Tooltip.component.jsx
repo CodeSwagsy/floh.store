@@ -5,13 +5,13 @@ export const Tooltip = ({ text, children }) => {
 
     return (
         <div
-            className="relative w-full"
+            className="relative w-full overflow-hidden"
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
         >
             {children}
             {showTooltip && (
-                <div className="absolute bg-gray-400 text-xs text-white px-2 py-1 rounded -mt-10">
+                <div className="absolute bg-gray-400 text-xs text-white p-1 rounded max-lg:-mt-8 -mt-10  w-full">
                     {text}
                 </div>
             )}

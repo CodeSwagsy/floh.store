@@ -34,16 +34,17 @@ export function AboutUsComponent() {
                 <div className="container mx-auto ">
                     <h1 className="text-2xl lg:text-4xl my-4 lg:mb-8 font-bold group group-hover:bg-emerald">Unser
                         Team</h1>
-                    <div className="mt-10 flex flex-wrap justify-center lg:justify-between">
+                    <div className="mt-10 flex flex-wrap justify-center xl:justify-between">
                         <div
-                            className="flex flex-col items-center bg-white border border-gray-200 rounded-lg drop-shadow md:flex-row md:max-w-xl border-emerald p-4 lg:p-8 mb-8">
+                            className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
                             <img
-                                className="object-cover w-full rounded-lg max-lg:max-h-96 h-full md:w-48 "
+                                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                                 src="/alper.png"
                                 alt="Alper"
                             />
-                            <div className="flex flex-col justify-center leading-normal h-full w-full lg:px-4">
-                                <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-black h-1/3 max-lg:my-4">
+                            <div
+                                className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+                                <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
                                     Frontend Dev
                                 </h2>
                                 <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
@@ -54,14 +55,15 @@ export function AboutUsComponent() {
                         </div>
 
                         <div
-                            className="flex flex-col items-center bg-white border border-gray-200 rounded-lg drop-shadow md:flex-row md:max-w-xl border-emerald p-8 mb-8">
+                            className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
                             <img
-                                className=" object-cover w-full rounded-lg h-full md:w-48 "
+                                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                                 src="/manuel.webp"
                                 alt="Manuel"
                             />
-                            <div className="flex flex-col justify-center leading-normal h-full w-full px-4">
-                                <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-black h-1/3">
+                            <div
+                                className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+                                <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
                                     Fullstack Developer
                                 </h2>
                                 <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
@@ -72,17 +74,18 @@ export function AboutUsComponent() {
                         </div>
 
                         <div
-                            className="flex flex-col items-center bg-white border border-gray-200 rounded-lg drop-shadow md:flex-row md:max-w-xl border-emerald p-10 mb-8">
+                            className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
                             <img
-                                className=" object-cover w-full rounded-lg h-full md:w-48 "
+                                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                                 src="/alper.png"
-                                alt=""
+                                alt="Alper"
                             />
-                            <div className="h-full flex flex-col justify-start items-start p-4 leading-normal">
-                                <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black h-1/3">
-                                    Frontend Dev junior
+                            <div
+                                className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+                                <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
+                                    Frontend Dev
                                 </h2>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
                                     Hallo ich bin Alper, 37 Jahre alt und Frontend Dev der seite
                                     Floh.Store.
                                 </p>
@@ -90,35 +93,37 @@ export function AboutUsComponent() {
                         </div>
 
                         <div
-                            className="flex flex-col items-center bg-white border border-gray-200 rounded-lg drop-shadow md:flex-row md:max-w-xl border-emerald p-10 mb-8">
+                            className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
                             <img
-                                className=" object-cover w-full rounded-lg h-full md:w-48 "
+                                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                                 src="/alper.png"
-                                alt=""
+                                alt="Alper"
                             />
-                            <div className="h-full flex flex-col justify-start items-start p-4 leading-normal">
-                                <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black h-1/3">
-                                    Frontend Dev junior
+                            <div
+                                className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+                                <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
+                                    Frontend Dev
                                 </h2>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                    Hallo ich bin Alper, 37 Jahre alt und Frontend Dev der Seite
+                                <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
+                                    Hallo ich bin Alper, 37 Jahre alt und Frontend Dev der seite
                                     Floh.Store.
                                 </p>
                             </div>
                         </div>
 
                         <div
-                            className="flex flex-col items-center bg-white border border-gray-200 rounded-lg drop-shadow md:flex-row md:max-w-xl border-emerald p-10 mb-8">
+                            className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
                             <img
-                                className=" object-cover w-full rounded-lg h-full md:w-48 "
+                                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                                 src="/alper.png"
-                                alt=""
+                                alt="Alper"
                             />
-                            <div className="h-full flex flex-col justify-start items-start p-4 leading-normal">
-                                <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black h-1/3">
-                                    Frontend Dev junior
+                            <div
+                                className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+                                <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
+                                    Frontend Dev
                                 </h2>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
                                     Hallo ich bin Alper, 37 Jahre alt und Frontend Dev der seite
                                     Floh.Store.
                                 </p>

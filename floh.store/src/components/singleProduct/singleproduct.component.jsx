@@ -196,11 +196,11 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                 </div>
 
                                 <div
-                                    className="flex flex-col max-lg:flex-row gap-4 grow items-center md:items-start justify-center my-2">
+                                    className="flex flex-col max-lg:flex-row gap-4 grow items-center lg:items-start justify-center my-2">
                                     {/* code from Ihor */}
                                     <button
                                         onClick={() => setShowPopup(true)}
-                                        className="flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-emerald hover:bg-jet transition-all w-1/2 lg:px-2 py-1 lg:py-1.5 max-md:text-sm xl:text-xl"
+                                        className="flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-emerald hover:bg-jet transition-all w-1/2  py-2.5 max-md:text-sm xl:text-xl"
                                     >
                                         Nachricht senden
                                     </button>
@@ -208,7 +208,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                         <>
                                             <button
                                                 onClick={handleAddToFavorites} disabled={disableButton}
-                                                className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-1/2 lg:px-2 py-1 lg:py-1.5 max-md:text-sm xl:text-xl text-white  rounded transition-all ${disabledClasses}`}
+                                                className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-1/2 lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white transition-all ${disabledClasses}`}
                                             >
                                                 {favoriteText}
                                             </button>
@@ -218,7 +218,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                             <Tooltip text="Anmeldung notwendig um Produkte zur Merkliste hinzuzufügen">
                                                 <button
                                                     disabled={disableButton}
-                                                    className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-1 lg:py-1.5 max-md:text-sm xl:text-xl text-white  rounded  transition-all ${disabledClasses}`}
+                                                    className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white  transition-all ${disabledClasses}`}
                                                 >
                                                     {favoriteText}
                                                 </button>
