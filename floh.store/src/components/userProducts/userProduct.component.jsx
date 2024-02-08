@@ -6,11 +6,13 @@ import { LoaderComponent } from "../loader/loader.component.jsx";
 function UserProductsComponent() {
   const [products, setProducts] = useState([]);
   const [userName, setUserName] = useState([]);
+  const uid = localStorage.getItem("uid");
+  const login = localStorage.getItem("login")
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    if (localStorage.getItem("login") === "false") return navigate("/");
+    if (!login) return navigate("/");
 
     id &&
       fetch(`${import.meta.env.VITE_API}/user/about/${id}`)

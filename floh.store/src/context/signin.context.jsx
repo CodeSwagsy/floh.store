@@ -34,6 +34,7 @@ export const DataProvider = ({ children }) => {
         updateLogin(false);
         updateUserData(null);
         localStorage.removeItem("uid");
+        localStorage.removeItem("login");
         localStorage.removeItem("loginData");
         console.log("Logged out");
       } else {

@@ -6,16 +6,12 @@ import { useData } from "../../context/signin.context.jsx";
 export function SigninComponent({ socket }) {
   const { userData, login, updateUserData, updateLogin } = useData();
   const navigate = useNavigate();
-
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const loginData = JSON.parse(localStorage.getItem("loginData"));
-  const uid = loginData ? loginData.uid : null;
-  const timestamp = loginData ? loginData.timestamp : null;
   const handleCheckboxChange = (e) => {
     setRememberMe(e.target.checked);
   };
@@ -85,10 +81,6 @@ export function SigninComponent({ socket }) {
       }));
     }
 
-    const loginData = JSON.parse(localStorage.getItem("loginData"));
-    if (loginData && loginData.uid) {
-      updateLogin(true);
-    }
   }, []);
 
   useEffect(() => {

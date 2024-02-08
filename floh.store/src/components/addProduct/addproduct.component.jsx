@@ -10,6 +10,7 @@ export function AddProductComponent() {
     const uid = localStorage.getItem("uid");
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
+    const {userData} = useData()
 
     const onChangeHandlerImages = async (e) => {
         e.preventDefault();
@@ -154,8 +155,9 @@ export function AddProductComponent() {
                 [name]: value,
             }));
         }
-        console.log(credentials)
     };
+
+    console.log(userData)
 
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center md:py-12 sm:px-1.5 lg:px-8">
@@ -315,6 +317,7 @@ export function AddProductComponent() {
                                     required
                                     pattern="^[0-9]{5}$"
                                     placeholder="Postleitzahl"
+                                    defaultValue={userData ? userData.doc.info.about.location.zip : ""}
                                     onChange={onChangeHandler}
                                     className="p-2.5 w-48 max-md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
                                 />
@@ -332,6 +335,7 @@ export function AddProductComponent() {
                                     type="text"
                                     required
                                     placeholder="Ort"
+                                    defaultValue={userData ? userData.doc.info.about.location.city : ""}
                                     onChange={onChangeHandler}
                                     className="p-2.5 w-48 max-md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
                                 />
