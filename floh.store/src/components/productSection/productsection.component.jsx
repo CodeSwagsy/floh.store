@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import  {useEffect, useState} from "react";
 import {ProductComponent} from "./product.component.jsx";
 
 export const ProductSectionComponent = () => {
@@ -75,7 +75,7 @@ export const ProductSectionComponent = () => {
         <div className="">
             <div className="container mx-auto">
                 <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">Neue Produkte</h2>
-                <div className="relative w-full bg-emerald p-4 drop-shadow-lg rounded-lg  flex flex-col items-center">
+                <div className="relative w-full bg-emerald drop-shadow-lg lg:rounded-lg py-4 lg:py-8 flex flex-col items-center">
                     <div className="flex gap-2.5 md:gap-4 lg:gap-6 justify-center lg:justify-between">
                         {products
                             .slice(currentIndex, currentIndex + visibleProducts)

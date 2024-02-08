@@ -1,0 +1,15 @@
+.i-own-product-status {
+  height: 100%;
+  color: black;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-20deg);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.i-own-product-status-img {
+  filter: opacity(0.5);
+}

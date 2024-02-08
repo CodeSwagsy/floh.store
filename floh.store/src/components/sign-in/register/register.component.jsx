@@ -14,8 +14,9 @@ export function RegisterComponent() {
         house: "",
         zip: "",
         city: "",
-        gender: "other", // Standardwert
-        datenschutz: false, // Standardwert
+        gender: "",
+        birthday: "",
+        datenschutz: false,
     });
 
     const [register, setRegister] = useState(false)
@@ -36,13 +37,15 @@ export function RegisterComponent() {
         setError('');
         return true;
     };
-
+    const fakeEmail = Math.random() + "@you.de"
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+
         const expectedObject = {
             email: credentials.email,
+            newEmail: fakeEmail.slice(2),
             password: credentials.password,
             info: {
                 about: {
@@ -55,7 +58,7 @@ export function RegisterComponent() {
                     },
                     gender: credentials.gender,
                     tel: credentials.number,
-                    birthday: "2000-01-01", // Beispielwert, den du eventuell dynamisch setzen möchtest
+                    birthday: credentials.birthday,
                 },
             },
         };
@@ -77,7 +80,7 @@ export function RegisterComponent() {
 
                 const data = await response.json();
 
-                if (response.status === 204) {
+                if (response.status === 201) {
                     setRegister(true)
                     console.log("Registrierung erfolgreich:", data);
                 } else {
@@ -280,7 +283,7 @@ export function RegisterComponent() {
                                     />
                                 </div>
                             </div>
-                            <div className="flex space-x-6 mr-6">
+                            <div className="flex space-x-6">
                                 <div className="w-1/2">
                                     <label
                                         htmlFor="gender"
@@ -298,6 +301,12 @@ export function RegisterComponent() {
                                         <option value="female">weiblich</option>
                                         <option value="other">divers</option>
                                     </select>
+                                </div>
+                                <div className="w-1/2">
+                                    <label htmlFor="birthday" className="block  text-sm font-medium leading-6 text-gray-900">Geburtstag</label>
+                                    <input type="date" name="birthday"
+                                           onChange={handleChange}
+                                           className="focus:outline-none block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald  focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                             <div className="flex items-center">

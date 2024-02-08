@@ -15,10 +15,6 @@ export function NavComponent() {
   const { login, updateLogin } = useData();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("counter", counter);
-  }, [counter]);
-
   const handleLogout = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API}/user/logout`, {
@@ -143,7 +139,7 @@ export function NavComponent() {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="/profile/ownproducts"
+                      to="/profile/user-products/"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
