@@ -2,19 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../context/signin.context.jsx";
 import { Tooltip } from "./Tooltip.component.jsx";
+import PropTypes from "prop-types";
 
 export const ProductCard = ({ product }) => {
-  const {
-    title,
-    category,
-    condition,
-    price,
-    description,
-    location,
-    images,
-    type,
-    _id,
-  } = product;
+  const { title, category, condition, price, location, images, type, _id } =
+    product;
   const [favoriteText, setFavoriteText] = useState("Zur Merkliste hinzufügen");
   const { login } = useData();
   const [disableButton, setDisableButton] = useState(false);
@@ -129,4 +121,8 @@ export const ProductCard = ({ product }) => {
       </div>
     </div>
   );
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.object,
 };
