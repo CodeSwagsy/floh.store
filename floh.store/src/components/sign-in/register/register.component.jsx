@@ -36,13 +36,15 @@ export function RegisterComponent() {
         setError('');
         return true;
     };
-
+    const fakeEmail = Math.random() + "@you.de"
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+
         const expectedObject = {
             email: credentials.email,
+            newEmail: fakeEmail.slice(2),
             password: credentials.password,
             info: {
                 about: {
@@ -77,7 +79,7 @@ export function RegisterComponent() {
 
                 const data = await response.json();
 
-                if (response.status === 204) {
+                if (response.status === 201) {
                     setRegister(true)
                     console.log("Registrierung erfolgreich:", data);
                 } else {

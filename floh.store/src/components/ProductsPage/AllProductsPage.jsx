@@ -58,7 +58,7 @@ export const AllProductsPage = () => {
 
     return (
         <div className="container mx-auto my-8 mt-16">
-            <h2 className="text-3xl font-bold mb-4">{categoryTitle}</h2>
+            <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">{categoryTitle}</h2>
 
             {loading ? (
                 <LoaderComponent />
