@@ -3,95 +3,55 @@ import React, {useEffect, useState} from "react";
 import {ProductCard} from "./ProductCard.component.jsx";
 import {useParams} from "react-router-dom";
 import {LoaderComponent} from "../loader/loader.component.jsx";
+import { PLZinRadiusComponent } from "../header/PLZinRadiusComponent.jsx";
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
     const { id } = useParams();
     const categoryTitle = id ? id : "Alle Produkte";
     const [currentPage, setCurrentPage] = useState(1);
-    const [favoriteTexts, setFavoriteTexts] = useState({});
     const [loading, setLoading] = useState(true);
     const productsPerPage = 20;
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                let url;
-
-                if (id) {
-                    url = `${import.meta.env.VITE_API}/product/category/${id}`;
-                } else {
-                    url = `${import.meta.env.VITE_API}/product/all`;
-                }
-
-                const response = await fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error`);
-                }
-
-                const data = await response.json();
-                if (data.code === 200) {
-                    const initialFavoriteTexts = {};
-                    data.products.forEach((product) => {
-                        initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
-                    });
-                    setFavoriteTexts(initialFavoriteTexts);
-
-                    setProducts(data.products);
-                } else {
-                    console.error(data.error.message);
-                }
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, [id]);
-
-    const handleAddToFavorites = async (product) => {
+   useEffect(() => {
+    const fetchProducts = async () => {
         try {
-            if (!product) {
-                console.error("Product is undefined or null.");
-                return;
+            let url;
+
+            if (id) {
+                url = `${import.meta.env.VITE_API}/product/category/${id}`;
+            } else {
+                url = `${import.meta.env.VITE_API}/product/all`;
             }
 
-            const response = await fetch(
-                `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
-                {
-                    method: "PUT",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ product }),
-                }
-            );
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
 
             const data = await response.json();
+            console.log("API Response:", data);
+
             if (data.code === 200) {
-                setFavoriteTexts((prevFavoriteTexts) => ({
-                    ...prevFavoriteTexts,
-                    [product._id]: "Zur Merkliste hinzugefügt",
-                }));
-                console.log("FAVORITE HINZUGEFÜGT");
+                setProducts(data.products);
             } else {
-                console.error("Error adding to favorites: ELSE", data.message);
-                console.log("NEIN")
+                console.error(data.error.message);
             }
         } catch (error) {
-            console.error("Error adding to favorites: CATCH", error);
-            console.log("NEIN")
+            console.error("Error fetching products:", error);
+        } finally {
+            setLoading(false);
         }
     };
+
+    fetchProducts();
+}, [id]);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -101,7 +61,7 @@ export const AllProductsPage = () => {
 
     return (
         <div className="container mx-auto my-8 mt-16">
-            <h2 className="text-3xl font-bold mb-4">{categoryTitle}</h2>
+            <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">{categoryTitle}</h2>
 
             {loading ? (
                 <LoaderComponent />
@@ -112,8 +72,6 @@ export const AllProductsPage = () => {
                             <ProductCard
                                 key={product._id}
                                 product={product}
-                                onAddToFavorites={handleAddToFavorites}
-                                favoriteText={favoriteTexts[product._id]}
                             />
                         ))}
                     </div>

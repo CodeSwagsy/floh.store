@@ -10,7 +10,6 @@ import { SettingsContainer } from "../routes/ProfileSettings/settings.container.
 import { GalleryContainer } from "../routes/Gallery/gallery.container.jsx";
 import { SignInContainer } from "../routes/SignIn/signin.container.jsx";
 import { RegisterContainer } from "../routes/Register/register.container.jsx";
-import { OwnProductsContainer } from "../routes/OwnProducts/ownproducts.container.jsx";
 import { FavoriteProductsContainer } from "../routes/FavoriteProducts/favoriteproducts.container.jsx";
 import { AddProductContainer } from "../routes/AddProduct/addproducts.container.jsx";
 import { AboutContainer } from "../routes/About/about.container.jsx";
@@ -24,6 +23,7 @@ import { SingleProductContainer } from "../routes/SingleProduct/singleproduct.co
 import { ErrorCodeContainer } from "../routes/ErrorCode/errorcode.container.jsx";
 import { MessagesContainer } from "../routes/Messages/messages.container.jsx";
 import { LoaderContainer } from "../routes/Loader/loader.container.jsx";
+import { UserProductsContainer } from "../routes/UserProducts/userProducts.container.jsx";
 
 export function createRouter(
   socket,
@@ -60,7 +60,10 @@ export function createRouter(
         />
         <Route path="/profile/errorcode" element={<ErrorCodeContainer />} />
         <Route path="/profile/register" element={<RegisterContainer />} />
-        <Route path="/profile/ownproducts" element={<OwnProductsContainer />} />
+        <Route
+          path="/profile/user-products/:id?"
+          element={<UserProductsContainer />}
+        />
         <Route
           path="/profile/favoriteproducts"
           element={<FavoriteProductsContainer />}

@@ -1,13 +1,16 @@
+// HeaderComponent.jsx
 import React, { useState, useEffect } from "react";
+import { useData } from "../../context/signin.context.jsx";
+import { ProductCard } from "../ProductsPage/ProductCard.component";
+import { LoaderComponent } from "../loader/loader.component.jsx";
+import { PLZinRadiusComponent } from "../header/PLZinRadiusComponent.jsx";
 import { CategoryComponent } from "./category.component.jsx";
 import { SearchfieldComponent } from "../header/searchfield.component.jsx";
 import { LinkButtonComponent } from "./button.component.jsx";
 import { NavComponent } from "./nav.component.jsx";
-import { Link } from "react-router-dom";
-import { useData } from "../../context/signin.context.jsx";
-import { ProductCard } from "../ProductsPage/ProductCard.component.jsx";
-import { useParams } from "react-router-dom";
-import { LoaderComponent } from "../loader/loader.component.jsx";
+import { useParams, Link } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
+
 
 export function HeaderComponent() {
     const { userData, login, updateUserData, updateLogin } = useData();
@@ -21,9 +24,11 @@ export function HeaderComponent() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 20;
+    const [postalCodeSearchResult, setPostalCodeSearchResult] = useState([]);
 
-    const handleSearchInputChange = async (value) => {
+    const handleSearchOnSubmit = async (value) => {
         setSearchQuery(value);
+        setProducts([]);
     };
 
     const handleCategoryChange = (category) => {
@@ -31,59 +36,60 @@ export function HeaderComponent() {
         setSearchQuery("");
     };
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                setLoading(true);
+    const handleCloseSearchResults = () => {
+        setSearchQuery(""); // Clear the search query
+        setProducts([]); // Clear the products
+    };
 
-                let url;
+    const fetchProducts = async () => {
+        try {
+            setLoading(true);
 
-                if (id) {
-                    url = `${import.meta.env.VITE_API}/product/category/${id}`;
-                } else {
-                    url = `${import.meta.env.VITE_API}/product/all`;
-                }
+            const url = id
+                ? `${import.meta.env.VITE_API}/product/category/${id}`
+                : `${import.meta.env.VITE_API}/product/all`;
 
-                const response = await fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+            const response = await fetch(url, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error`);
+            }
+
+            const { code, products: responseDataProducts } = await response.json();
+
+            if (code === 200) {
+                const initialFavoriteTexts = {};
+                responseDataProducts.forEach((product) => {
+                    initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error`);
-                }
+                const filteredProducts = searchQuery
+                    ? responseDataProducts.filter(
+                        (product) =>
+                            product.title &&
+                            product.title.toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                    : responseDataProducts;
 
-                const data = await response.json();
-                if (data.code === 200) {
-                    const initialFavoriteTexts = {};
-                    data.products.forEach((product) => {
-                        initialFavoriteTexts[product._id] = "Zur Merkliste hinzufügen";
-                    });
-                    setFavoriteTexts(initialFavoriteTexts);
-
-                    // Filter products based on search query if it exists
-                    const filteredProducts = searchQuery
-                        ? data.products.filter(
-                            (product) =>
-                                product.title &&
-                                product.title.toLowerCase().includes(searchQuery.toLowerCase())
-                        )
-                        : data.products;
-
-                    setProducts(filteredProducts);
-                    console.log(filteredProducts);
-                } else {
-                    console.error(data.error.message);
-                }
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            } finally {
-                setLoading(false);
+                setFavoriteTexts(initialFavoriteTexts);
+                setProducts(filteredProducts);
+            } else {
+                console.error("Error fetching products:", responseDataProducts);
             }
-        };
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchProducts();
     }, [selectedCategory, searchQuery]);
 
@@ -99,6 +105,7 @@ export function HeaderComponent() {
                 {
                     method: "PUT",
                     credentials: "include",
+                    mode: "cors",
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -143,7 +150,7 @@ export function HeaderComponent() {
     return (
         <header>
             <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">
-                <div className="flex flex-row items-center justify-around mt-2 lg:mt-4">
+                <div className="flex flex-row items-center justify-between mt-2 lg:mt-4">
                     <Link to="/">
                         <img src="/logo.svg" alt="Floh.store" className="mt-2" />
                     </Link>
@@ -155,14 +162,19 @@ export function HeaderComponent() {
                         />
                         <SearchfieldComponent
                             additionalClasses="mt-4"
-                            onSearchInputChange={(value) => setSearchQuery(value)}
+                            onSearchOnSubmit={(value) => handleSearchOnSubmit(value)}
+                        />
+                        <PLZinRadiusComponent
+                            setProducts={setProducts}
+                            setLoading={setLoading}
+                            setSearchQuery={setSearchQuery}
                         />
                     </div>
                     <LinkButtonComponent
-                        text="+ Anzeige erstellen"
+                        text="Anzeige erstellen"
                         additionalClasses={
                             login
-                                ? "w-1/4 bg-jet lg:px-2 xl:px-4 xl:py-2"
+                                ? "w-1/3 lg:w-1/4 bg-jet max-lg:py-2 lg:px-2 xl:px-4 xl:py-2"
                                 : "max-lg:w-4/12 max-lg:py-2 bg-jet lg:px-2 xl:px-4 xl:py-2"
                         }
                         link="/products/add"
@@ -170,17 +182,24 @@ export function HeaderComponent() {
                     <LinkButtonComponent
                         text={login ? "Angemeldet " : "Login / Registrieren"}
                         additionalClasses={
-                            login ? "hidden" : "max-lg:hidden bg-jet lg:px-2 xl:px-4 xl:py-2"
+                            login
+                                ? "hidden"
+                                : "max-lg:hidden bg-jet lg:px-2 xl:px-4 xl:py-2"
                         }
                         link="/profile/signin"
                     />
-
-                    <NavComponent/>
+                    <NavComponent />
                 </div>
                 <div className="flex flex-row items-center justify-between lg:hidden bg-jet/25 p-1.5 mt-2">
-                    <SearchfieldComponent additionalClasses="placeholder:text-white"/>
-                    <CategoryComponent additionalClasses="" selectClasses="text-right"/>
+                    <SearchfieldComponent
+                        additionalClasses="mt-4"
+                        onSearchOnSubmit={(value) => handleSearchOnSubmit(value)}
+                    />
 
+                    <CategoryComponent
+                        additionalClasses=""
+                        selectClasses="text-right"
+                    />
                 </div>
 
                 {loading && <LoaderComponent />}
@@ -197,6 +216,19 @@ export function HeaderComponent() {
                                     favoriteText={favoriteTexts[product._id]}
                                 />
                             ))}
+                            <div className="flex items-center justify-end">
+                                <button
+                                    className="text-jet hover:text-jet-dark focus:outline-none absolute top-20 right-0 m-4"
+                                    style={{
+                                        top: "16%",
+                                        right: "5%"
+                                    }}
+
+                                    onClick={handleCloseSearchResults}
+                                >
+                                    <FaTimes />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )}
