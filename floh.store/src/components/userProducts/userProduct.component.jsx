@@ -10,7 +10,7 @@ function UserProductsComponent() {
   const { id } = useParams();
 
   useEffect(() => {
-    if (localStorage.getItem("login") !== "true") return navigate("/");
+    if (!id && localStorage.getItem("login") === "false") return navigate("/");
 
     id &&
       fetch(`${import.meta.env.VITE_API}/user/about/${id}`)
