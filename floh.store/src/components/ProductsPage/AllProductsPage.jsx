@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {ProductCard} from "./ProductCard.component.jsx";
 import {useParams} from "react-router-dom";
 import {LoaderComponent} from "../loader/loader.component.jsx";
+import { PLZinRadiusComponent } from "../header/PLZinRadiusComponent.jsx";
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
@@ -12,43 +13,45 @@ export const AllProductsPage = () => {
     const [loading, setLoading] = useState(true);
     const productsPerPage = 20;
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                let url;
+   useEffect(() => {
+    const fetchProducts = async () => {
+        try {
+            let url;
 
-                if (id) {
-                    url = `${import.meta.env.VITE_API}/product/category/${id}`;
-                } else {
-                    url = `${import.meta.env.VITE_API}/product/all`;
-                }
-
-                const response = await fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error`);
-                }
-
-                const data = await response.json();
-                if (data.code === 200) {
-                    setProducts(data.products);
-                } else {
-                    console.error(data.error.message);
-                }
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            } finally {
-                setLoading(false);
+            if (id) {
+                url = `${import.meta.env.VITE_API}/product/category/${id}`;
+            } else {
+                url = `${import.meta.env.VITE_API}/product/all`;
             }
-        };
 
-        fetchProducts();
-    }, [id]);
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log("API Response:", data);
+
+            if (data.code === 200) {
+                setProducts(data.products);
+            } else {
+                console.error(data.error.message);
+            }
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchProducts();
+}, [id]);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
