@@ -23,7 +23,7 @@ export const ProductComponent = ({product}) => {
     };
 
     return (
-        <div className="w-full lg:h-[450px] bg-whitesmoke p-2 lg:p-4 max-lg:mx-12 border rounded-lg hover:shadow-md flex flex-col justify-between hover:shadow-md transition-all cursor-pointer" onClick={handleLinkClick}>
+        <div className="w-full lg:h-[450px] bg-whitesmoke p-2 lg:p-4  border rounded-lg hover:shadow-md flex flex-col justify-between hover:shadow-md transition-all cursor-pointer" onClick={handleLinkClick}>
             <div className="flex justify-center mb-2 lg:h-1/2">
                 <img src={images.length > 0 ? images[0] : "https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E"} alt={title} className="object-fit rounded"/>
             </div>

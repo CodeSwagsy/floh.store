@@ -34,14 +34,14 @@ export const ProductSectionComponent = () => {
     const handleResize = () => {
         const screenWidth = window.innerWidth;
 
-        if (screenWidth >= 1200) {
+        if (screenWidth >= 1440) {
+            setVisibleProducts(5);
+        } else if (screenWidth >= 1024) {
             setVisibleProducts(4);
-        } else if (screenWidth >= 992) {
-            setVisibleProducts(3);
         } else if (screenWidth >= 768) {
+            setVisibleProducts(3);
+        } else  {
             setVisibleProducts(2);
-        } else {
-            setVisibleProducts(1);
         }
 
         // Ensure currentIndex is within bounds
@@ -75,7 +75,7 @@ export const ProductSectionComponent = () => {
         <div className="">
             <div className="container mx-auto">
                 <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">Neue Produkte</h2>
-                <div className="relative w-full bg-emerald drop-shadow-lg lg:rounded-lg py-4 lg:py-8 flex flex-col items-center">
+                <div className="relative w-full bg-emerald drop-shadow-lg lg:rounded-lg p-4 lg:p-8 items-center">
                     <div className="flex gap-2.5 md:gap-4 lg:gap-6 justify-center lg:justify-between">
                         {products
                             .slice(currentIndex, currentIndex + visibleProducts)

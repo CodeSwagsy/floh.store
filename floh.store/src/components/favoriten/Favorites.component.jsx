@@ -12,9 +12,7 @@ export const FavoriteComponent = () => {
   const [updateFavorites, setUpdateFavorites] = useState(false);
 
   useEffect(() => {
-    if (!login) {
-      navigate("/");
-    }
+    if (localStorage.getItem("login") !== "true") return navigate("/");
   }, []);
 
   const handleRemoveFavorite = async (product, event) => {
