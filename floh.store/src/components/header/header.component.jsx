@@ -9,7 +9,7 @@ import { SearchfieldComponent } from "../header/searchfield.component.jsx";
 import { LinkButtonComponent } from "./button.component.jsx";
 import { NavComponent } from "./nav.component.jsx";
 import { useParams, Link } from "react-router-dom";
-import { FaTimes } from "react-icons/fa"; 
+import { FaTimes } from "react-icons/fa";
 
 
 export function HeaderComponent() {
@@ -26,9 +26,9 @@ export function HeaderComponent() {
     const productsPerPage = 20;
     const [postalCodeSearchResult, setPostalCodeSearchResult] = useState([]);
 
-     const handleSearchOnSubmit = async (value) => {
-    setSearchQuery(value);
-        setProducts([]); // Set products to an empty array when the search query changes
+    const handleSearchOnSubmit = async (value) => {
+        setSearchQuery(value);
+        setProducts([]);
     };
 
     const handleCategoryChange = (category) => {
@@ -71,10 +71,10 @@ export function HeaderComponent() {
 
                 const filteredProducts = searchQuery
                     ? responseDataProducts.filter(
-                          (product) =>
-                              product.title &&
-                              product.title.toLowerCase().includes(searchQuery.toLowerCase())
-                      )
+                        (product) =>
+                            product.title &&
+                            product.title.toLowerCase().includes(searchQuery.toLowerCase())
+                    )
                     : responseDataProducts;
 
                 setFavoriteTexts(initialFavoriteTexts);
@@ -132,10 +132,10 @@ export function HeaderComponent() {
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const filteredProducts = searchQuery
         ? products.filter(
-              (product) =>
-                  product.title &&
-                  product.title.toLowerCase().includes(searchQuery.toLowerCase())
-          )
+            (product) =>
+                product.title &&
+                product.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
         : products;
 
     const displayedProducts = filteredProducts.slice(
@@ -195,6 +195,7 @@ export function HeaderComponent() {
                         additionalClasses="mt-4"
                         onSearchOnSubmit={(value) => handleSearchOnSubmit(value)}
                     />
+
                     <CategoryComponent
                         additionalClasses=""
                         selectClasses="text-right"
@@ -203,34 +204,35 @@ export function HeaderComponent() {
 
                 {loading && <LoaderComponent />}
 
-{searchQuery && currentProducts.length > 0 && (
-    <div className="container mx-auto my-8 mt-16">
-        <h2 className="text-3xl font-bold mb-4">Searched Products</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {currentProducts.map((product) => (
-                <ProductCard
-                    key={product._id}
-                    product={product}
-                    onAddToFavorites={handleAddToFavorites}
-                    favoriteText={favoriteTexts[product._id]}
-                />
-            ))}
-            <div className="flex items-center justify-end">
-            <button
-                            className="text-jet hover:text-jet-dark focus:outline-none absolute top-20 right-0 m-4"
-                            style={{ top: "16%",
-                            right: "5%"
-                        }}
+                {searchQuery && currentProducts.length > 0 && (
+                    <div className="container mx-auto my-8 mt-16">
+                        <h2 className="text-3xl font-bold mb-4">Searched Products</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                            {currentProducts.map((product) => (
+                                <ProductCard
+                                    key={product._id}
+                                    product={product}
+                                    onAddToFavorites={handleAddToFavorites}
+                                    favoriteText={favoriteTexts[product._id]}
+                                />
+                            ))}
+                            <div className="flex items-center justify-end">
+                                <button
+                                    className="text-jet hover:text-jet-dark focus:outline-none absolute top-20 right-0 m-4"
+                                    style={{
+                                        top: "16%",
+                                        right: "5%"
+                                    }}
 
-                            onClick={handleCloseSearchResults}
-                        >
-                            <FaTimes />
-                        </button>
+                                    onClick={handleCloseSearchResults}
+                                >
+                                    <FaTimes />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
-        </div>
-    </div>
-)}
-</div>
-</header>
-);
+        </header>
+    );
 }

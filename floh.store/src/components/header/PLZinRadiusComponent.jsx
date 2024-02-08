@@ -42,8 +42,10 @@ const getPLZinRadius = async () => {
     const data = await res.json();
     const plzArray = data.elements.map((i) => i.tags.postal_code);
     console.log("Postal Codes in Radius:", plzArray);
-
-    const productRes = await fetch(`${import.meta.env.VITE_API}/product/byPostalCodes`, {
+const url = id
+                ? `${import.meta.env.VITE_API}/product/category/${id}`
+                : `${import.meta.env.VITE_API}/product/all`;
+    const productRes = await fetch(`${import.meta.env.VITE_API}/product/all`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -123,7 +125,12 @@ const getPLZinRadius = async () => {
       </div>
       <div className="product-cards">
         {fetchedProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+           <ProductCard
+           key={product._id}
+           product={product}
+           onAddToFavorites={handleAddToFavorites}
+           favoriteText={favoriteTexts[product._id]}
+       />
         ))}
       </div>
     </div>
