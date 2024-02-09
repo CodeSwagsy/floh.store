@@ -1,57 +1,95 @@
-﻿
-import React, {useEffect, useState} from "react";
+﻿import React, {useEffect, useState} from "react";
 import {ProductCard} from "./ProductCard.component.jsx";
 import {useParams} from "react-router-dom";
 import {LoaderComponent} from "../loader/loader.component.jsx";
-import { PLZinRadiusComponent } from "../header/PLZinRadiusComponent.jsx";
+import {useData} from "../../context/signin.context.jsx";
+
 
 export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
-    const { id } = useParams();
+    const {
+        searchedProducts,
+        updateSearchedProducts,
+        updateSearchCategory,
+        updateSearchQuery,
+        updateQueryError,
+        queryError
+    } = useData()
+    const {id} = useParams();
     const categoryTitle = id ? id : "Alle Produkte";
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const productsPerPage = 20;
 
-   useEffect(() => {
-    const fetchProducts = async () => {
-        try {
-            let url;
-
-            if (id) {
-                url = `${import.meta.env.VITE_API}/product/category/${id}`;
+    useEffect(() => {
+        const fetchProducts = async () => {
+            setLoading(true)
+            if (searchedProducts !== null) {
+                setProducts(searchedProducts)
+                setLoading(false)
+                updateSearchQuery(null)
+                updateSearchedProducts(null)
+                updateSearchCategory(null)
             } else {
-                url = `${import.meta.env.VITE_API}/product/all`;
+                try {
+                    let url;
+                    if (id) {
+                        url = `${import.meta.env.VITE_API}/product/category/${id}`;
+                    } else {
+                        url = `${import.meta.env.VITE_API}/product/all`;
+                    }
+
+                    const response = await fetch(url, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+                    if (response.status === 400) {
+                        updateSearchQuery(null)
+                        updateSearchedProducts(null)
+                        updateSearchCategory(null)
+                        updateQueryError("Keine Produkte gefunden")
+                    } else if (!response.ok) {
+                        throw new Error(`HTTP error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    console.log("API Response:", data);
+
+                    if (data.code === 200) {
+                        setProducts(data.products);
+                        setLoading(false)
+                        updateSearchQuery(null)
+                        updateSearchedProducts(null)
+                        updateSearchCategory(null)
+                    } else if (data.error.code === 400) {
+                        setLoading(false)
+                        updateSearchQuery(null)
+                        updateSearchedProducts(null)
+                        updateSearchCategory(null)
+                        updateQueryError("Keine Produkte gefunden")
+                    } else {
+                        console.error(data.error.message);
+                    }
+                } catch (error) {
+                    console.error("Error fetching products:", error);
+                } finally {
+                    setLoading(false);
+                }
             }
+        };
+        fetchProducts();
+    }, [id]);
 
-            const response = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log("API Response:", data);
-
-            if (data.code === 200) {
-                setProducts(data.products);
-            } else {
-                console.error(data.error.message);
-            }
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        } finally {
-            setLoading(false);
+    useEffect(() => {
+        console.log(products)
+        if (products === null) {
+            updateQueryError("Keine Produkte gefunden")
+        } else {
+            updateQueryError(null)
         }
-    };
-
-    fetchProducts();
-}, [id]);
+    }, []);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -64,53 +102,59 @@ export const AllProductsPage = () => {
             <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">{categoryTitle}</h2>
 
             {loading ? (
-                <LoaderComponent />
+                <LoaderComponent/>
             ) : (
-                <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                        {displayedProducts.map((product) => (
-                            <ProductCard
-                                key={product._id}
-                                product={product}
-                            />
-                        ))}
-                    </div>
+                (products.length === 0) ? (
+                    <>
+                        <h1 className="text-black font-bold text-xl">{queryError}</h1>
+                    </>
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                            {displayedProducts.map((product) => (
+                                <ProductCard
+                                    key={product._id}
+                                    product={product}
+                                />
+                            ))}
+                        </div>
 
-                    <div className="flex items-center justify-center mt-4">
-                        <button
-                            onClick={() => paginate(currentPage - 1)}
-                            className="px-4 py-2 mr-2 bg-green-500 text-white rounded"
-                            disabled={currentPage === 1}
-                        >
-                            &larr; Prev
-                        </button>
-                        {Array.from(
-                            { length: Math.ceil(products.length / productsPerPage) },
-                            (_, index) => (
-                                <button
-                                    key={index + 1}
-                                    onClick={() => paginate(index + 1)}
-                                    className={`px-4 py-2 mx-1 focus:outline-none ${currentPage === index + 1
-                                        ? "bg-green-500 text-white"
-                                        : "bg-gray-200 text-gray-700"
-                                    } rounded`}
-                                >
-                                    {index + 1}
-                                </button>
-                            )
-                        )}
-                        <button
-                            onClick={() => paginate(currentPage + 1)}
-                            className="px-4 py-2 ml-2 bg-green-500 text-white rounded"
-                            disabled={
-                                currentPage === Math.ceil(products.length / productsPerPage)
-                            }
-                        >
-                            Next &rarr;
-                        </button>
-                    </div>
-                </>
+                        <div className="flex items-center justify-center mt-4">
+                            <button
+                                onClick={() => paginate(currentPage - 1)}
+                                className="px-4 py-2 mr-2 bg-green-500 text-white rounded"
+                                disabled={currentPage === 1}
+                            >
+                                &larr; Prev
+                            </button>
+                            {Array.from(
+                                {length: Math.ceil(products.length / productsPerPage)},
+                                (_, index) => (
+                                    <button
+                                        key={index + 1}
+                                        onClick={() => paginate(index + 1)}
+                                        className={`px-4 py-2 mx-1 focus:outline-none ${currentPage === index + 1
+                                            ? "bg-green-500 text-white"
+                                            : "bg-gray-200 text-gray-700"
+                                        } rounded`}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                )
+                            )}
+                            <button
+                                onClick={() => paginate(currentPage + 1)}
+                                className="px-4 py-2 ml-2 bg-green-500 text-white rounded"
+                                disabled={
+                                    currentPage === Math.ceil(products.length / productsPerPage)
+                                }
+                            >
+                                Next &rarr;
+                            </button>
+                        </div>
+                    </>
+                )
             )}
         </div>
     );
-};
+}

@@ -1,140 +1,87 @@
 ﻿// PLZinRadiusComponent.jsx
-import React, { useState, useEffect } from "react";
-import { FaSearch } from "react-icons/fa";
+import React, {useState, useEffect} from "react";
+import {useData} from "../../context/signin.context.jsx";
 
-export const PLZinRadiusComponent = ({
-  setProducts,
-  setLoading,
-  setSearchQuery,
-  onSearchOnSubmit,
-}) => {
-  const [postalCode, setPostalCode] = useState("");
-  const [radius, setRadius] = useState(5);
-  const [fetchedProducts, setFetchedProducts] = useState([]);
-  const [showNoProductsMessage, setShowNoProductsMessage] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+export const PLZinRadiusComponent = () => {
+    const {updateZipCodes} = useData()
+    const [postalCode, setPostalCode] = useState("");
+    const [radius, setRadius] = useState(null);
 
-  useEffect(() => {
-    if (submitted) {
-      getPLZinRadius();
-    }
-  }, [postalCode, radius, submitted]);
+    const handlePostalCodeChange = (e) => {
+        setPostalCode(e.target.value);
 
-  
-const getPLZinRadius = async () => {
-  if (!postalCode || postalCode.length < 5 || isNaN(postalCode)) {
-    setFetchedProducts([]);
-    setShowNoProductsMessage(true);
-    setLoading(false);
-    return;
-  }
+    };
 
-  try {
-    const res = await fetch("https://overpass-api.de/api/interpreter", {
-      method: "POST",
-      body: `data=${encodeURIComponent(`
-        [out:json];
-        rel[boundary=postal_code][postal_code=${postalCode}];
-        rel(around:${radius * 1000})[boundary=postal_code][postal_code];
-        out;`)}`,
-    });
+    const handleRadiusChange = (e) => {
+        setRadius(e.target.value);
+    };
 
-    const data = await res.json();
-    const plzArray = data.elements.map((i) => i.tags.postal_code);
-    console.log("Postal Codes in Radius:", plzArray);
-const url = id
-                ? `${import.meta.env.VITE_API}/product/category/${id}`
-                : `${import.meta.env.VITE_API}/product/all`;
-    const productRes = await fetch(`${import.meta.env.VITE_API}/product/all`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ postalCodes: plzArray }),
-    });
+    useEffect(() => {
+        const fetchZips = async () => {
+            if (!postalCode || postalCode.length < 5 || isNaN(postalCode)) {
+                return;
+            }
+            try {
+                //         const res = await fetch("https://overpass-api.de/api/interpreter", {
+                //             method: "POST",
+                //             body: `data=${encodeURIComponent(`
+                // [out:json];
+                // rel[boundary=postal_code][postal_code=${postalCode}];
+                // rel(around:${radius * 1000})[boundary=postal_code][postal_code];
+                // out;`)}`,
+                //         });
+                const res = await fetch(`https://zip-api.eu/api/v1/radius/DE-${postalCode}/${radius}/km`, {
+                    method: "GET",
+                    mode: "cors",
+                });
+                const data = await res.json();
+                const postalCodesArray = data.map(entry => entry.postal_code);
+                updateZipCodes(postalCodesArray)
+                console.log(postalCodesArray)
+            } catch (error) {
+                console.error("Error fetching postal codes:", error);
+            }
+        };
+        fetchZips();
+    }, [radius]);
 
-    const productData = await productRes.json();
-    console.log("Product Data:", productData);
 
-    if (productData.code === 200) {
-      console.log("Products in Radius:", productData.products);
-      setFetchedProducts(productData.products);
-      setSearchQuery("");
-      setProducts(productData.products);
-      setShowNoProductsMessage(false);
-      onSearchOnSubmit && onSearchOnSubmit(plzArray);
-    } else {
-      console.error("Error fetching products:", productData.error.message);
-      setShowNoProductsMessage(true);
-    }
-  } catch (error) {
-    console.error("Error fetching postal codes:", error);
-    setShowNoProductsMessage(true);
-  } finally {
-    setLoading(false);
-  }
-};
-
-  const handlePostalCodeChange = (e) => {
-    setPostalCode(e.target.value);
-    setShowNoProductsMessage(false);
-  };
-
-  const handleRadiusChange = (e) => {
-    setRadius(parseInt(e.target.value));
-    setShowNoProductsMessage(false);
-  };
-
-  return (
-    <div className="flex items-center">
-      <label className="relative block text-xs mb-1 mr-2">
-        <input
-          type="text"
-          className="w-13 h-9 p-1 border rounded pr-1 mt-4"
-          value={postalCode}
-          onChange={handlePostalCodeChange}
-          pattern="[0-9]*"
-          inputMode="numeric"
-          maxLength="5"
-          placeholder="PLZ"
-        />
-
-        <FaSearch
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black-00 text-black p-0.5 rounded hover:bg-black-0 cursor-pointer text-lg"
-          style={{ top: "62%" }}
-          onClick={() => {
-            setSubmitted(true);
-            getPLZinRadius();
-          }}
-        />
-      </label>
-
-      <div className="flex items-center ml-4">
-        <label className="block text-xs mb-1">
-          <input
-            type="range"
-            className="p-1 border rounded bg-green-500"
-            style={{ width: "50px" }}
-            value={radius}
-            min="1"
-            max="5"
-            onChange={handleRadiusChange}
-          />
-        </label>
-        <span className="text-xs ml-1">{radius} km</span>
-      </div>
-      <div className="product-cards">
-        {fetchedProducts.map((product) => (
-           <ProductCard
-           key={product._id}
-           product={product}
-           onAddToFavorites={handleAddToFavorites}
-           favoriteText={favoriteTexts[product._id]}
-       />
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className="flex items-center">
+            <input
+                type="text"
+                className="block w-full rounded-l-md border-0 py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                value={postalCode}
+                onChange={handlePostalCodeChange}
+                pattern="[0-9]*"
+                inputMode="numeric"
+                maxLength="5"
+                placeholder="PLZ"
+            />
+            <div className="flex items-center">
+                <select
+                    id="entfernung"
+                    name="entfernung"
+                    className="w-full h-[44px] rounded-r-md border-0 pl-1 py-2.5 w-32 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald  text-left"
+                    defaultValue="Umkreis"
+                    onChange={handleRadiusChange}
+                >
+                    <option className="text-left pl-1"
+                            value="umkreis">Umkreis
+                    </option>
+                    <option className="text-left pl-1" value="2">2</option>
+                    <option className="text-left pl-1" value="5">5</option>
+                    <option className="text-left pl-1" value="10">10</option>
+                    <option className="text-left pl-1" value="15">15</option>
+                    <option className="text-left pl-1" value="20">20</option>
+                    <option className="text-left pl-1" value="25">25</option>
+                    <option className="text-left pl-1" value="50">50</option>
+                    <option className="text-left pl-1" value="100">100</option>
+                    <option className="text-left pl-1" value="200">200</option>
+                </select>
+            </div>
+        </div>
+    );
 };
 
 export default PLZinRadiusComponent;
