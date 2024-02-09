@@ -46,11 +46,15 @@ export const RandomBannerComponent = () => {
       }
     };
     fetchRandomProduct();
+
+    const interval = setInterval(fetchRandomProduct, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   if (!randomProduct) {
     return null;
   }
+ 
 
   return (
     <div className="container mx-auto ">
@@ -75,19 +79,24 @@ export const RandomBannerComponent = () => {
               />
              
              
-            
-            <div className="space-y-2 text-wrap group-hover:bg-emerald border-solid border border-jet border-1 bg-whitesmoke  rounded-b-md shadow-md h-32 text-center p-2 my-auto">
+            <div className=" container my-auto h-auto">
+                <div className="space-y-2.5 text-wrap group-hover:bg-emerald border-solid border border-jet border-1 bg-whitesmoke  rounded-b-md shadow-md h-28 text-center p-2 ">
 
-              <p className=" text-jet font-medium leading-5 group-hover:text-whitesmoke">
+              <p className=" text-jet font-medium leading-4 group-hover:text-whitesmoke">
                 {randomProduct.title}
               </p>
-              <p className=" rounded-full group-hover:bg-jet bg-platinum leading-7 group-hover:text-white text-base text-emerald font-medium">
-                ${randomProduct.price}
+              <div className="">
+                 <p className=" rounded-full group-hover:bg-jet bg-platinum leading-7 group-hover:text-white text-base text-emerald font-medium">
+                {randomProduct.price} €
               </p>
               <p className=" text-jet font-normal leading-7  group-hover:text-whitesmoke">
                 {randomProduct.location.city}
               </p>
+              </div>
+             
             </div>
+            </div>
+            
           </div>
         ))}
       </div>
