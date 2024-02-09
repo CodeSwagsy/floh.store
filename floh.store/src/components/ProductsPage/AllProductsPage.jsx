@@ -14,30 +14,23 @@ export const AllProductsPage = () => {
         updateSearchQuery,
         updateQueryError,
         queryError
+
+
     } = useData()
-    const {id} = useParams();
-    const categoryTitle = id ? id : "Alle Produkte";
+    const [categoryTitle, setCategoryTitle] = useState("Alle Kategorien")
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const productsPerPage = 20;
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            setLoading(true)
-            if (searchedProducts !== null) {
-                setProducts(searchedProducts)
-                setLoading(false)
-                updateSearchQuery(null)
-                updateSearchedProducts(null)
-                updateSearchCategory(null)
-            } else {
+        if (searchedProducts) {
+            setProducts(searchedProducts)
+        }
+        if (!searchedProducts) {
+            const fetchProducts = async () => {
                 try {
-                    let url;
-                    if (id) {
-                        url = `${import.meta.env.VITE_API}/product/category/${id}`;
-                    } else {
-                        url = `${import.meta.env.VITE_API}/product/all`;
-                    }
+                    let url = `${import.meta.env.VITE_API}/product/all`;
+
 
                     const response = await fetch(url, {
                         method: "GET",
@@ -61,41 +54,41 @@ export const AllProductsPage = () => {
                         setProducts(data.products);
                         setLoading(false)
                         updateSearchQuery(null)
-                        updateSearchedProducts(null)
                         updateSearchCategory(null)
+                        updateSearchedProducts(null)
                     } else if (data.error.code === 400) {
                         setLoading(false)
                         updateSearchQuery(null)
-                        updateSearchedProducts(null)
                         updateSearchCategory(null)
                         updateQueryError("Keine Produkte gefunden")
+
                     } else {
                         console.error(data.error.message);
                     }
                 } catch (error) {
                     console.error("Error fetching products:", error);
-                } finally {
-                    setLoading(false);
                 }
-            }
-        };
-        fetchProducts();
-    }, [id]);
+            };
+            fetchProducts();
+        }
+
+    }, [])
 
     useEffect(() => {
-        console.log(products)
-        if (products === null) {
-            updateQueryError("Keine Produkte gefunden")
-        } else {
-            updateQueryError(null)
-        }
-    }, []);
+        setProducts(searchedProducts)
+
+    }, [updateSearchedProducts]);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const displayedProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    const displayedProducts = Array.isArray(products) && products.length > 0
+        ? products.slice(
+            (currentPage - 1) * productsPerPage,
+            currentPage * productsPerPage
+        )
+        : [];
 
     return (
         <div className="container mx-auto my-8 mt-16">
@@ -104,7 +97,7 @@ export const AllProductsPage = () => {
             {loading ? (
                 <LoaderComponent/>
             ) : (
-                (products.length === 0) ? (
+                (!Array.isArray(products) || products.length === 0) ? (
                     <>
                         <h1 className="text-black font-bold text-xl">{queryError}</h1>
                     </>

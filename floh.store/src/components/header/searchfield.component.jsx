@@ -3,7 +3,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {useData} from "../../context/signin.context.jsx";
 
 export function SearchfieldComponent({additionalClasses = "", onSearchOnSubmit}) {
-    const {updateSearchCategory, updateSearchQuery} = useData()
+    const {updateSearchCategory, updateSearchQuery, updateStartSearch} = useData()
     const location = useLocation();
     const inputRef = useRef(null);
     const classes = `relative rounded-lg shadow-sm ${additionalClasses}`;

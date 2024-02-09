@@ -6,13 +6,60 @@ export const DataProvider = ({children}) => {
     const [userData, setUserData] = useState(null);
     const [login, setLogin] = useState(false);
     const [counter, setCounter] = useState(false);
-    const [zipCodes, setZipCodes] = useState(null)
+    const [zipCodes, setZipCodes] = useState([])
     const [searchCategory, setSearchCategory] = useState(null)
     const [searchQuery, setSearchQuery] = useState(null)
-    const [searchedProducts, setSearchedProducts] = useState(null)
+    const [searchedProducts, setSearchedProducts] = useState([])
     const [queryError, setQueryError] = useState(null)
+    const [startSearch, setStartSearch] = useState(false)
+    const [postalCode, setPostalCode] = useState(null)
+    const [radius, setRadius] = useState(5)
+
+    const updatePostalCode = (postalCode) => {
+        setPostalCode(postalCode);
+    }
+
+    const updateRadius = (radius) => {
+        setRadius(radius);
+    }
+
+    const updateZipCodes = (zipCodes) => {
+        setZipCodes(zipCodes)
+    };
+
+    const fetchZips = async (postalCode, radius, updateZipCodes) => {
+        if (!postalCode || postalCode.length < 5 || isNaN(postalCode)) {
+            return;
+        }
+
+        try {
+            const res = await fetch(`https://zip-api.eu/api/v1/radius/DE-${postalCode}/${radius}/km`, {
+                method: "GET",
+                mode: "cors",
+            });
+
+            const data = await res.json();
+            if (Array.isArray(data)) {
+                console.log(data)
+                const postalCodesArray = data.map((entry) => entry.postal_code);
+                updateZipCodes(postalCodesArray);
+            } else if (data) {
+                updateZipCodes(data.postal_code)
+            } else {
+                console.error("Ungültiges Datenformat beim Abrufen der postalischen Codes:", data);
+            }
+        } catch (error) {
+            console.error("Fehler beim Abrufen der postalischen Codes:", error);
+        }
+    };
+
+
     const updateCounter = (count) => {
         setCounter(count);
+    }
+
+    const updateStartSearch = (startSearch) => {
+        setStartSearch(startSearch);
     }
 
     const updateSearchQuery = (searchQuery) => {
@@ -30,11 +77,6 @@ export const DataProvider = ({children}) => {
     const updateSearchedProducts = (searchedProducts) => {
         setSearchedProducts(searchedProducts)
     }
-
-    const
-    updateZipCodes = (zipCodes) => {
-        setZipCodes(zipCodes);
-    };
 
     const updateUserData = (newData) => {
         setUserData(newData);
@@ -104,9 +146,17 @@ export const DataProvider = ({children}) => {
         }
     }, [userData, login]);
 
+
     return (
         <DataContext.Provider
             value={{
+                radius,
+                updateRadius,
+                postalCode,
+                updatePostalCode,
+                fetchZips,
+                startSearch,
+                updateStartSearch,
                 searchQuery,
                 updateSearchQuery,
                 queryError,
