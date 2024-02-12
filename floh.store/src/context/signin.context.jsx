@@ -6,9 +6,8 @@ export const DataProvider = ({children}) => {
     const [userData, setUserData] = useState(null);
     const [login, setLogin] = useState(false);
     const [counter, setCounter] = useState(false);
-    const [zipCodes, setZipCodes] = useState([])
-    const [searchCategory, setSearchCategory] = useState(null)
-    const [searchQuery, setSearchQuery] = useState(null)
+    const [searchCategory, setSearchCategory] = useState("")
+    const [searchQuery, setSearchQuery] = useState("")
     const [searchedProducts, setSearchedProducts] = useState([])
     const [queryError, setQueryError] = useState(null)
     const [startSearch, setStartSearch] = useState(false)
@@ -23,28 +22,25 @@ export const DataProvider = ({children}) => {
         setRadius(radius);
     }
 
-    const updateZipCodes = (zipCodes) => {
-        setZipCodes(zipCodes)
-    };
-
-    const fetchZips = async (postalCode, radius, updateZipCodes) => {
+    const fetchZips = async (postalCode, radius) => {
         if (!postalCode || postalCode.length < 5 || isNaN(postalCode)) {
             return;
         }
-
+        console.log("FUNKTION WIRD AUSGEFÜHRT")
         try {
             const res = await fetch(`https://zip-api.eu/api/v1/radius/DE-${postalCode}/${radius}/km`, {
                 method: "GET",
                 mode: "cors",
             });
-
             const data = await res.json();
             if (Array.isArray(data)) {
-                console.log(data)
-                const postalCodesArray = data.map((entry) => entry.postal_code);
-                updateZipCodes(postalCodesArray);
+                console.log("Funktion aus useContext: Log nach Fetchanfrage:", data);
+                const postalCodesArray = await data.map((entry) => entry.postal_code);
+                console.log("Funktion aus useContext: Log nach .map", postalCodesArray)
+                return postalCodesArray
             } else if (data) {
-                updateZipCodes(data.postal_code)
+                console.log("Funktion aus useContext: Log nach Fetchanfrage:", data);
+                return([data.postal_code]);
             } else {
                 console.error("Ungültiges Datenformat beim Abrufen der postalischen Codes:", data);
             }
@@ -52,6 +48,7 @@ export const DataProvider = ({children}) => {
             console.error("Fehler beim Abrufen der postalischen Codes:", error);
         }
     };
+
 
 
     const updateCounter = (count) => {
@@ -163,8 +160,6 @@ export const DataProvider = ({children}) => {
                 updateQueryError,
                 searchCategory,
                 updateSearchCategory,
-                zipCodes,
-                updateZipCodes,
                 searchedProducts,
                 updateSearchedProducts,
                 userData,

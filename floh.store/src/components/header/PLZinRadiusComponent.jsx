@@ -8,9 +8,7 @@ export const PLZinRadiusComponent = () => {
     const handlePostalCodeChange = (e) => {
         e.preventDefault()
         updatePostalCode(e.target.value);
-
     };
-
     const handleRadiusChange = (e) => {
         e.preventDefault()
         updateRadius(e.target.value);
@@ -42,35 +40,32 @@ export const PLZinRadiusComponent = () => {
         <div className="flex items-center">
             <input
                 type="text"
-                className="block w-full rounded-l-md border-0 py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                className="block w-2/5 py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                 onChange={handlePostalCodeChange}
                 pattern="[0-9]*"
                 inputMode="numeric"
                 maxLength="5"
                 placeholder="PLZ"
             />
-            <div className="flex items-center">
-                <select
-                    id="entfernung"
-                    name="entfernung"
-                    className="w-full h-[44px] rounded-r-md border-0 pl-1 py-2.5 w-32 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald  text-left"
-                    defaultValue="Umkreis"
-                    onChange={handleRadiusChange}
-                >
-                    <option className="text-left pl-1"
-                            value="umkreis">Umkreis
-                    </option>
-                    <option className="text-left pl-1" value="2">2</option>
-                    <option className="text-left pl-1" value="5">5</option>
-                    <option className="text-left pl-1" value="10">10</option>
-                    <option className="text-left pl-1" value="15">15</option>
-                    <option className="text-left pl-1" value="20">20</option>
-                    <option className="text-left pl-1" value="25">25</option>
-                    <option className="text-left pl-1" value="50">50</option>
-                    <option className="text-left pl-1" value="100">100</option>
-                    <option className="text-left pl-1" value="200">200</option>
-                </select>
-            </div>
+            <select
+                id="entfernung"
+                name="entfernung"
+                className="w-3/5 h-[44px] rounded-r-md py-2.5 w-32 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald  text-left"
+                defaultValue="Umkreis"
+                onChange={handleRadiusChange}
+            >
+                <option className="text-left pl-1"
+                        value="umkreis">Umkreis
+                </option>
+                <option className="text-left pl-1" value="5">5</option>
+                <option className="text-left pl-1" value="10">10</option>
+                <option className="text-left pl-1" value="15">15</option>
+                <option className="text-left pl-1" value="20">20</option>
+                <option className="text-left pl-1" value="25">25</option>
+                <option className="text-left pl-1" value="50">50</option>
+                <option className="text-left pl-1" value="100">100</option>
+                <option className="text-left pl-1" value="200">200</option>
+            </select>
         </div>
     );
 };
