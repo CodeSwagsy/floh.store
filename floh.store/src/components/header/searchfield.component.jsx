@@ -2,11 +2,11 @@ import React, {useRef} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useData} from "../../context/signin.context.jsx";
 
-export function SearchfieldComponent({additionalClasses = "", onSearchOnSubmit}) {
+export function SearchfieldComponent() {
     const {updateSearchCategory, updateSearchQuery, updateStartSearch} = useData()
     const location = useLocation();
     const inputRef = useRef(null);
-    const classes = `relative rounded-lg shadow-sm ${additionalClasses}`;
+
     const currentCategory = location.pathname.split('/').pop();
 
     const handleCategoryChange = (event) => {
@@ -22,22 +22,20 @@ export function SearchfieldComponent({additionalClasses = "", onSearchOnSubmit})
 
     return (
         <>
-            <div className={classes}>
+            <div className="rounded-lg flex w-full">
                 <input
                     ref={inputRef}
                     type="text"
                     name="search"
                     id="search"
                     onChange={handleSearchQueryChange}
-                    className="block w-full rounded-l-md border-0 py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                    className="block w-2/3 rounded-l-md py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                     placeholder="Was suchst du ?"
                 />
-            </div>
-            <div className="flex">
                 <select
                     id="category"
                     name="category"
-                    className="w-full h-[44px] rounded-r-md border-0 pl-1 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald  text-left"
+                    className="w-1/3 h-[44px] max-lg:rounded-r-md pl-1 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald  text-left"
                     defaultValue={currentCategory || 'kategorien'}
                     onChange={handleCategoryChange}>
                     <option className="text-left pr-1" disabled value="kategorien">Kategorien</option>
@@ -55,6 +53,8 @@ export function SearchfieldComponent({additionalClasses = "", onSearchOnSubmit})
                     <option className="text-left pr-1" value="Sonstiges">Sonstiges</option>
                 </select>
             </div>
+
+
         </>
     )
         ;
