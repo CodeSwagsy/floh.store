@@ -98,3 +98,11 @@
   background-color: #f44336;
   margin-left: 0.25rem;
 }
+
+.i-own-chat-buy-btn {
+  margin-right: 1rem;
+}
+
+.i-own-chat-buy-btn:hover {
+  cursor: pointer;
+}

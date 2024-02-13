@@ -18,12 +18,19 @@ function ChatComponent({
   const [value, setValue] = useState("");
   const lastMessageRef = useRef(null);
   const { updateCounter } = useData();
+  const sendBtn = useRef(null);
+  const [buy, setBuy] = useState(false);
 
   useEffect(() => {
     let counter = 0;
     messages.forEach((m) => (m.notRead ? counter++ : null));
     updateCounter(counter);
   }, [messages]);
+
+  useEffect(() => {
+    // console.log("buy", buy);
+    if (buy) sendBtn.current && sendBtn.current.click();
+  }, [buy]);
 
   useEffect(() => {
     async function findPartnerAndProduct() {
@@ -94,12 +101,12 @@ function ChatComponent({
 
   async function sendAnswer(event) {
     event.preventDefault();
-    const incomingMsg =
-      roomMessages.find((m) => m.from !== socket.userID) || roomMessages[0]; // if there are no incoming messages, take the first one
-    const to_uid = incomingMsg.from;
+    if (!value) return;
+    const incomingMsg = roomMessages.find((m) => m.from !== socket.userID);
+    const to_uid = incomingMsg?.from || roomMessages[0].to_uid; // if there are no incoming messages, take the first one;
     const to = users.find((user) => user.userID === to_uid)?.socketID;
     const message = {
-      product: incomingMsg.product, // id
+      product: incomingMsg?.product || roomMessages[0].product, // id
       from: socket.userID, // id
       to,
       to_uid,
@@ -125,9 +132,51 @@ function ChatComponent({
     setMessages((previous) => [...previous, message]);
     setValue("");
     setActiveChat({
-      product: incomingMsg.product,
+      product: incomingMsg?.product || roomMessages[0].product,
       uid: to_uid,
     });
+  }
+
+  async function buyItem() {
+    const res = await fetch(
+      `${import.meta.env.VITE_API}/product/update/buyer/${product._id}`,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ buyer: socket.userID }),
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    if (data.code === 200) {
+      setBuy(true);
+      setValue(`Ich kaufe ${product?.title}!`);
+    }
+  }
+
+  async function sendRating(rating) {
+    if (!rating || isNaN(rating)) return;
+    const res = await fetch(
+      `${import.meta.env.VITE_API}/user/update/rating/${
+        product.owner
+      }/${rating}`,
+      {
+        method: "PUT",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ whoRated: socket.userID }),
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    setBuy(false);
+    // setRated(true)
   }
 
   return (
@@ -139,6 +188,23 @@ function ChatComponent({
             <h3 className="flex items-center h-10 w-full rounded px-3 text-sm pr-10">
               <a href={`/products/${product?._id}`}>{product?.title}</a>
             </h3>
+            <svg
+              title="Kaufen"
+              onClick={buyItem}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="springgreen"
+              className="w-10 h-10 i-own-chat-buy-btn"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"
+              />
+            </svg>
+
             <div
               onClick={closeChat}
               className="close flex items-center justify-center"
@@ -194,6 +260,29 @@ function ChatComponent({
                 </div>
               );
             })}
+            {buy && socket.userID.length === 24 ? (
+              /* only registered user allow rated! */
+              <div className="flex items-center flex-col py-2 bg-zinc-700 text-white">
+                <p>Bewerte den Verkäufer:</p>
+                <div className="flex mt-2">
+                  {[1, 2, 3, 4, 5].map((index) => (
+                    <svg
+                      key={index}
+                      onClick={() => sendRating(index)}
+                      className="w-4 h-4 ms-1 text-gray-100 hover:text-yellow-300 hover:cursor-pointer"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 22 20"
+                    >
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
             <div ref={lastMessageRef} />
           </div>
 
@@ -211,6 +300,7 @@ function ChatComponent({
             />
             <button
               type="submit"
+              ref={sendBtn}
               className=" absolute right-6 hover:cursor-pointer"
             >
               <svg
