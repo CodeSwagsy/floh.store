@@ -60,14 +60,11 @@ export const ProductCard = ({ product }) => {
       const data = await response.json();
       if (data.code === 200) {
         setFavoriteText("Zu Favoriten hinzugefügt");
-        console.log("FAVORITE HINZUGEFÜGT");
       } else {
-        console.error("Error adding to favorites: ELSE", data.message);
-        console.log("ELSE");
+        console.error("Error adding to favorites:", data.message);
       }
     } catch (error) {
-      console.error("Error adding to favorites: CATCH", error);
-      console.log("CATCH");
+      console.error("Error adding to favorites:", error);
       console.log(error);
     }
   };
@@ -118,10 +115,10 @@ export const ProductCard = ({ product }) => {
         <></>
       ) : (
         <div
-          className="bg-gray-100 p-2 lg:p-4 h-[550px] lg:h-[600px] border rounded-lg hover:shadow-md mb-4 flex flex-col justify-between hover:shadow-md transition-all cursor-pointer"
+          className="bg-gray-100 p-2 lg:p-4 border rounded-lg hover:shadow-md mb-4 flex flex-col justify-between hover:shadow-md transition-all cursor-pointer"
           onClick={handleLinkClick}
         >
-          <div className="flex justify-center mb-2 h-[300px] relative">
+          <div className="flex justify-center mb-2 relative">
             <div className="i-own-product-status">
               {status !== "active" ? status.toUpperCase() : ""}
             </div>
@@ -132,7 +129,7 @@ export const ProductCard = ({ product }) => {
                   : "https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E"
               }
               alt={title}
-              className={`object-cover rounded h-full ${
+              className={`object-cover rounded h-full h-[250px] ${
                 status !== "active" ? "i-own-product-status-img" : ""
               }`}
             />
