@@ -237,7 +237,7 @@ export function SingleProductComponent({ socket, users, setMessages }) {
                         isConnected ? { color: "green" } : { color: "red" }
                       }
                     >
-                      {isConnected ? "online ⦿" : "offline ⦿"}
+                      {isConnected ? "ONLINE ⦿" : "OFFLINE ⦿"}
                     </p>
                   </div>
                   <div className="flex flex-col">
