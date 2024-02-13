@@ -1,7 +1,7 @@
 export function AboutUsComponent() {
     return (
         <>
-            <div className="flex flex-col justify-center py-12">
+            <div className="flex flex-col justify-center max-lg:py-6 py-12">
                 <div className="container mx-auto">
                     <h1 className="text-2xl lg:text-4xl my-4 lg:mb-8 font-bold group group-hover:bg-emerald">Über <span
                         className="text-emerald">FLOH</span>.STORE</h1>

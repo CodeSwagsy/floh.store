@@ -64,11 +64,11 @@ function SendMessage({ product, setShowPopup, socket, users, setMessages }) {
                     rows="6"
                     required
                     placeholder="Welche Fragen haben Sie an den Verkäufer/die Verkäuferin?"
-                    className="p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 sm:text-sm sm:leading-6 i-own-message-text"
+                    className="p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 sm:text-sm sm:leading-6 i-own-message-text"
                   ></textarea>
                 </div>
               </div>
-              <div className="flex w-full justify-center rounded-md">
+              <div className="flex w-full justify-center rounded-lg">
                 <ButtonComponent
                   text="Senden"
                   size="large"
