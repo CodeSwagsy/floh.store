@@ -2,6 +2,7 @@ import { ButtonComponent } from "./button.component.jsx";
 import { Link } from "react-router-dom";
 
 export function HeroComponent() {
+
   function getRandomImage() {
     const mainLink = "https://res.cloudinary.com/djoadytrq/image/upload/";
     const arr = [
@@ -29,7 +30,7 @@ export function HeroComponent() {
     >
       <div className="container flex max-lg:items-center max-lg:justify-center">
         <div className="flex flex-col justify-evenly w-96 h-48 lg:h-56 bg-emerald/80 rounded-lg p-4 lg:mb-16">
-          <Link to="/products/gallery" className="w-full">
+           <Link to="/products/random" className="w-full">
             <ButtonComponent
               text="Finde deinen "
               spantxt="FLOH"

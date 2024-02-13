@@ -22,20 +22,19 @@ export function SearchfieldComponent() {
 
     return (
         <>
-            <div className="rounded-lg flex w-full">
                 <input
                     ref={inputRef}
                     type="text"
                     name="search"
                     id="search"
                     onChange={handleSearchQueryChange}
-                    className="block w-2/3 rounded-l-md py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                    className="max-md:rounded-md flex grow rounded-l-lg py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                     placeholder="Was suchst du ?"
                 />
                 <select
                     id="category"
                     name="category"
-                    className="w-1/3 h-[44px] max-lg:rounded-r-md pl-1 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald  text-left"
+                    className="max-md:hidden flex w-2/5 h-[44px] max-xl:rounded-r-lg pl-1 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald text-left"
                     defaultValue={currentCategory || 'kategorien'}
                     onChange={handleCategoryChange}>
                     <option className="text-left pr-1" disabled value="kategorien">Kategorien</option>
@@ -52,9 +51,6 @@ export function SearchfieldComponent() {
                     <option className="text-left pr-1" value="Dienstleistungen">Dienstleistungen</option>
                     <option className="text-left pr-1" value="Sonstiges">Sonstiges</option>
                 </select>
-            </div>
-
-
         </>
     )
         ;

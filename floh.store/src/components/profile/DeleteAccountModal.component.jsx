@@ -101,7 +101,7 @@ export function DeleteAccountModalComponent({closeModal}) {
                                 <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
                                     <button
                                         type="button"
-                                        className="rounded-md bg-white text-gray-400 hover:text-emerald focus:outline-none focus:ring-2 focus:ring-emerald focus:ring-offset-2"
+                                        className="rounded-lg bg-white text-gray-400 hover:text-emerald focus:outline-none focus:ring-2 focus:ring-emerald focus:ring-offset-2"
                                         onClick={handleCloseModal}
                                     >
                                         <span className="sr-only">Close</span>
@@ -130,14 +130,14 @@ export function DeleteAccountModalComponent({closeModal}) {
                                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                                     <button
                                         type="button"
-                                        className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                                        className="inline-flex w-full justify-center rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                                         onClick={handleDeleteAccount}
                                     >
                                         Account löschen
                                     </button>
                                     <button
                                         type="button"
-                                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-emerald hover:ring-emerald sm:mt-0 sm:w-auto"
+                                        className="mt-3 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 hover:text-emerald hover:ring-emerald sm:mt-0 sm:w-auto"
                                         onClick={handleCloseModal}
                                     >
                                         Abbrechen

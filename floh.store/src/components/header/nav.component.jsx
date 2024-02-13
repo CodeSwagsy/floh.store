@@ -61,33 +61,37 @@ export function NavComponent() {
     >
       <div>
         <Menu.Button
-          className="inline-flex w-full items-center justify-center gap-x-1.5 rounded-lg bg-white  max-lg:p-2.5 lg:max-xl:p-0.5 lg:max-xl:mt-[4px] p-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-jet"
+            className={
+                "lg:h-[44px] lg:w-[44px] inline-flex w-full items-center justify-center gap-x-1.5 rounded-lg bg-white  max-lg:p-2.5 lg:max-xl:p-0.5  p-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-jet group-hover:ring-springgreen transition-all" +
+                (isActive ? " ring-springgreen" : " ring-jet")
+            }
           onClick={() => setIsActive(!isActive)}
         >
           <UserIcon
             className={classNames(
               "h-5 w-5",
-              isActive ? "text-emerald" : "text-jet"
+              isActive ? "text-springgreen ring-springgreen" : "group-hover:text-springgreen text-jet transition-all"
             )}
             aria-hidden="true"
           />
           {counter ? (
             <span
-              style={{
-                // TODO: Styling with Tailwind
-                position: "absolute",
-                top: "-5px",
-                right: "-5px",
-                backgroundColor: "red",
-                color: "whitesmoke",
-                width: "15px",
-                height: "15px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "xx-small",
-                borderRadius: "50%",
-              }}
+              // style={{
+              //   // TODO: Styling with Tailwind
+              //   position: "absolute",
+              //   top: "-5px",
+              //   right: "-5px",
+              //   backgroundColor: "red",
+              //   color: "whitesmoke",
+              //   width: "15px",
+              //   height: "15px",
+              //   display: "flex",
+              //   alignItems: "center",
+              //   justifyContent: "center",
+              //   fontSize: "xx-small",
+              //   borderRadius: "50%",
+              // }}
+              className="absolute -top-[5px] -right-[5px] bg-red-600 text-whitesmoke w-[15px] h-[15px] flex items-center justify-center text-xs rounded-full"
             >
               {counter}
             </span>
@@ -106,7 +110,7 @@ export function NavComponent() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-4 py-3">
             <p className="text-sm">
               {login && userData ? "Angemeldet als:" : "Nicht angemeldet"}
@@ -128,7 +132,7 @@ export function NavComponent() {
                     <Link
                       to="/profile/favoriteproducts"
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        active ? "bg-springgreen text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
                       )}
                     >
@@ -141,7 +145,7 @@ export function NavComponent() {
                     <Link
                       to="/profile/user-products/"
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        active ? "bg-springgreen text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
                       )}
                     >
@@ -154,7 +158,7 @@ export function NavComponent() {
                     <Link
                       to="/profile/messages"
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        active ? "bg-springgreen text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
                       )}
                     >
@@ -169,7 +173,7 @@ export function NavComponent() {
                     <Link
                       to={`/profile/settings/`}
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        active ? "bg-springgreen text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
                       )}
                     >
@@ -184,7 +188,7 @@ export function NavComponent() {
                     <button
                       type="submit"
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        active ? "bg-springgreen text-gray-900" : "text-gray-700",
                         "" + "block w-full px-4 py-2 text-left text-sm"
                       )}
                       onClick={handleLogout}

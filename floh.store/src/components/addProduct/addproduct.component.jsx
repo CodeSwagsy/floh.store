@@ -223,7 +223,7 @@ export function AddProductComponent() {
                                     required
                                     onChange={onChangeHandler}
                                     placeholder="Geben Sie hier den Titel ihrer Anzeige ein..."
-                                    className="p-2.5 block max-md:w-full w-96 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset focus:outline-none ring-emerald placehoder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
+                                    className="p-2.5 block max-md:w-full w-96 rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset focus:outline-none ring-emerald placehoder:text-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
                                 />
 
                             </div>
@@ -238,7 +238,7 @@ export function AddProductComponent() {
                                     <select
                                         id="category"
                                         name="category"
-                                        className="p-2.5 w-48 max-md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6 focus:outline-none appearance-none text-center"
+                                        className="p-2.5 w-48 max-md:w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6 focus:outline-none appearance-none text-center"
                                         defaultValue="na"
                                         onChange={onChangeHandler}
                                     >
@@ -280,7 +280,7 @@ export function AddProductComponent() {
                                     pattern="^[0-9]+(\.[0-9]{1,2})?$"
                                     placeholder="Euro"
                                     onChange={onChangeHandler}
-                                    className="p-2.5 w-48 max-md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
+                                    className="p-2.5 w-48 max-md:w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div className="flex justify-between max-md:items-center">
@@ -291,7 +291,7 @@ export function AddProductComponent() {
                                     Zustand
                                 </label>
                                 <select id="condition" name="condition" required
-                                        className="p-2.5 w-48 max-md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6 focus:outline-none appearance-none text-center"
+                                        className="p-2.5 w-48 max-md:w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6 focus:outline-none appearance-none text-center"
                                         defaultValue="na"
                                         onChange={onChangeHandler}
                                 >
@@ -319,7 +319,7 @@ export function AddProductComponent() {
                                     placeholder="Postleitzahl"
                                     defaultValue={userData ? userData.doc.info.about.location.zip : ""}
                                     onChange={onChangeHandler}
-                                    className="p-2.5 w-48 max-md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
+                                    className="p-2.5 w-48 max-md:w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div className="flex justify-between max-md:items-center">
@@ -337,7 +337,7 @@ export function AddProductComponent() {
                                     placeholder="Ort"
                                     defaultValue={userData ? userData.doc.info.about.location.city : ""}
                                     onChange={onChangeHandler}
-                                    className="p-2.5 w-48 max-md:w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
+                                    className="p-2.5 w-48 max-md:w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div className="flex justify-between max-md:items-center">
@@ -354,7 +354,7 @@ export function AddProductComponent() {
                                     rows="5"
                                     placeholder="Geben Sie hier die Beschreibung ihrer Anzeige ein..."
                                     onChange={onChangeHandler}
-                                    className="p-2.5  max-md:w-full w-96 rounded-md border-0 py-1.5 text-gray-900 shadow-sm  ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6 resize-none"
+                                    className="p-2.5  max-md:w-full w-96 rounded-lg border-0 py-1.5 text-gray-900 shadow-sm  ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6 resize-none"
                                 />
                             </div>
                             <div className="flex items-center justify-center w-full flex-col border-b pb-4 lg:pb-8">

@@ -1,5 +1,4 @@
 ﻿// PLZinRadiusComponent.jsx
-import React, {useState, useEffect} from "react";
 import {useData} from "../../context/signin.context.jsx";
 
 export const PLZinRadiusComponent = () => {
@@ -37,10 +36,10 @@ export const PLZinRadiusComponent = () => {
 
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center max-xl:hidden w-6/12">
             <input
                 type="text"
-                className="block w-2/5 py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                className="flex w-2/5 py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                 onChange={handlePostalCodeChange}
                 pattern="[0-9]*"
                 inputMode="numeric"
@@ -50,7 +49,7 @@ export const PLZinRadiusComponent = () => {
             <select
                 id="entfernung"
                 name="entfernung"
-                className="w-3/5 h-[44px] rounded-r-md py-2.5 w-32 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald  text-left"
+                className="flex w-3/5 h-[44px] rounded-r-md pl-1 py-2.5 w-32 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald  text-left"
                 defaultValue="Umkreis"
                 onChange={handleRadiusChange}
             >
