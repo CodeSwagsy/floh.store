@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-
 export const RandomBannerComponent = () => {
   const [randomProduct, setRandomProduct] = useState(null);
 
@@ -28,12 +27,15 @@ export const RandomBannerComponent = () => {
               Math.random() * allProductsData.products.length
             );
             const randomProduct = allProductsData.products[randomIndex];
-            if (!randomProductsArray.some(product => product._id === randomProduct._id)) {
+            if (
+              !randomProductsArray.some(
+                (product) => product._id === randomProduct._id
+              )
+            ) {
               randomProductsArray.push(randomProduct);
             }
           }
-      
-         
+
           setRandomProduct(randomProductsArray);
         } else {
           console.error(
@@ -47,61 +49,44 @@ export const RandomBannerComponent = () => {
     };
     fetchRandomProduct();
 
-    const interval = setInterval(fetchRandomProduct, 10000);
+    const interval = setInterval(fetchRandomProduct, 15000);
     return () => clearInterval(interval);
   }, []);
 
   if (!randomProduct) {
     return null;
   }
- 
 
   return (
-    <div className="container mx-auto ">
-        <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">Entdecke die Vielfalt</h2>
-      <div className=" bg-whitesmoke px-1 max-w-full mx-auto mt-10 grid grid-cols-8 ">
+    <div className="container mx-auto">
+      <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">
+        Entdecke die Vielfalt
+      </h2>
+      <div className="bg-whitesmoke max-w-full max-lg:mx-2 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 transition-all">
         {randomProduct.map((randomProduct, index) => (
-            //  console.log(randomProduct.images),
-          <div
+          <a
             key={index}
-            className="group h-64  flex-shrink-0 place-content: center  
-             mx-1 bg-whitesmoke "
+            href={`/products/${randomProduct._id}`}
+            className="h-32 group flex-shrink-0 bg-whitesmoke cursor-pointer transition-all relative"
           >
-      
-          
-            
-                
-              <img
-                className="  h-32 w-auto mx-auto object-cover rounded-t-md group border-b-4 border-solid border-b-emerald"
-                src={randomProduct.images && randomProduct.images.length > 0 ? randomProduct.images[0] : 'https://picsum.photos/200'}
-                alt={randomProduct.title}
-                
-              />
-             
-             
-            <div className=" container my-auto h-auto">
-                <div className="space-y-2.5 text-wrap group-hover:bg-emerald border-solid border border-jet border-1 bg-whitesmoke  rounded-b-md shadow-md h-28 text-center p-2 ">
-
-              <p className=" text-jet font-medium leading-4 group-hover:text-whitesmoke">
-                {randomProduct.title}
+            <img
+              className="h-32 w-full object-cover rounded-md transition-all"
+              src={
+                randomProduct.images && randomProduct.images.length > 0
+                  ? randomProduct.images[0]
+                  : "https://picsum.photos/200"
+              }
+              alt={randomProduct.title}
+              title={`${randomProduct.title} aus ${randomProduct.location.city}`}
+            />
+            <div className="absolute bottom-2 right-2 rounded-full">
+              <p className="p-1 bg-emerald inline-flex text-base text-whitesmoke font-medium group-hover:p-1 group-hover:bg-jet group-hover:text-whitesmoke transition-all rounded-full ">
+                {randomProduct.price}€
               </p>
-              <div className="">
-                 <p className=" rounded-full group-hover:bg-jet bg-platinum leading-7 group-hover:text-white text-base text-emerald font-medium">
-                {randomProduct.price} €
-              </p>
-              <p className=" text-jet font-normal leading-7  group-hover:text-whitesmoke">
-                {randomProduct.location.city}
-              </p>
-              </div>
-             
             </div>
-            </div>
-            
-          </div>
+          </a>
         ))}
       </div>
     </div>
   );
 };
-
-
