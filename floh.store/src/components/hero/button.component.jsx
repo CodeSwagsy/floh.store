@@ -12,7 +12,7 @@ export function ButtonComponent({
   const buttonWidthClass = size === "large" ? "w-full" : "w-16";
   const buttonHeightClass = height === "height" ? "h-12" : "h-1";
 
-  const classes = `${additionalclasses} group rounded-md bg-white ${buttonWidthClass} ${buttonHeightClass} px-3 py-2 text-sm font-semibold text-gray-900 ring-1  shadow-black ring-gray-300 hover:bg-emerald transition-all`;
+  const classes = `${additionalclasses} group rounded-lg bg-white ${buttonWidthClass} ${buttonHeightClass} px-3 py-2 text-sm font-semibold text-gray-900 ring-1  shadow-black ring-gray-300 hover:bg-emerald transition-all`;
 
   return (
     <button type={buttonType} className={classes}>

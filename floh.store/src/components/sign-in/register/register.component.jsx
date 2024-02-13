@@ -141,7 +141,7 @@ export function RegisterComponent() {
                                     placeholder="Benutzername"
                                     required
                                     onChange={handleChange}
-                                    className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:emerald sm:text-sm sm:leading-6"
+                                    className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:emerald sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div className="">
@@ -158,7 +158,7 @@ export function RegisterComponent() {
                                     placeholder="E-Mail Adresse"
                                     required
                                     onChange={handleChange}
-                                    className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                    className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                 />
                             </div>
 
@@ -176,7 +176,7 @@ export function RegisterComponent() {
                                     placeholder=" ••••••••"
                                     required
                                     onChange={handleChange}
-                                    className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                    className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <div>
@@ -192,7 +192,7 @@ export function RegisterComponent() {
                                     type="password"
                                     placeholder=" ••••••••"
                                     onChange={handleChange}
-                                    className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                    className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                 />
                             </div>
 
@@ -209,7 +209,7 @@ export function RegisterComponent() {
                                     type="tel"
                                     placeholder="Telefon Nummer"
                                     onChange={handleChange}
-                                    className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                    className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                 />
                             </div>
 
@@ -227,7 +227,7 @@ export function RegisterComponent() {
                                         type="text"
                                         placeholder="Straße"
                                         onChange={handleChange}
-                                        className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                        className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                     />
                                 </div>
                                 <div className="w-1/2">
@@ -243,7 +243,7 @@ export function RegisterComponent() {
                                         type="text"
                                         placeholder="Hausnummer"
                                         onChange={handleChange}
-                                        className="focus:outline-none p-2.5  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                        className="focus:outline-none p-2.5  w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
@@ -263,7 +263,7 @@ export function RegisterComponent() {
                                         onChange={handleChange}
                                         pattern="^[0-9]{5}$"
                                         placeholder="Postleitzahl"
-                                        className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                        className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                     />
                                 </div>
                                 <div className="w-1/2">
@@ -280,7 +280,7 @@ export function RegisterComponent() {
                                         placeholder="Stadt"
                                         required
                                         onChange={handleChange}
-                                        className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                        className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
@@ -296,7 +296,7 @@ export function RegisterComponent() {
                                         id="gender"
                                         name="gender"
                                         onChange={handleChange}
-                                        className="focus:outline-none p-2.5 block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald  focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                                        className="focus:outline-none p-2.5 block w-full rounded-lg border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald  focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                                     >
                                         <option value="male">männlich</option>
                                         <option value="female">weiblich</option>
@@ -307,7 +307,7 @@ export function RegisterComponent() {
                                     <label htmlFor="birthday" className="block  text-sm font-medium leading-6 text-gray-900">Geburtstag</label>
                                     <input type="date" name="birthday"
                                            onChange={handleChange}
-                                           className="focus:outline-none block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald  focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"/>
+                                           className="focus:outline-none block w-full rounded-lg border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald  focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"/>
                                 </div>
                             </div>
                             <div className="flex items-center">

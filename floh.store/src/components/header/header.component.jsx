@@ -13,14 +13,12 @@ export function HeaderComponent() {
         updateSearchedProducts,
         searchedProducts,
         searchQuery,
-        zipCodes,
         postalCode,
         radius,
         searchCategory,
         updateQueryError,
         updateSearchQuery,
         updateSearchCategory,
-        updatePostalCode,
         fetchZips
     } = useData();
 
@@ -135,44 +133,57 @@ export function HeaderComponent() {
         }
     }
 
-   //
+    //
 
     return (
         <header>
             <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">
-                <div className="flex flex-row items-center justify-between mt-2 lg:mt-4">
+                <div className="flex flex-row items-center justify-between lg:gap-8 2xl:gap-16 mt-2 lg:mt-4 max-lg:gap-4">
                     <Link to="/">
                         <img src="/logo.svg" alt="Floh.store" className="mt-2"/>
                     </Link>
-                    <form onSubmit={handleSearchOnSubmit}>
-                        <div className="flex items-center justify-between h-full max-lg:hidden">
+                    <form onSubmit={handleSearchOnSubmit} className="flex items-center justify-end lg:justify-between w-full max-lg:gap-4">
+                        <div className="flex items-center h-full max-lg:hidden">
                             <SearchfieldComponent
                             />
 
                             <PLZinRadiusComponent
                             />
-                            <button type="submit">SUBMIT</button>
                         </div>
+                        <button
+                            className="mx-4 2xl:-ml-16 w-40 h-[44px] max-lg:hidden flex items-center justify-center px-4 flex shadow-sm flex-row items-center justify-center max-lg:text-sm text-center text-whitesmoke rounded-lg bg-emerald hover:bg-springgreen transition-all"
+                            type="submit">Floh finden!
+                        </button>
+                        <div className="flex lg:gap-4 max-lg:justify-center max-lg:mx-auto max-lg:w-full">
+                            <LinkButtonComponent
+                                text="Floh erstellen"
+                                additionalClasses={
+                                    login
+                                        ? "bg-jet max-lg:h-[40px] h-[44px] px-2 lg:w-80 mr-4 max-lg:w-full"
+                                        : "bg-jet max-lg:h-[40px] h-[44px] px-2 lg:w-40 max-lg:w-full"
+                                }
+                                link="/products/add"
+                            />
+                            <LinkButtonComponent
+                                text={login ? "Angemeldet " : "Login / Registrieren"}
+                                additionalClasses={
+                                    login
+                                        ? "hidden"
+                                        : "max-lg:hidden bg-jet h-[44px] px-2 lg:w-40 lg:mr-4"
+                                }
+                                link="/profile/signin"
+                            />
+                        </div>
+                        <NavComponent/>
                     </form>
-                    <LinkButtonComponent
-                        text="Anzeige erstellen"
-                        additionalClasses={
-                            login
-                                ? "w-1/3 lg:w-1/4 bg-jet max-lg:py-2 lg:px-2 xl:px-4 xl:py-2"
-                                : "max-lg:w-4/12 max-lg:py-2 bg-jet lg:px-2 xl:px-4 xl:py-2"
-                        }
-                        link="/products/add"
+                </div>
+                <div className="lg:hidden flex mt-2">
+                    <SearchfieldComponent
                     />
-                    <LinkButtonComponent
-                        text={login ? "Angemeldet " : "Login / Registrieren"}
-                        additionalClasses={
-                            login
-                                ? "hidden"
-                                : "max-lg:hidden bg-jet lg:px-2 xl:px-4 xl:py-2"
-                        }
-                        link="/profile/signin"
-                    />
-                    <NavComponent/>
+                    <button
+                        className="ml-4 h-[44px] flex items-center justify-center px-4 flex shadow-sm flex-row items-center justify-center max-lg:text-sm text-center text-whitesmoke rounded-lg max-lg:w-4/12 bg-emerald hover:bg-springgreen transition-all"
+                        type="submit">Floh finden!
+                    </button>
                 </div>
             </div>
         </header>
