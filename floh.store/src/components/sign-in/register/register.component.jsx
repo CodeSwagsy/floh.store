@@ -106,10 +106,10 @@ export function RegisterComponent() {
     };
 
     return (
-        <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="flex min-h-full flex-1 flex-col justify-center max-lg:py-6 py-12 sm:px-6 lg:px-8">
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
                 <div
-                    className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12 flex flex-col items-center justify-center">
+                    className="bg-white px-6 max-lg:py-6 py-12 shadow sm:rounded-lg sm:px-12 flex flex-col items-center justify-center">
                     {register ? (<>
                             <h2 className="text-center text-2xl text-jet font-bold leading-9 tracking-tight">
                                 Erfolgreich registriert!
