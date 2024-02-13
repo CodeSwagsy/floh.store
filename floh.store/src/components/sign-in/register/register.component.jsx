@@ -14,7 +14,7 @@ export function RegisterComponent() {
         house: "",
         zip: "",
         city: "",
-        gender: "",
+        gender: "male",
         birthday: "",
         datenschutz: false,
     });
@@ -102,6 +102,7 @@ export function RegisterComponent() {
             ...prevCredentials,
             [name]: type === "checkbox" ? checked : value,
         }));
+        console.log(credentials)
     };
 
     return (
