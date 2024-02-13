@@ -9,7 +9,7 @@ export function ImageComponent({ images, status }) {
       </div>
       {images.length > 0 ? (
         <Carousel
-          className="overflow-hidden rounded-lg"
+          className="overflow-hidden rounded-lg h-[400px] lg:h-[550px]"
           navigation={({ setActiveIndex, activeIndex, length }) => (
             <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
               {new Array(length).fill("").map((_, i) => (
