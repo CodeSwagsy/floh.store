@@ -10,7 +10,7 @@ import {ImageComponent} from "./Image.component.jsx";
 
 export function SingleProductComponent({socket, users, setMessages}) {
     const {id} = useParams();
-    const {login} = useData();
+    const login = localStorage.getItem("login")
     const [product, setProduct] = useState(null);
     const [type, setType] = useState("");
     const [formattedDate, setFormattedDate] = useState(null);
@@ -199,7 +199,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                     className="flex flex-col grow items-center lg:items-start justify-center my-2 w-full">
                                     {/* code from Ihor */}
                                     <div
-                                        className="flex flex-col gap-4 grow items-center lg:items-start justify-center max-lg:my-2 max-lg:flex-row w-full">
+                                        className="flex flex-col gap-4  items-center lg:items-start justify-center max-lg:my-2 max-lg:flex-row w-full">
                                         <button
                                             onClick={() => setShowPopup(true)}
                                             className="flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-emerald hover:bg-springgreen transition-all w-1/2 lg:px-2 py-1 py-2.5 max-md:text-sm xl:text-xl"
@@ -222,7 +222,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                                     text="Anmeldung notwendig um Produkte zur Merkliste hinzuzufügen">
                                                     <button
                                                         disabled={disableButton}
-                                                        className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-1/2 lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white  transition-all ${disabledClasses}`}
+                                                        className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white transition-all ${disabledClasses}`}
                                                     >
                                                         {favoriteText}
                                                     </button>
