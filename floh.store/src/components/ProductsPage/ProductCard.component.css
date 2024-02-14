@@ -11,3 +11,6 @@
   width: 100%;
 }
 
+.i-own-product-status-img {
+  filter: opacity(0.5);
+}
