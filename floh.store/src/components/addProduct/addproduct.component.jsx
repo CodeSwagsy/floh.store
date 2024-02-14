@@ -236,6 +236,7 @@ export function AddProductComponent() {
                                         name="category"
                                         className="p-2.5 w-48 max-md:w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6 focus:outline-none appearance-none text-center"
                                         defaultValue="na"
+                                        required
                                         onChange={onChangeHandler}
                                     >
                                         <option className="pr-1" value="na" disabled>Wählen sie aus...</option>
