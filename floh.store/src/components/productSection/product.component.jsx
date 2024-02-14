@@ -40,7 +40,7 @@ export const ProductComponent = ({product}) => {
 
                 <Link
                     to={`/products/${product._id}`}
-                    className={`bg-green-500 text-white px-5 py-2 rounded mt-4 bg-emerald hover:bg-springgreen transition-all w-full`}
+                    className={`bg-emerald text-white px-5 py-2 rounded mt-4 bg-emerald hover:bg-springgreen hover:text-jet transition-all w-full`}
                 >
                     Produkt anzeigen
                 </Link>

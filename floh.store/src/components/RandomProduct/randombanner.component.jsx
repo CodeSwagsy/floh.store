@@ -80,7 +80,7 @@ export const RandomBannerComponent = () => {
               title={`${randomProduct.title} aus ${randomProduct.location.city}`}
             />
             <div className="absolute bottom-2 right-2 rounded-full">
-              <p className="p-1 bg-emerald inline-flex text-base text-whitesmoke font-medium group-hover:p-1 group-hover:bg-jet group-hover:text-whitesmoke transition-all rounded-full ">
+              <p className="p-1 bg-emerald inline-flex text-base text-whitesmoke font-medium group-hover:p-1 group-hover:bg-springgreen group-hover:text-whitesmoke transition-all rounded-full ">
                 {randomProduct.price}€
               </p>
             </div>

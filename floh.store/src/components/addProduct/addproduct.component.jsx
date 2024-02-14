@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ButtonComponent} from "../hero/button.component";
 import "./addproduct.component.css";
 import {useData} from "../../context/signin.context.jsx";
@@ -10,7 +10,6 @@ export function AddProductComponent() {
     const uid = localStorage.getItem("uid");
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
-    const {userData} = useData()
 
     const onChangeHandlerImages = async (e) => {
         e.preventDefault();
@@ -41,10 +40,11 @@ export function AddProductComponent() {
         }
     }
 
+
     const [credentials, setCredentials] = useState({
         location: {
-            zip: userData ? userData.doc.info.about.location.zip : "",
-            city: userData ? userData.doc.info.about.location.city : "",
+            zip: "",
+            city: "",
         },
         type: "",
         title: "",
@@ -72,6 +72,7 @@ export function AddProductComponent() {
 
 
     const handleSubmit = async (e) => {
+        console.log(credentials)
         e.preventDefault();
         if (!credentials.type) {
             setError("Bitte wählen Sie aus, ob Sie einen Artikel suchen oder anbieten möchten.");
@@ -138,8 +139,6 @@ export function AddProductComponent() {
 
     const onChangeHandler = (e) => {
         const {name, value} = e.target;
-
-        // If the input has a nested name (e.g., "location.zip"), split it and update the state accordingly
         if (name.includes(".")) {
             const [parentKey, childKey] = name.split(".");
             setCredentials((prevCredentials) => ({
@@ -156,9 +155,6 @@ export function AddProductComponent() {
             }));
         }
     };
-
-    console.log(userData)
-
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center md:py-12 sm:px-1.5 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-[700px]">
@@ -172,7 +168,7 @@ export function AddProductComponent() {
                                                           size="large" height="height"/></Link>
                         </>
                     ) : (<>
-                        <h1 className="text-3xl font-bold mb-4 lg:mb-8 text-center border-b pb-4 lg:pb-8">
+                        <h1 className="text-3xl font-semibold mb-4 lg:mb-8 text-center border-b pb-4 lg:pb-8">
                             Erstelle deine Anzeige!
                         </h1>
                         <form className="space-y-8" onSubmit={handleSubmit}>
@@ -317,7 +313,6 @@ export function AddProductComponent() {
                                     required
                                     pattern="^[0-9]{5}$"
                                     placeholder="Postleitzahl"
-                                    defaultValue={userData ? userData.doc.info.about.location.zip : ""}
                                     onChange={onChangeHandler}
                                     className="p-2.5 w-48 max-md:w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
                                 />
@@ -335,7 +330,6 @@ export function AddProductComponent() {
                                     type="text"
                                     required
                                     placeholder="Ort"
-                                    defaultValue={userData ? userData.doc.info.about.location.city : ""}
                                     onChange={onChangeHandler}
                                     className="p-2.5 w-48 max-md:w-full rounded-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-emerald placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald focus:outline-none sm:text-sm sm:leading-6"
                                 />

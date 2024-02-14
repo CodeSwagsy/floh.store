@@ -185,7 +185,7 @@ export function SettingsComponent() {
     return (
         <>
             <div className="container mx-auto">
-                <h1 className="text-3xl font-bold  lg:mt-12 max-lg:my-2 my-4 lg:mb-8">Profileinstellungen</h1>
+                <h1 className="text-3xl font-semibold  lg:mt-12 max-lg:my-2 my-4 lg:mb-8">Profileinstellungen</h1>
                 <form className="flex flex-col flex-wrap gap-y-2 justify-between border-t pt-4 pb-8"
                       onSubmit={handleUpdateUser}>
                     <div>

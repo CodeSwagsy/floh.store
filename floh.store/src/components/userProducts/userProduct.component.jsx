@@ -2,22 +2,22 @@ import { useEffect, useState } from "react";
 import { ProductCard } from "../ProductsPage/ProductCard.component.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { LoaderComponent } from "../loader/loader.component.jsx";
+import AboutUser from "../aboutUser/aboutUser.component.jsx";
 
 function UserProductsComponent() {
   const [products, setProducts] = useState([]);
-  const [userName, setUserName] = useState([]);
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
     if (!id && localStorage.getItem("login") === "false") return navigate("/");
 
-    id &&
-      fetch(`${import.meta.env.VITE_API}/user/about/${id}`)
-        .then((res) => res.json())
-        .then((data) => setUserName(data.doc.info.about.username));
-
     const uid = id || localStorage.getItem("uid");
+
+    fetch(`${import.meta.env.VITE_API}/user/about/${uid}`)
+      .then((res) => res.json())
+      .then((data) => setUser(data.doc));
 
     const fetchProducts = async () => {
       try {
@@ -36,9 +36,12 @@ function UserProductsComponent() {
 
   return (
     <>
-      <div className=" container mx-auto my-8 mt-16">
+      <AboutUser user={user} />
+      <div className=" container mx-auto my-8 mt-8">
         <h2 className="text-3xl font-bold mb-4">
-          {id ? `Anzeigen von ${userName}` : "Eigene Produkte"}
+          {id
+            ? `Anzeigen von ${user?.info?.about.username}`
+            : "Eigene Produkte"}
         </h2>
         {products?.length !== 0 ? (
           <>

@@ -30,7 +30,7 @@ export function HeroComponent() {
     >
       <div className="container flex max-lg:items-center max-lg:justify-center  ">
         <div className="flex flex-col justify-evenly w-96 h-48 lg:h-56 bg-emerald/70 rounded-lg p-4 lg:mb-16">
-           <Link to="/products/random" className="w-full flex justify-center">
+           <Link to="/products/gallery" className="w-full flex justify-center">
             <ButtonComponent
               text="Finde deinen "
               spantxt="Floh"
