@@ -9,17 +9,18 @@ export function ButtonComponent({
   height,
   buttonType,
 }) {
-  const buttonWidthClass = size === "large" ? "w-full" : "w-16";
+  const buttonWidthClass = size === "large" ? "w-3/5" : "w-16";
   const buttonHeightClass = height === "height" ? "h-12" : "h-1";
 
-  const classes = `${additionalclasses} group rounded-lg bg-white ${buttonWidthClass} ${buttonHeightClass} px-3 py-2 text-sm font-semibold text-gray-900 ring-1  shadow-black ring-gray-300 hover:bg-emerald transition-all`;
+  const classes = `${additionalclasses} inline-block group rounded-lg bg-whitesmoke ${buttonWidthClass} ${buttonHeightClass} px-3 py-2 text-base font-semibold text-jet ring-1 shadow-black ring-jet hover:bg-springgreen hover:ring-springgreen transition-all whitespace-nowrap`;
 
   return (
     <button type={buttonType} className={classes}>
       {text}
-      <span className="group-hover:text-white transition-all">
+      <span className="text-emerald group-hover:text-jet transition-all">
         {spantxt}
       </span>
+      <span className="text-jet">.</span>
     </button>
   );
 }
