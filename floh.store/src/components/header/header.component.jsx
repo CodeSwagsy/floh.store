@@ -4,6 +4,8 @@ import {SearchfieldComponent} from "./searchfield.component.jsx";
 import {LinkButtonComponent} from "./button.component.jsx";
 import {NavComponent} from "./nav.component.jsx";
 import {Link, useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {LoaderComponent} from "../loader/loader.component.jsx";
 
 
 export function HeaderComponent() {
@@ -24,9 +26,10 @@ export function HeaderComponent() {
         fetchZips,
         updateStartSearch
     } = useData();
-
+    const [loading, setLoading] = useState(false)
 
     const handleSearchOnSubmit = async (e) => {
+        setLoading(true)
         e.preventDefault();
         updateStartSearch(true)
         updateQueryError("")
@@ -65,6 +68,7 @@ export function HeaderComponent() {
                             updateSearchCategory("");
                             updateRadius("")
                             updatePostalCode("")
+                            setLoading(false)
                             navigate(`/products/gallery/`);
                         } catch (error) {
                             console.error("Fehler beim Fetchen der ZIP-Codes:", error);
@@ -77,6 +81,7 @@ export function HeaderComponent() {
                         if (searchedProducts.length === 0) {
                             updateQueryError("Keine Produkte gefunden");
                         }
+                        setLoading(false)
                         navigate(`/products/gallery/`);
                     }
                 } else if (searchCategory === "" || searchCategory === "Alle Produkte") {
@@ -92,6 +97,7 @@ export function HeaderComponent() {
                             updateSearchCategory("");
                             updateRadius("")
                             updatePostalCode("")
+                            setLoading(false)
                             navigate(`/products/gallery/`);
                         } catch (error) {
                             console.error("Fehler beim Fetchen der ZIP-Codes:", error);
@@ -103,6 +109,7 @@ export function HeaderComponent() {
                     updateSearchCategory("");
                     updateRadius("")
                     updatePostalCode("")
+                    setLoading(false)
                     navigate(`/products/gallery/`);
                 } else if (searchCategory !== 'kategorien') {
                     // SUCHE OHNE SEARCHQUERY MIT KATEGORIE
@@ -118,6 +125,7 @@ export function HeaderComponent() {
                             updateSearchCategory("");
                             updateRadius("")
                             updatePostalCode("")
+                            setLoading(false)
                             navigate(`/products/gallery/category/${searchCategory}`);
                         } catch (error) {
                             console.error("Fehler beim Fetchen der ZIP-Codes:", error);
@@ -131,6 +139,7 @@ export function HeaderComponent() {
                         if (searchedProducts.length === 0) {
                             updateQueryError("Keine Produkte gefunden");
                         }
+                        setLoading(false)
                         navigate(`/products/gallery/category/${searchCategory}`);
                     }
                 }
@@ -145,12 +154,15 @@ export function HeaderComponent() {
 
     return (
         <header>
+            {loading ? <LoaderComponent/> : ""}
             <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">
-                <div className="flex flex-row items-center justify-between lg:gap-8 2xl:gap-16 mt-2 lg:mt-4 max-lg:gap-4">
+                <div
+                    className="flex flex-row items-center justify-between lg:gap-8 2xl:gap-16 mt-2 lg:mt-4 max-lg:gap-4">
                     <Link to="/">
                         <img src="/logo.svg" alt="Floh.store" className="mt-2"/>
                     </Link>
-                    <form onSubmit={handleSearchOnSubmit} className="flex items-center justify-end lg:justify-between w-full max-lg:gap-4">
+                    <form onSubmit={handleSearchOnSubmit}
+                          className="flex items-center justify-end lg:justify-between w-full max-lg:gap-4">
                         <div className="flex items-center h-full max-lg:hidden">
                             <SearchfieldComponent
                             />
