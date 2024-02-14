@@ -164,48 +164,51 @@ export function HeaderComponent() {
                 <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">
                     <div
                         className="flex flex-row items-center justify-between lg:gap-8 2xl:gap-16 mt-2 lg:mt-4 max-lg:gap-4">
-                        <Link to="/">
-                            <img src="/logo.svg" alt="Floh.store" className="mt-2"/>
-                        </Link>
-                        <form onSubmit={handleSearchOnSubmit}
-                              className="flex items-center justify-end lg:justify-between w-full max-lg:gap-4">
-                            <div className="flex items-center h-full max-lg:hidden">
-                                <SearchfieldComponent
-                                />
 
-                                <PLZinRadiusComponent
-                                />
+                        <form onSubmit={handleSearchOnSubmit} className="w-full">
+
+                            <div className="flex items-center justify-end lg:justify-between w-full max-lg:gap-4">
+                                <Link to="/">
+                                    <img src="/logo.svg" alt="Floh.store" className="mt-2 "/>
+                                </Link>
+                                <div className="flex items-center h-full max-lg:hidden">
+                                    <SearchfieldComponent
+                                    />
+
+                                    <PLZinRadiusComponent
+                                    />
+                                </div>
+                                <button
+                                    className="mx-4 2xl:-ml-16 w-40 h-[44px] max-lg:hidden flex items-center justify-center px-4 flex shadow-sm flex-row items-center justify-center max-lg:text-sm text-center text-whitesmoke rounded-lg bg-emerald hover:bg-springgreen hover:text-jet transition-all"
+                                    type="submit">Floh finden!
+                                </button>
+                                <div className="flex lg:gap-4 max-lg:justify-center max-lg:mx-auto max-lg:w-full">
+                                    <LinkButtonComponent
+                                        text="Floh erstellen"
+                                        additionalClasses={
+                                            login
+                                                ? "bg-jet max-lg:h-[40px] h-[44px] px-2 lg:w-80 mr-4 max-lg:w-full"
+                                                : "bg-jet max-lg:h-[40px] h-[44px] px-2 lg:w-40 max-lg:w-full"
+                                        }
+                                        link="/products/add"
+                                    />
+                                    <LinkButtonComponent
+                                        text={login ? "Angemeldet " : "Login / Registrieren"}
+                                        additionalClasses={
+                                            login
+                                                ? "hidden"
+                                                : "max-lg:hidden bg-jet h-[44px] px-2 lg:w-40 lg:mr-4"
+                                        }
+                                        link="/profile/signin"
+                                    />
+                                </div>
+                                <NavComponent/>
                             </div>
-                            <button
-                                className="mx-4 2xl:-ml-16 w-40 h-[44px] max-lg:hidden flex items-center justify-center px-4 flex shadow-sm flex-row items-center justify-center max-lg:text-sm text-center text-whitesmoke rounded-lg bg-emerald hover:bg-springgreen transition-all"
-                                type="submit">Floh finden!
-                            </button>
-                            <div className="flex lg:gap-4 max-lg:justify-center max-lg:mx-auto max-lg:w-full">
-                                <LinkButtonComponent
-                                    text="Floh erstellen"
-                                    additionalClasses={
-                                        login
-                                            ? "bg-jet max-lg:h-[40px] h-[44px] px-2 lg:w-80 mr-4 max-lg:w-full"
-                                            : "bg-jet max-lg:h-[40px] h-[44px] px-2 lg:w-40 max-lg:w-full"
-                                    }
-                                    link="/products/add"
-                                />
-                                <LinkButtonComponent
-                                    text={login ? "Angemeldet " : "Login / Registrieren"}
-                                    additionalClasses={
-                                        login
-                                            ? "hidden"
-                                            : "max-lg:hidden bg-jet h-[44px] px-2 lg:w-40 lg:mr-4"
-                                    }
-                                    link="/profile/signin"
-                                />
-                            </div>
-                            <NavComponent/>
                             <div className="lg:hidden flex mt-2">
                                 <SearchfieldComponent
                                 />
                                 <button
-                                    className="ml-4 h-[44px] flex items-center justify-center px-4 flex shadow-sm flex-row items-center justify-center max-lg:text-sm text-center text-whitesmoke rounded-lg max-lg:w-4/12 bg-emerald hover:bg-springgreen transition-all"
+                                    className="ml-4 h-[44px] flex items-center justify-center px-4 flex shadow-sm flex-row items-center justify-center max-lg:text-sm text-center text-whitesmoke rounded-lg max-lg:w-4/12 bg-emerald hover:bg-springgreen hover:text-jet transition-all"
                                     type="submit">Floh finden!
                                 </button>
                             </div>

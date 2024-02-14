@@ -74,7 +74,7 @@ export const ProductSectionComponent = () => {
     return (
         <div className="">
             <div className="container mx-auto">
-                <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">Neue Produkte</h2>
+                <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-semibold">Neue Produkte</h2>
                 <div className="relative w-full bg-emerald drop-shadow-lg lg:rounded-lg p-4 lg:p-8 items-center">
                     <div className="flex gap-2.5 md:gap-4 lg:gap-6 justify-center lg:justify-between">
                         {products

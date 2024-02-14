@@ -28,7 +28,7 @@ export function SearchfieldComponent() {
                     name="search"
                     id="search"
                     onChange={handleSearchQueryChange}
-                    className="max-md:rounded-md flex grow rounded-l-lg py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
+                    className="lg:max-2xl:ml-4 max-md:rounded-md flex grow rounded-l-lg py-2.5 pl-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald sm:text-sm sm:leading-6"
                     placeholder="Was suchst du ?"
                 />
                 <select

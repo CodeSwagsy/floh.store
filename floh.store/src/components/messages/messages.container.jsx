@@ -45,7 +45,7 @@ function MessagesComponent({ messages, socket, setActiveChat, setShowChat }) {
   return (
     <>
       <div className="container mx-auto">
-        <h6 className="text-lg font-bold mb-6">Nachrichten</h6>
+        <h6 className="text-lg font-semibold mb-6">Nachrichten</h6>
         {conversations ? (
           <>
             {conversations.map((con, i) => (
