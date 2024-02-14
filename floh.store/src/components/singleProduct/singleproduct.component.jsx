@@ -79,7 +79,7 @@ export function SingleProductComponent({ socket, users, setMessages }) {
     fetchProduct();
     if (login) {
       setDisableButton(false);
-      setDisabledClasses("bg-emerald cursor-pointer hover:bg-springgreen");
+      setDisabledClasses("bg-emerald cursor-pointer hover:bg-springgreen hover:text-jet");
     } else {
       setDisableButton(true);
       setDisabledClasses("bg-gray-400 cursor-default");
@@ -232,6 +232,7 @@ export function SingleProductComponent({ socket, users, setMessages }) {
                     </Link>
                   </button>
                 </div>
+
 
                 <div className="">
                   <div className="flex gap-4">
