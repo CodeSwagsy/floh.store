@@ -168,7 +168,7 @@ export function AddProductComponent() {
                                                           size="large" height="height"/></Link>
                         </>
                     ) : (<>
-                        <h1 className="text-3xl font-bold mb-4 lg:mb-8 text-center border-b pb-4 lg:pb-8">
+                        <h1 className="text-3xl font-semibold mb-4 lg:mb-8 text-center border-b pb-4 lg:pb-8">
                             Erstelle deine Anzeige!
                         </h1>
                         <form className="space-y-8" onSubmit={handleSubmit}>
