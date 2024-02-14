@@ -71,10 +71,6 @@ function App() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   console.log("messages", messages);
-  // }, [messages]);
-
   const router = createRouter(
     socket,
     users,
