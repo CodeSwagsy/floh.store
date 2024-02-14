@@ -140,7 +140,7 @@ export function HeaderComponent() {
             <div className="container mx-auto bg-whitesmoke mb-2 lg:mb-4">
                 <div className="flex flex-row items-center justify-between lg:gap-8 2xl:gap-16 mt-2 lg:mt-4 max-lg:gap-4">
                     <Link to="/">
-                        <img src="/logo.svg" alt="Floh.store" className="mt-2"/>
+                        <img src="/LOGO.svg" alt="Floh.store" className="mt-2"/>
                     </Link>
                     <form onSubmit={handleSearchOnSubmit} className="flex items-center justify-end lg:justify-between w-full max-lg:gap-4">
                         <div className="flex items-center h-full max-lg:hidden">
