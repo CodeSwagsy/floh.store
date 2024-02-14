@@ -1,5 +1,15 @@
 {
   "dependencies": {
     "@material-tailwind/react": "^2.1.8"
-  }
+  },
+  "name": "floh.store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
