@@ -26,7 +26,8 @@ export function AboutUsComponent() {
           <p className="my-4 text-lg text-justify">
             Unser Technologie-Stack mit{" "}
             <span className="font-bold">
-              mongoDB, express.js, React, node.js, HTML und Tailwind CSS
+              MongoDB, Express.js, React, Node.js, WebSocket, Cloud storage,
+              SMTP, HTML und Tailwind CSS
             </span>{" "}
             repräsentiert den breiten Horizont, den wir während des Kurses
             abgedeckt haben.
