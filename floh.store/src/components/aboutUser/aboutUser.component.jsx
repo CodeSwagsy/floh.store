@@ -52,9 +52,11 @@ function AboutUser({ user }) {
               </svg>
 
               <p className="px-2 text-sm">
-                {user?.info?.rating.reduce((a, b) => a + b) /
-                  user?.info?.rating.length +
-                  " / 5"}
+                {user?.info?.rating.length !== 0
+                  ? user?.info?.rating.reduce((a, b) => a + b) /
+                      user?.info?.rating.length +
+                    " / 5"
+                  : "keine Bewertung"}
               </p>
             </div>
           </div>

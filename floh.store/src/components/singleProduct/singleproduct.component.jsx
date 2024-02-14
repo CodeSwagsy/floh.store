@@ -79,7 +79,9 @@ export function SingleProductComponent({ socket, users, setMessages }) {
     fetchProduct();
     if (login) {
       setDisableButton(false);
-      setDisabledClasses("bg-emerald cursor-pointer hover:bg-springgreen hover:text-jet");
+      setDisabledClasses(
+        "bg-emerald cursor-pointer hover:bg-springgreen hover:text-jet"
+      );
     } else {
       setDisableButton(true);
       setDisabledClasses("bg-gray-400 cursor-default");
@@ -226,13 +228,11 @@ export function SingleProductComponent({ socket, users, setMessages }) {
                     )}
                   </div>
                   <button className="lg:my-2 flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-jet hover:bg-springgreen transition-all w-full lg:w-1/2 lg:px-2 py-1 py-2.5 max-md:text-sm xl:text-xl">
-                    {/* <Link>Alle Anzeigen des Verkäufers</Link> */}
                     <Link to={`/profile/user-products/${product.owner}`}>
                       Alle Anzeigen des Verkäufers
                     </Link>
                   </button>
                 </div>
-
 
                 <div className="">
                   <div className="flex gap-4">
