@@ -22,7 +22,7 @@ export const ProductCard = ({ product }) => {
   useEffect(() => {
     if (login) {
       setDisableButton(false);
-      setDisabledClasses("bg-emerald cursor-pointer hover:bg-springgreen");
+      setDisabledClasses("bg-emerald cursor-pointer hover:bg-springgreen hover:text-jet");
     } else {
       setDisableButton(true);
       setDisabledClasses("bg-gray-400 cursor-default");
