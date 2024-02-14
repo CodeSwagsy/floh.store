@@ -64,13 +64,13 @@ export const AllProductsPage = () => {
 
     return (
         <div className="container mx-auto my-8 mt-16">
-            <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">{categoryTitle}</h2>
+            <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-semibold">{categoryTitle}</h2>
             {loading ? (
                 <LoaderComponent/>
             ) : (
                 (!Array.isArray(products) || products.length === 0) ? (
                     <>
-                        <h1 className="text-black font-bold text-xl">LOGIKFAIL! {queryError}</h1>
+                        <h1 className="text-black font-semibold text-xl">{queryError}</h1>
                     </>
                 ) : (
                     <>

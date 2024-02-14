@@ -59,7 +59,7 @@ export const RandomBannerComponent = () => {
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-bold">
+      <h2 className="text-2xl lg:text-4xl my-4 lg:mt-12 lg:mb-8 text-emerald font-semibold">
         Entdecke die Vielfalt
       </h2>
       <div className="bg-whitesmoke max-w-full max-lg:mx-2 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 transition-all">
