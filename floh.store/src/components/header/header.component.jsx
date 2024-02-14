@@ -33,7 +33,6 @@ export function HeaderComponent() {
         e.preventDefault();
         updateStartSearch(true)
         updateQueryError("")
-        console.log("HANDLER CLICKED")
         try {
             let url;
             if (searchCategory && searchCategory !== "Alle Produkte") {
@@ -169,7 +168,7 @@ export function HeaderComponent() {
 
                             <div className="flex items-center justify-end lg:justify-between w-full max-lg:gap-4">
                                 <Link to="/">
-                                    <img src="/logo.svg" alt="Floh.store" className="mt-2 "/>
+                                    <img src="/FLOH.STORE.svg" alt="Floh.store" className="mt-2 "/>
                                 </Link>
                                 <div className="flex items-center h-full max-lg:hidden">
                                     <SearchfieldComponent
