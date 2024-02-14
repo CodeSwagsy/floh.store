@@ -20,6 +20,7 @@ function ChatComponent({
   const { updateCounter } = useData();
   const sendBtn = useRef(null);
   const [buy, setBuy] = useState(false);
+  const [rated, setRated] = useState(false);
 
   useEffect(() => {
     let counter = 0;
@@ -28,7 +29,6 @@ function ChatComponent({
   }, [messages]);
 
   useEffect(() => {
-    // console.log("buy", buy);
     if (buy) sendBtn.current && sendBtn.current.click();
   }, [buy]);
 
@@ -158,7 +158,7 @@ function ChatComponent({
   }
 
   async function sendRating(rating) {
-    if (!rating || isNaN(rating)) return;
+    if (!rating || isNaN(rating) || rating > 5 || rating < 1) return;
     const res = await fetch(
       `${import.meta.env.VITE_API}/user/update/rating/${
         product.owner
@@ -174,9 +174,13 @@ function ChatComponent({
       }
     );
     const data = await res.json();
-    console.log(data);
-    setBuy(false);
-    // setRated(true)
+    console.log(data.message);
+    setRated(true);
+
+    setTimeout(() => {
+      setRated(false);
+      setBuy(false);
+    }, 5000);
   }
 
   return (
@@ -263,22 +267,44 @@ function ChatComponent({
             {buy && socket.userID.length === 24 ? (
               /* only registered user allow rated! */
               <div className="flex items-center flex-col py-2 bg-zinc-700 text-white">
-                <p>Bewerte den Verkäufer:</p>
-                <div className="flex mt-2">
-                  {[1, 2, 3, 4, 5].map((index) => (
+                {!rated ? (
+                  <>
+                    <p>Bewerte den Verkäufer:</p>
+                    <div className="flex mt-2 mb-1">
+                      {[1, 2, 3, 4, 5].map((index) => (
+                        <svg
+                          key={index}
+                          onClick={() => sendRating(index)}
+                          className="w-5 h-5 ms-1 text-gray-100 hover:text-yellow-300 hover:cursor-pointer relative"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 22 20"
+                        >
+                          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p>Bewertung gespeichert!</p>
                     <svg
-                      key={index}
-                      onClick={() => sendRating(index)}
-                      className="w-4 h-4 ms-1 text-gray-100 hover:text-yellow-300 hover:cursor-pointer"
-                      aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 22 20"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="springgreen"
+                      className="w-6 h-6 mt-2"
                     >
-                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
                     </svg>
-                  ))}
-                </div>
+                  </>
+                )}
               </div>
             ) : (
               ""

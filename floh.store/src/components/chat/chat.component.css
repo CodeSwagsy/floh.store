@@ -106,3 +106,10 @@
 .i-own-chat-buy-btn:hover {
   cursor: pointer;
 }
+
+.i-own-chat-rating {
+  position: absolute;
+  font-size: x-small;
+  text-align: center;
+  color: black;
+}
