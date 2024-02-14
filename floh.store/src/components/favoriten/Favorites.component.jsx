@@ -116,17 +116,17 @@ export const FavoriteComponent = () => {
               filteredProducts.map((product) => (
                 <div
                   key={product._id}
-                  className="bg-gray-100 p-2 lg:p-4 h-[550px] lg:h-[600px] border rounded-lg hover:shadow-md mb-4 flex flex-col justify-between hover:shadow-md transition-all cursor-pointer"
+                  className="bg-gray-100 p-2 lg:p-4 border border-gray-300 rounded-lg hover:shadow-md flex flex-col justify-between hover:shadow-md transition-all cursor-pointer"
                   onClick={(e) => handleLinkClick(e, product)}
                 >
-                  <div className="flex justify-center mb-2 h-[300px]">
+                  <div className="flex justify-center mb-2 h-[225px]">
                     <img
                       src={product.images[0]}
                       alt={product.title}
                       className="object-cover rounded h-full"
                     />
                   </div>
-                  <div className="text-center flex flex-col items-center lg:h-3/5 justify-between">
+                  <div className="grow text-center flex flex-col items-center justify-between">
                     <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2 line-clamp-1">
                       {product.title}
                     </h3>
