@@ -19,13 +19,18 @@ export function HeaderComponent() {
         updateQueryError,
         updateSearchQuery,
         updateSearchCategory,
-        fetchZips
+        updateRadius,
+        updatePostalCode,
+        fetchZips,
+        updateStartSearch
     } = useData();
 
 
     const handleSearchOnSubmit = async (e) => {
         e.preventDefault();
-        console.log("handler clicked")
+        updateStartSearch(true)
+        updateQueryError("")
+        console.log("HANDLER CLICKED")
         try {
             let url;
             if (searchCategory && searchCategory !== "Alle Produkte") {
@@ -40,26 +45,26 @@ export function HeaderComponent() {
                 },
             });
             const data = await response.json();
+
             if (data.code === 200) {
+                // SUCHE MIT SEARCHQUERY
                 if (searchQuery !== "") {
-                    console.log("QUERY ROUTE")
                     const filteredProducts = data.products.filter((product) =>
                         product.title.toLowerCase().includes(searchQuery.toLowerCase())
                     );
                     if (postalCode !== null && postalCode.length > 0) {
                         try {
-                            console.log("QUERY ROUTE");
                             const zipResult = await fetchZips(postalCode, radius);
                             console.log("Zipresult:", zipResult);
                             const zipFilteredProducts = filteredProducts.filter((product) =>
                                 zipResult && zipResult.includes(product.location.zip)
                             );
-                            console.log("SubmitHandler: Gesuchter Postalcode:", postalCode);
-                            console.log("SubmitHandler: Gesuchter Radius:", radius);
                             console.log("SubmitHandler: Gefilterte Produkte:", filteredProducts);
                             console.log("SubmitHandler: Zip Gefilterte Produkte:", zipFilteredProducts);
                             updateSearchedProducts(zipFilteredProducts);
                             updateSearchCategory("");
+                            updateRadius("")
+                            updatePostalCode("")
                             navigate(`/products/gallery/`);
                         } catch (error) {
                             console.error("Fehler beim Fetchen der ZIP-Codes:", error);
@@ -67,39 +72,40 @@ export function HeaderComponent() {
                     } else {
                         updateSearchedProducts(filteredProducts);
                         updateSearchCategory("");
+                        updateRadius("")
+                        updatePostalCode("")
                         if (searchedProducts.length === 0) {
                             updateQueryError("Keine Produkte gefunden");
                         }
                         navigate(`/products/gallery/`);
                     }
                 } else if (searchCategory === "" || searchCategory === "Alle Produkte") {
+                    // SUCHE OHNE SEARCHQUERY MIT ALLEN PRODUKTEN
                     if (postalCode !== null && postalCode.length > 0) {
                         try {
                             const zipResult = await fetchZips(postalCode, radius);
-                            console.log("Zipresult:", zipResult);
                             const zipFilteredProducts = data.products.filter((product) =>
                                 zipResult && zipResult.includes(product.location.zip)
                             );
-                            console.log("SubmitHandler: Gesuchter Postalcode:", postalCode);
-                            console.log("SubmitHandler: Gesuchter Radius:", radius);
                             console.log("SubmitHandler: Zip Gefilterte Produkte:", zipFilteredProducts);
                             updateSearchedProducts(zipFilteredProducts);
                             updateSearchCategory("");
+                            updateRadius("")
+                            updatePostalCode("")
                             navigate(`/products/gallery/`);
                         } catch (error) {
                             console.error("Fehler beim Fetchen der ZIP-Codes:", error);
                         }
                     } else {
-                        console.log("ALLE PRODUKTE ELSE", data)
                         updateSearchedProducts(data.products);
                     }
                     updateSearchQuery("");
                     updateSearchCategory("");
-
-
+                    updateRadius("")
+                    updatePostalCode("")
                     navigate(`/products/gallery/`);
                 } else if (searchCategory !== 'kategorien') {
-                    console.log("CATEGORY ROUTE")
+                    // SUCHE OHNE SEARCHQUERY MIT KATEGORIE
                     if (postalCode !== null && postalCode.length > 0) {
                         try {
                             const zipResult = await fetchZips(postalCode, radius);
@@ -107,11 +113,11 @@ export function HeaderComponent() {
                             const zipFilteredProducts = data.products.filter((product) =>
                                 zipResult && zipResult.includes(product.location.zip)
                             );
-                            console.log("SubmitHandler: Gesuchter Postalcode:", postalCode);
-                            console.log("SubmitHandler: Gesuchter Radius:", radius);
                             console.log("SubmitHandler: Zip Gefilterte Produkte:", zipFilteredProducts);
                             updateSearchedProducts(zipFilteredProducts);
                             updateSearchCategory("");
+                            updateRadius("")
+                            updatePostalCode("")
                             navigate(`/products/gallery/category/${searchCategory}`);
                         } catch (error) {
                             console.error("Fehler beim Fetchen der ZIP-Codes:", error);
@@ -120,6 +126,8 @@ export function HeaderComponent() {
                         console.log("CATEGORY ELSE", data)
                         updateSearchedProducts(data.products);
                         updateSearchQuery("");
+                        updateRadius("")
+                        updatePostalCode("")
                         if (searchedProducts.length === 0) {
                             updateQueryError("Keine Produkte gefunden");
                         }

@@ -9,7 +9,10 @@ export const AllProductsPage = () => {
     const [products, setProducts] = useState([]);
     const {
         searchedProducts,
-        queryError
+        queryError,
+        updateSearchedProducts,
+        searchQuery,
+        startSearch,
     } = useData()
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -32,6 +35,32 @@ export const AllProductsPage = () => {
             currentPage * productsPerPage
         )
         : [];
+
+    useEffect(() => {
+        if (!startSearch) {
+            const fetchData = async () => {
+                if (products.length === 0) {
+                    console.log("useEffect getriggert")
+                    try {
+                        const response = await fetch(`${import.meta.env.VITE_API}/product/all`, {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        });
+                        const data = await response.json();
+                        if (data.code === 200) {
+                            updateSearchedProducts(data.products);
+                        }
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+            };
+
+            fetchData();
+        }
+    }, []);
 
     return (
         <div className="container mx-auto my-8 mt-16">
@@ -57,10 +86,10 @@ export const AllProductsPage = () => {
                         <div className="flex items-center justify-center mt-4">
                             <button
                                 onClick={() => paginate(currentPage - 1)}
-                                className="px-4 py-2 mr-2 bg-green-500 text-white rounded"
+                                className={`px-4 py-2 mr-2 ${currentPage === 1 ? 'bg-gray-300 text-gray-500' : 'bg-emerald text-white hover:bg-springgreen transition-all'} rounded `}
                                 disabled={currentPage === 1}
                             >
-                                &larr; Prev
+                                &larr; Vorherige
                             </button>
                             {Array.from(
                                 {length: Math.ceil(products.length / productsPerPage)},
@@ -68,9 +97,9 @@ export const AllProductsPage = () => {
                                     <button
                                         key={index + 1}
                                         onClick={() => paginate(index + 1)}
-                                        className={`px-4 py-2 mx-1 focus:outline-none ${currentPage === index + 1
-                                            ? "bg-green-500 text-white"
-                                            : "bg-gray-200 text-gray-700"
+                                        className={`px-4 py-2 mx-1 focus:outline-none hover:bg-springgreen  transition-all ${currentPage === index + 1
+                                            ? "bg-emerald text-white"
+                                            : "bg-gray-300 text-gray-500"
                                         } rounded`}
                                     >
                                         {index + 1}
@@ -79,12 +108,12 @@ export const AllProductsPage = () => {
                             )}
                             <button
                                 onClick={() => paginate(currentPage + 1)}
-                                className="px-4 py-2 ml-2 bg-green-500 text-white rounded"
+                                className={`px-4 py-2 ml-2 ${currentPage === Math.ceil(products.length / productsPerPage) ? 'bg-gray-300 text-gray-500' : 'bg-emerald text-white hover:bg-springgreen transition-all'} rounded `}
                                 disabled={
                                     currentPage === Math.ceil(products.length / productsPerPage)
                                 }
                             >
-                                Next &rarr;
+                                Nächste &rarr;
                             </button>
                         </div>
                     </>

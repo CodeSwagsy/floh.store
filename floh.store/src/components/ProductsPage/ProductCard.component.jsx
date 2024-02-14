@@ -115,10 +115,10 @@ export const ProductCard = ({ product }) => {
         <></>
       ) : (
         <div
-          className="bg-gray-100 p-2 lg:p-4 border rounded-lg hover:shadow-md mb-4 flex flex-col justify-between hover:shadow-md transition-all cursor-pointer"
+          className="bg-gray-100 p-2 lg:p-4 border border-gray-300 rounded-lg hover:shadow-md flex flex-col justify-between hover:shadow-md transition-all cursor-pointer"
           onClick={handleLinkClick}
         >
-          <div className="flex justify-center mb-2 relative">
+          <div className="flex justify-center relative mb-2 h-[225px]">
             <div className="i-own-product-status">
               {status !== "active" ? status.toUpperCase() : ""}
             </div>
@@ -129,16 +129,16 @@ export const ProductCard = ({ product }) => {
                   : "https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Kein%20Bild%20vorhanden%20%3C%3Apepw%3A989410572514758676%3E"
               }
               alt={title}
-              className={`object-cover rounded h-full h-[250px] ${
-                status !== "active" ? "i-own-product-status-img" : ""
+              className={`object-cover rounded h-full ${
+                status !== "active" ? "opacity-50" : ""
               }`}
             />
           </div>
-          <div className="text-center flex flex-col items-center lg:h-3/5 justify-between">
+          <div className="text-center flex flex-col items-center grow justify-between">
             <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-2 line-clamp-1">
               {title}
             </h3>
-            <p className="text-sm md:text-base lg:text-lg xl:text-xl mb-2 text-emerald font-semibold">{`${productType}`}</p>
+            <p className="md:text-base lg:text-lg xl:text-xl mb-2 text-emerald font-semibold">{`${productType}`}</p>
             <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Kategorie: ${category}`}</p>
             <p className="text-sm md:text-base lg:text-lg xl:text-xl lg:mb-2">{`Zustand: ${condition}`}</p>
 
