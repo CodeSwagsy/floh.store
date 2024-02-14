@@ -86,7 +86,7 @@ export const AllProductsPage = () => {
                         <div className="flex items-center justify-center mt-4">
                             <button
                                 onClick={() => paginate(currentPage - 1)}
-                                className={`px-4 py-2 mr-2 ${currentPage === 1 ? 'bg-gray-300 text-gray-500' : 'bg-emerald text-white hover:bg-springgreen transition-all'} rounded `}
+                                className={`px-4 py-2 mr-2 ${currentPage === 1 ? 'bg-gray-300 text-gray-500' : 'bg-emerald text-white hover:bg-springgreen hover:text-jet transition-all'} rounded `}
                                 disabled={currentPage === 1}
                             >
                                 &larr; Vorherige
@@ -97,7 +97,7 @@ export const AllProductsPage = () => {
                                     <button
                                         key={index + 1}
                                         onClick={() => paginate(index + 1)}
-                                        className={`px-4 py-2 mx-1 focus:outline-none hover:bg-springgreen  transition-all ${currentPage === index + 1
+                                        className={`px-4 py-2 mx-1 focus:outline-none hover:bg-springgreen hover:text-jet transition-all ${currentPage === index + 1
                                             ? "bg-emerald text-white"
                                             : "bg-gray-300 text-gray-500"
                                         } rounded`}
@@ -108,7 +108,7 @@ export const AllProductsPage = () => {
                             )}
                             <button
                                 onClick={() => paginate(currentPage + 1)}
-                                className={`px-4 py-2 ml-2 ${currentPage === Math.ceil(products.length / productsPerPage) ? 'bg-gray-300 text-gray-500' : 'bg-emerald text-white hover:bg-springgreen transition-all'} rounded `}
+                                className={`px-4 py-2 ml-2 ${currentPage === Math.ceil(products.length / productsPerPage) ? 'bg-gray-300 text-gray-500' : 'bg-emerald text-white hover:bg-springgreen hover:text-jet transition-all'} rounded `}
                                 disabled={
                                     currentPage === Math.ceil(products.length / productsPerPage)
                                 }
