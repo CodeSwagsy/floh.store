@@ -1,10 +1,6 @@
-import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 function AboutUser({ user }) {
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
   return (
     <>
       <div className="max-w-md bg-white shadow-lg rounded-lg overflow-hidden mt-8 border border-gray-300 m-auto flex flex-col">

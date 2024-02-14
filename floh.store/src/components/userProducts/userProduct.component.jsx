@@ -6,7 +6,7 @@ import AboutUser from "../aboutUser/aboutUser.component.jsx";
 
 function UserProductsComponent() {
   const [products, setProducts] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
   const { id } = useParams();
 
