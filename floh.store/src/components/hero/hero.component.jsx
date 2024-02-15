@@ -36,8 +36,7 @@ export function HeroComponent() {
               spantxt="FLOH"
               size="large"
               height="height"
-             
-              
+              additionalclasses=""
             />
           </Link>
           <p className="text-whitesmoke text-center">

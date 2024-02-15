@@ -51,7 +51,7 @@ export function ErrorCodeComponent() {
               Noch kein mitglied?{" "}
               <Link
                 to="/profile/register"
-                className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                className="font-semibold  hover:text-jet text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
               >
                 Jetzt Registrieren!
               </Link>
