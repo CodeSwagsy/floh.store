@@ -55,7 +55,6 @@ export function AddProductComponent() {
         images: [],
     });
 
-
     async function uploadToCloud(file) {
         const formData = new FormData();
         formData.append("file", file);
@@ -69,7 +68,6 @@ export function AddProductComponent() {
         const data = await res.json();
         return data.secure_url;
     }
-
 
     const handleSubmit = async (e) => {
         console.log(credentials)
