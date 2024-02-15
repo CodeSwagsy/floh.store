@@ -108,8 +108,8 @@ export function AboutUsComponent() {
                   className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify"
                   style={{ wordSpacing: "-0.3em" }}
                 >
-                  Hallo Ezzulddin, 28, Fullstack Developer bei Floh.Store.
-                  Verantwortlich für Frontend-Design,Seitenfunktionalitätund
+                  Hallo Ezzulddin, Fullstack Developer bei Floh.Store.
+                  Verantwortlich für Frontend-Design, Seitenfunktionalität und
                   Produktoptimierung.
                 </p>
               </div>
