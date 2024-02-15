@@ -68,11 +68,13 @@ export function AboutUsComponent() {
               />
               <div className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
                 <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
-                  Frontend Dev
+                  Fullstack Developer
                 </h2>
                 <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
-                  Hallo ich bin Alper, 37 Jahre alt und Frontend Dev der seite
-                  Floh.Store.
+                  Hallo, ich bin Alper, und Frontend Developer der Seite
+                  Floh.Store. Ich arbeite leidenschaftlich gerne an der
+                  Gestaltung und Umsetzung des Designs, um eine ansprechende
+                  Benutzererfahrung zu schaffen.
                 </p>
               </div>
             </div>
