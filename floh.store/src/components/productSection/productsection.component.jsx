@@ -20,7 +20,12 @@ export const ProductSectionComponent = () => {
                 );
                 const data = await response.json();
                 if (data.code === 200) {
-                    setProducts(data.products);
+                    const sortedArray = data.products.sort((a, b) => {
+                        const dateA = new Date(a.createdAt);
+                        const dateB = new Date(b.createdAt);
+                        return dateB - dateA;
+                    });
+                    setProducts(sortedArray);
                 } else {
                     console.error("Error fetching products:", data.message);
                 }
@@ -30,6 +35,7 @@ export const ProductSectionComponent = () => {
         };
         fetchProducts();
     }, []);
+
 
     const handleResize = () => {
         const screenWidth = window.innerWidth;
@@ -44,7 +50,6 @@ export const ProductSectionComponent = () => {
             setVisibleProducts(2);
         }
 
-        // Ensure currentIndex is within bounds
         setCurrentIndex((prevIndex) =>
             Math.min(prevIndex, Math.max(0, products.length - visibleProducts))
         );

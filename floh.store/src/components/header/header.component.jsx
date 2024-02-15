@@ -51,6 +51,7 @@ export function HeaderComponent() {
             if (data.code === 200) {
                 // SUCHE MIT SEARCHQUERY
                 if (searchQuery !== "") {
+                    console.log("Querysuche")
                     const filteredProducts = data.products.filter((product) =>
                         product.title.toLowerCase().includes(searchQuery.toLowerCase())
                     );
@@ -67,6 +68,7 @@ export function HeaderComponent() {
                             updateSearchCategory("");
                             updateRadius("")
                             updatePostalCode("")
+                            updateSearchQuery("");
                             setLoading(false)
                             navigate(`/products/gallery/`);
                         } catch (error) {
@@ -77,6 +79,7 @@ export function HeaderComponent() {
                         updateSearchCategory("");
                         updateRadius("")
                         updatePostalCode("")
+                        updateSearchQuery("");
                         if (searchedProducts.length === 0) {
                             updateQueryError("Keine Produkte gefunden");
                         }
@@ -84,6 +87,7 @@ export function HeaderComponent() {
                         navigate(`/products/gallery/`);
                     }
                 } else if (searchCategory === "" || searchCategory === "Alle Produkte") {
+                    console.log("Alle suche")
                     // SUCHE OHNE SEARCHQUERY MIT ALLEN PRODUKTEN
                     if (postalCode !== null && postalCode.length > 0) {
                         try {
@@ -96,6 +100,7 @@ export function HeaderComponent() {
                             updateSearchCategory("");
                             updateRadius("")
                             updatePostalCode("")
+                            updateSearchQuery("");
                             setLoading(false)
                             navigate(`/products/gallery/`);
                         } catch (error) {
@@ -111,6 +116,7 @@ export function HeaderComponent() {
                     setLoading(false)
                     navigate(`/products/gallery/`);
                 } else if (searchCategory !== 'kategorien') {
+                    console.log("Kategory suche")
                     // SUCHE OHNE SEARCHQUERY MIT KATEGORIE
                     if (postalCode !== null && postalCode.length > 0) {
                         try {
@@ -124,6 +130,7 @@ export function HeaderComponent() {
                             updateSearchCategory("");
                             updateRadius("")
                             updatePostalCode("")
+                            updateSearchQuery("");
                             setLoading(false)
                             navigate(`/products/gallery/category/${searchCategory}`);
                         } catch (error) {
@@ -132,9 +139,10 @@ export function HeaderComponent() {
                     } else {
                         console.log("CATEGORY ELSE", data)
                         updateSearchedProducts(data.products);
-                        updateSearchQuery("");
+                        updateSearchCategory("");
                         updateRadius("")
                         updatePostalCode("")
+                        updateSearchQuery("");
                         if (searchedProducts.length === 0) {
                             updateQueryError("Keine Produkte gefunden");
                         }
@@ -142,8 +150,15 @@ export function HeaderComponent() {
                         navigate(`/products/gallery/category/${searchCategory}`);
                     }
                 }
+            } else if (data.error.message.includes("No items found")) {
+                console.log("ELSE IF SCHLEIFE NOT FOUND")
+                updateQueryError("Keine Produkte gefunden");
+                updateSearchedProducts([])
+                setLoading(false)
+                navigate(`/products/gallery/`);
             } else {
                 updateQueryError("Keine Produkte gefunden");
+                updateSearchedProducts([])
                 setLoading(false)
                 navigate(`/products/gallery/`);
             }
