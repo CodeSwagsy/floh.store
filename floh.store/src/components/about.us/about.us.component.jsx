@@ -97,6 +97,27 @@ export function AboutUsComponent() {
             <div className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
               <img
                 className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
+                src="/ezz.png"
+                alt="ezz"
+              />
+              <div className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+                <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
+                  Fullstack Developer
+                </h2>
+                <p
+                  className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify"
+                  style={{ wordSpacing: "-0.3em" }}
+                >
+                  Hallo Ezzulddin, 28, Fullstack Developer bei Floh.Store.
+                  Verantwortlich für Frontend-Design,Seitenfunktionalitätund
+                  Produktoptimierung.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
+              <img
+                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                 src="/Albertimage.JPG"
                 alt="Albert"
               />
@@ -129,23 +150,6 @@ export function AboutUsComponent() {
                   sowohl für das Backend als auch für einen Teil der
                   Frontend-Funktionalität (wie Chat, Anzeigenverwaltung etc.)
                   zuständig.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
-              <img
-                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
-                src="/alper.png"
-                alt="Alper"
-              />
-              <div className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
-                <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
-                  Frontend Dev
-                </h2>
-                <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
-                  Hallo ich bin Alper, 37 Jahre alt und Frontend Dev der seite
-                  Floh.Store.
                 </p>
               </div>
             </div>
