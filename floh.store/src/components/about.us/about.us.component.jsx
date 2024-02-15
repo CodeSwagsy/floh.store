@@ -88,8 +88,8 @@ export function AboutUsComponent() {
                   Fullstack Developer
                 </h2>
                 <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
-                  Hey ich bin Manuel, 37 Jahre alt und meine Hauptaufgaben für
-                  Floh.Store sind Frontend & die Funktionalität der Seiten.
+                  Hello zusammen! Ich bin Manuel und meine Hauptaufgaben für
+                  Floh.Store sind das Frontend & die Funktionalität der Seiten.
                 </p>
               </div>
             </div>
