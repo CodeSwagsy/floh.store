@@ -114,10 +114,10 @@ export function RegisterComponent() {
                             <h2 className="text-center text-2xl text-jet font-bold leading-9 tracking-tight">
                                 Erfolgreich registriert!
                             </h2>
-                            <p className="text-center text-emerald py-4 ">Checke jetzt deine E-Mails und bestätige deine
+                            <p className="text-center text-emerald py-4">Checke jetzt deine E-Mails und bestätige deine
                                 Registrierung.</p>
                             <Link to="/"><ButtonComponent text="Zurück zur Startseite"
-                                                          additionalclasses="flex items-center justify-center"
+                                                          additionalclasses="flex items-center justify-center w-full"
                                                           size="large" height="height"/></Link>
                         </>
                     ) : (<>

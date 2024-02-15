@@ -40,7 +40,6 @@ export const AllProductsPage = () => {
         if (!startSearch) {
             const fetchData = async () => {
                 if (products.length === 0) {
-                    console.log("useEffect getriggert")
                     try {
                         const response = await fetch(`${import.meta.env.VITE_API}/product/all`, {
                             method: "GET",
