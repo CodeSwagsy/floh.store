@@ -118,7 +118,7 @@ export const ProductCard = ({ product }) => {
           className="bg-gray-100 p-2 lg:p-4 border border-gray-300 rounded-lg hover:shadow-md flex flex-col justify-between hover:shadow-md transition-all cursor-pointer"
           onClick={handleLinkClick}
         >
-          <div className="flex justify-center relative mb-2 h-[225px]">
+          <div className="flex justify-center relative mb-2 h-[225px] overflow-hidden">
             <div className="i-own-product-status">
               {status !== "active" ? status.toUpperCase() : ""}
             </div>

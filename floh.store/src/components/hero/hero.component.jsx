@@ -33,7 +33,7 @@ export function HeroComponent() {
            <Link to="/products/gallery" className="w-full flex justify-center">
             <ButtonComponent
               text="Finde deinen "
-              spantxt="Floh"
+              spantxt="FLOH"
               size="large"
               height="height"
              

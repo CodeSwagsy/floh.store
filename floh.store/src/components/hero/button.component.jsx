@@ -17,7 +17,7 @@ export function ButtonComponent({
   return (
     <button type={buttonType} className={classes}>
       {text}
-      <span className="text-emerald group-hover:text-jet transition-all">
+      <span className="text-emerald group-hover:text-whitesmoke transition-all">
         {spantxt}
       </span>
       <span className="text-jet">.</span>
