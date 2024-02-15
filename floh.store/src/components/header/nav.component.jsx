@@ -15,7 +15,8 @@ export function NavComponent() {
     const {login, updateLogin} = useData();
     const navigate = useNavigate();
 
-    const handleLogout = async () => {
+    const handleLogout = async (e) => {
+        e.preventDefault()
         try {
             const response = await fetch(`${import.meta.env.VITE_API}/user/logout`, {
                 method: "POST",
@@ -30,7 +31,8 @@ export function NavComponent() {
                 updateLogin(false); // Aktualisieren Sie den Anmeldestatus
                 updateUserData(null); // Setzen Sie Benutzerdaten auf null
                 localStorage.removeItem("uid"); // Entfernen Sie die UID aus dem Local Storage
-                localStorage.removeItem("loginData"); // Optional: Entfernen Sie auch die Anmeldedaten mit dem Zeitstempel
+                localStorage.removeItem("loginData");
+                localStorage.removeItem("login");// Optional: Entfernen Sie auch die Anmeldedaten mit dem Zeitstempel
                 console.log("Logged out");
                 navigate("/");
             } else {
