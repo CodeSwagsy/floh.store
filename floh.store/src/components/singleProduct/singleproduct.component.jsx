@@ -172,7 +172,7 @@ export function SingleProductComponent({ socket, users, setMessages }) {
               </h2>
             </div>
             <div className="flex flex-col lg:flex-row justify-between lg:pb-4">
-              <div className="lg:w-6/12 relative">
+              <div className="lg:w-6/12 relative overflow-hidden">
                 <ImageComponent
                   images={product.images}
                   status={product?.status}

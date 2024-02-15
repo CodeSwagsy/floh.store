@@ -138,23 +138,17 @@ export function AddProductComponent() {
     }
 
     const onChangeHandler = (e) => {
-        const {name, value} = e.target;
-        if (name.includes(".")) {
-            const [parentKey, childKey] = name.split(".");
-            setCredentials((prevCredentials) => ({
-                ...prevCredentials,
-                [parentKey]: {
-                    ...prevCredentials[parentKey],
-                    [childKey]: value,
-                },
-            }));
-        } else {
-            setCredentials((prevCredentials) => ({
-                ...prevCredentials,
-                [name]: value,
-            }));
-        }
+        const { name, value } = e.target;
+
+        setCredentials((prevCredentials) => ({
+            ...prevCredentials,
+            [name]: value,
+        }));
     };
+
+
+
+
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center md:py-12 sm:px-1.5 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-[700px]">
@@ -164,7 +158,7 @@ export function AddProductComponent() {
                                 Deine Anzeige wurde erstellt!
                             </h2>
                             <Link to="/"><ButtonComponent text="Zurück zur Startseite"
-                                                          additionalclasses="flex items-center justify-center"
+                                                          additionalclasses="flex items-center justify-center w-full"
                                                           size="large" height="height"/></Link>
                         </>
                     ) : (<>
