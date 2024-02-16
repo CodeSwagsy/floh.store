@@ -2,25 +2,23 @@ import { ButtonComponent } from "./button.component.jsx";
 import { Link } from "react-router-dom";
 
 export function HeroComponent() {
-
   function getRandomImage() {
-    const mainLink = "https://res.cloudinary.com/djoadytrq/image/upload/";
     const arr = [
-      "v1707815618/flea-market-8_a333pb.webp",
-      "v1707815618/flea-market-4_alopdy.webp",
-      "v1707815618/flea-market-3_retwjo.webp",
-      "v1707815618/flea-market-11_kzqnho.webp",
-      "v1707815617/flea-market-7_wqguph.webp",
-      "v1707815617/flea-market-2_o70k2z.webp",
-      "v1707815616/flea-market-5_cyeaj9.webp",
-      "v1707815616/flea-market-9_yekxup.webp",
-      "v1707815615/flea-market-12_zbsgil.webp",
-      "v1707815615/flea-market-13_mfs84r.webp",
-      "v1707815614/flea-market-6_qfdk8f.webp",
-      "v1707815614/flea-market-14_myuvwy.webp",
+      "https://i.ibb.co/hYJsf2L/flea-market-13.webp",
+      "https://i.ibb.co/bP5xjd8/flea-market-9.webp",
+      "https://i.ibb.co/93s7dmM/flea-market-6.webp",
+      "https://i.ibb.co/803Sfjk/flea-market-14.webp",
+      "https://i.ibb.co/KWrQR3Z/flea-market-7.webp",
+      "https://i.ibb.co/31HrsGs/flea-market-12.webp",
+      "https://i.ibb.co/GkpR3GR/flea-market-5.webp",
+      "https://i.ibb.co/CWTx5xd/flea-market-2.webp",
+      "https://i.ibb.co/mbkLhc2/flea-market-11.webp",
+      "https://i.ibb.co/hcHnxgv/flea-market-3.webp",
+      "https://i.ibb.co/q7kxwZn/flea-market-4.webp",
+      "https://i.ibb.co/gZKcqVG/flea-market-8.webp",
     ];
     const index = Math.floor(Math.random() * arr.length);
-    return mainLink + arr[index];
+    return arr[index];
   }
 
   return (
@@ -30,7 +28,7 @@ export function HeroComponent() {
     >
       <div className="container flex max-lg:items-center max-lg:justify-center  ">
         <div className="flex flex-col justify-evenly w-96 h-48 lg:h-56 bg-emerald/70 rounded-lg p-4 lg:mb-16">
-           <Link to="/products/gallery" className="w-full flex justify-center">
+          <Link to="/products/gallery" className="w-full flex justify-center">
             <ButtonComponent
               text="Finde deinen "
               spantxt="FLOH"
@@ -45,7 +43,6 @@ export function HeroComponent() {
           </p>
         </div>
       </div>
-      
     </div>
   );
 }
