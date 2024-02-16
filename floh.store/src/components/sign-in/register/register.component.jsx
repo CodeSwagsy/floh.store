@@ -44,7 +44,7 @@ export function RegisterComponent() {
 
 
         const expectedObject = {
-            email: credentials.email,
+            email: credentials.email.toLowerCase(),
             newEmail: fakeEmail.slice(2),
             password: credentials.password,
             info: {
@@ -82,7 +82,6 @@ export function RegisterComponent() {
 
                 if (response.status === 201) {
                     setRegister(true)
-                    console.log("Registrierung erfolgreich:", data);
                 } else {
                     console.error("Registrierung fehlgeschlagen:", data);
                     if (data.error.code === 401) {
@@ -102,7 +101,6 @@ export function RegisterComponent() {
             ...prevCredentials,
             [name]: type === "checkbox" ? checked : value,
         }));
-        console.log(credentials)
     };
 
     return (
@@ -325,19 +323,20 @@ export function RegisterComponent() {
                                 >
                                     Hiermit akzeptiere ich die{" "}
                                     <Link
-                                        to="/datenschutz"
+                                        to="/datenschutz" target="_blank"
                                         className="font-semibold  hover:black text-emerald hover:text-black underline underline-offset-4 transition-all"
                                     >
                                         Datenschutzerklärung!
                                     </Link>
                                 </label>
                             </div>
-                            <div className="py-4 flex flex-col gap-4 justify-center ">
+                            <div className="py-4 flex flex-col gap-4 justify-center items-center">
                                 <ButtonComponent
-                                    spantxt="Registrieren"
+                                    text="Registrieren"
                                     size="large"
                                     buttonType="submit"
                                     height="height"
+                                    additionalclasses=""
                                 />
                                 <p className="text-red-600 text-center">{error}</p>
                             </div>
