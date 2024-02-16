@@ -66,9 +66,10 @@ export function AboutUsComponent() {
                 src="/alper.png"
                 alt="Alper"
               />
-              <div className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+              <div
+                  className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
                 <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
-                  Fullstack Developer
+                  Alper
                 </h2>
                 <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
                   Hallo, ich bin Alper, und Frontend Developer der Seite
@@ -79,15 +80,16 @@ export function AboutUsComponent() {
               </div>
             </div>
 
-            <div className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
+            <div
+                className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
               <img
-                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
+                  className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                 src="/manuel.webp"
                 alt="Manuel"
               />
               <div className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
                 <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
-                  Fullstack Developer
+                  Manuel
                 </h2>
                 <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
                   Hello zusammen! Ich bin Manuel und meine Hauptaufgaben für
@@ -102,13 +104,14 @@ export function AboutUsComponent() {
                 src="/ezz.png"
                 alt="ezz"
               />
-              <div className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+              <div
+                  className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
                 <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
-                  Fullstack Developer
+                  Ezzuldin
                 </h2>
                 <p
-                  className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify"
-                  style={{ wordSpacing: "-0.3em" }}
+                    className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify"
+                    style={{wordSpacing: "-0.3em"}}
                 >
                   Hallo Ezzulddin, Fullstack Developer bei Floh.Store.
                   Verantwortlich für Frontend-Design, Seitenfunktionalität und
@@ -117,15 +120,17 @@ export function AboutUsComponent() {
               </div>
             </div>
 
-            <div className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
+            <div
+                className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
               <img
-                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
+                  className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                 src="/Albertimage.JPG"
                 alt="Albert"
               />
-              <div className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+              <div
+                  className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
                 <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
-                  Fullstack Developer
+                  Albert
                 </h2>
                 <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
                   Moin, Ich bin der Albert und bei Floh.Store lag der
@@ -136,15 +141,17 @@ export function AboutUsComponent() {
               </div>
             </div>
 
-            <div className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
+            <div
+                className="flex items-center bg-white border border-gray-200 rounded-lg drop-shadow md:max-w-xl border-emerald p-4 lg:p-8 mb-4 lg:mb-8">
               <img
-                className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
+                  className="object-cover object-top w-full rounded-lg max-lg:max-h-96 max-lg:w-1/2 h-full md:w-48 "
                 src="/i-profile.png"
                 alt="Alper"
               />
-              <div className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
+              <div
+                  className="flex flex-col max-lgjustify-between items-start leading-normal h-full w-full px-2 lg:px-0 lg:pl-4">
                 <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-black h-1/4 lg:h-1/3">
-                  Fullstack Developer
+                  Ihor
                 </h2>
                 <p className="h-full font-normal text-gray-700 dark:text-gray-400 text-justify">
                   Hallo zusammen. Ich bin Ihor - ein kreativer Frontend- und
