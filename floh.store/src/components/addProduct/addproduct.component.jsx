@@ -3,6 +3,7 @@ import { ButtonComponent } from "../hero/button.component";
 import "./addproduct.component.css";
 import { useData } from "../../context/signin.context.jsx";
 import { Link } from "react-router-dom";
+import { fromBlob } from "image-resize-compress";
 
 export function AddProductComponent() {
   const [loader, setLoader] = useState(false);
@@ -54,6 +55,11 @@ export function AddProductComponent() {
   });
 
   async function uploadToCloud(file) {
+    const quality = 80;
+    const width = 1024;
+    const height = "auto";
+    const format = "webp";
+
     const toBase64 = (fl) =>
       new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -62,7 +68,8 @@ export function AddProductComponent() {
         reader.onerror = reject;
       });
 
-    const b64 = await toBase64(file);
+    const blob = await fromBlob(file, quality, width, height, format);
+    const b64 = await toBase64(blob);
 
     const formData = new FormData();
     formData.append("image", b64.replace(/^data:image\/\w+;base64,/, ""));
@@ -207,13 +214,13 @@ export function AddProductComponent() {
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
-                          stroke-width="1.5"
+                          strokeWidth="1.5"
                           stroke="currentColor"
                           className="w-4 lg:w-8 w-4 lg:h-8 text-emerald invisible group-[.peer:checked+&]:visible"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                           />
                         </svg>
@@ -235,13 +242,13 @@ export function AddProductComponent() {
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
-                          stroke-width="1.5"
+                          strokeWidth="1.5"
                           stroke="currentColor"
                           className="w-4 lg:w-8 w-4 lg:h-8 text-emerald invisible group-[.peer:checked+&]:visible"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                           />
                         </svg>
