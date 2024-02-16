@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ButtonComponent } from "../hero/button.component";
 import "./addproduct.component.css";
-import { useData } from "../../context/signin.context.jsx";
 import { Link } from "react-router-dom";
 import { fromBlob } from "image-resize-compress";
 
@@ -79,7 +78,6 @@ export function AddProductComponent() {
       { method: "POST", body: formData }
     );
     const data = await res.json();
-    console.log(data);
 
     return data.data.url;
 
