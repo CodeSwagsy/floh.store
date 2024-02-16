@@ -130,7 +130,7 @@ export function RegisterComponent() {
                                     htmlFor="username"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                    Benutzername
+                                    Benutzername<span className="text-red-600"> *</span>
                                 </label>
                                 <input
                                     id="username"
@@ -147,7 +147,7 @@ export function RegisterComponent() {
                                     htmlFor="email"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                    E-Mail Adresse
+                                    E-Mail Adresse<span className="text-red-600"> *</span>
                                 </label>
                                 <input
                                     id="email"
@@ -165,7 +165,7 @@ export function RegisterComponent() {
                                     htmlFor="password"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                    Passwort
+                                    Passwort<span className="text-red-600"> *</span>
                                 </label>
                                 <input
                                     id="password"
@@ -182,7 +182,7 @@ export function RegisterComponent() {
                                     htmlFor="passwordConfirm"
                                     className="block text-sm font-medium leading-6 text-gray-900"
                                 >
-                                    Passwort bestätigen
+                                    Passwort bestätigen<span className="text-red-600"> *</span>
                                 </label>
                                 <input
                                     id="passwordConfirm"
@@ -251,7 +251,7 @@ export function RegisterComponent() {
                                         htmlFor="zip"
                                         className="block text-sm font-medium leading-6 text-gray-900"
                                     >
-                                        Postleitzahl
+                                        Postleitzahl<span className="text-red-600"> *</span>
                                     </label>
                                     <input
                                         id="zip"
@@ -269,7 +269,7 @@ export function RegisterComponent() {
                                         htmlFor="city"
                                         className="block text-sm font-medium leading-6 text-gray-900"
                                     >
-                                        Stadt
+                                        Stadt<span className="text-red-600"> *</span>
                                     </label>
                                     <input
                                         id="city"
@@ -328,8 +328,10 @@ export function RegisterComponent() {
                                     >
                                         Datenschutzerklärung!
                                     </Link>
+                                    <span className="text-red-600"> *</span>
                                 </label>
                             </div>
+
                             <div className="py-4 flex flex-col gap-4 justify-center items-center">
                                 <ButtonComponent
                                     text="Registrieren"
@@ -340,9 +342,7 @@ export function RegisterComponent() {
                                 />
                                 <p className="text-red-600 text-center">{error}</p>
                             </div>
-
                         </form>
-
                         <div>
                             <div className="w-full border-t border-gray-200"></div>
                             <p className="mt-8 text-center text-sm text-gray-500">
@@ -354,6 +354,8 @@ export function RegisterComponent() {
                                     Jetzt mit deinem Konto Anmelden!
                                 </Link>
                             </p>
+                            <p className="text-xs text-gray-400 w-full mt-4 -mb-4 lg:-mb-8"><span className="text-base text-red-600">* </span>Diese Felder müssen
+                                ausgefüllt werden</p>
                         </div>
                     </>)}
                 </div>
