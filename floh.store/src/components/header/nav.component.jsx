@@ -33,7 +33,6 @@ export function NavComponent() {
                 localStorage.removeItem("uid"); // Entfernen Sie die UID aus dem Local Storage
                 localStorage.removeItem("loginData");
                 localStorage.removeItem("login");// Optional: Entfernen Sie auch die Anmeldedaten mit dem Zeitstempel
-                console.log("Logged out");
                 navigate("/");
             } else {
                 console.log("Logout failed");
