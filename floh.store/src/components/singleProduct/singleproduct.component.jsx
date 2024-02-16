@@ -70,8 +70,6 @@ export function SingleProductComponent({socket, users, setMessages}) {
 
             if (data.code === 200) {
                 updateStartSearch(true)
-                console.log("triggered")
-                console.log(data.products)
                 updateSearchedProducts(data.products)
                 navigate(`/products/gallery/category/${product.category}`);
             }
