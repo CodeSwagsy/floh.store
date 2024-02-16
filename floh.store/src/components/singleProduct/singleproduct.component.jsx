@@ -23,7 +23,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
     const [disabledClasses, setDisabledClasses] = useState(
         "bg-gray-400 cursor-default"
     );
-    const {updateSearchedProducts} = useData()
+    const {updateSearchedProducts, updateStartSearch} = useData()
     const navigate = useNavigate()
 
     const handleAddToFavorites = async () => {
@@ -69,11 +69,12 @@ export function SingleProductComponent({socket, users, setMessages}) {
             const data = await response.json();
 
             if (data.code === 200) {
+                updateStartSearch(true)
                 updateSearchedProducts(data.products)
                 navigate(`/products/gallery/category/${product.category}`);
             }
         } catch (error) {
-            // Hier könntest du Fehlerbehandlung hinzufügen, falls etwas schief geht
+
             console.error("Fehler beim Abrufen der Daten:", error);
         }
     }
