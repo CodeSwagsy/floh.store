@@ -21,13 +21,13 @@ export function SingleProductComponent({socket, users, setMessages}) {
     const [favoriteText, setFavoriteText] = useState("Zur Merkliste hinzufügen");
     const [disableButton, setDisableButton] = useState(false);
     const [disabledClasses, setDisabledClasses] = useState(
-        "bg-gray-400 cursor-default"
+        "bg-gray-400 cursor-default hover:bg-gray-400"
     );
     const {updateSearchedProducts, updateStartSearch} = useData()
     const navigate = useNavigate()
 
     const handleAddToFavorites = async () => {
-        if (login) {
+        if (login === "true") {
             try {
                 const response = await fetch(
                     `${import.meta.env.VITE_API}/user/update/favorites/${product._id}`,
@@ -102,14 +102,14 @@ export function SingleProductComponent({socket, users, setMessages}) {
             }
         };
         fetchProduct();
-        if (login) {
+        if (login === "true") {
             setDisableButton(false);
             setDisabledClasses(
-                "bg-emerald cursor-pointer hover:bg-springgreen hover:text-jet"
+                "bg-emerald cursor-pointer hover:text-jet hover:bg-springgreen"
             );
         } else {
             setDisableButton(true);
-            setDisabledClasses("bg-gray-400 cursor-default");
+            setDisabledClasses("hover:bg-gray-400 cursor-default bg-red");
         }
     }, []);
 
@@ -220,11 +220,11 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                         className="flex flex-col gap-4  items-center lg:items-start justify-center max-lg:my-2 max-lg:flex-row w-full">
                                         <button
                                             onClick={() => setShowPopup(true)}
-                                            className="flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-emerald hover:bg-springgreen transition-all w-1/2 lg:px-2 py-1 py-2.5 max-md:text-sm xl:text-xl"
+                                            className="flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-emerald hover:bg-springgreen hover:text-jet transition-all w-1/2 lg:px-2 py-1 py-2.5 max-md:text-sm xl:text-xl"
                                         >
                                             Nachricht senden
                                         </button>
-                                        {login ? (
+                                        {login === "true" ? (
                                             <>
                                                 <button
                                                     onClick={handleAddToFavorites}
@@ -240,7 +240,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                                     text="Anmeldung notwendig um Produkte zur Merkliste hinzuzufügen">
                                                     <button
                                                         disabled={disableButton}
-                                                        className={`flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white transition-all ${disabledClasses}`}
+                                                        className={`flex shadow-sm bg-gray-400 cursor-default flex-row items-center justify-center text-whitesmoke rounded-lg w-full lg:px-2 py-2.5 max-md:text-sm xl:text-xl text-white transition-all ${disabledClasses}`}
                                                     >
                                                         {favoriteText}
                                                     </button>
@@ -249,7 +249,7 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                         )}
                                     </div>
                                     <button
-                                        className="lg:my-2 flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-jet hover:bg-springgreen transition-all w-full lg:w-1/2 lg:px-2 py-1 py-2.5 max-md:text-sm xl:text-xl">
+                                        className="lg:my-2 flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-jet hover:bg-springgreen hover:text-jet transition-all w-full lg:w-1/2 lg:px-2 py-1 py-2.5 max-md:text-sm xl:text-xl">
                                         <Link to={`/profile/user-products/${product.owner}`}>
                                             Alle Anzeigen des Verkäufers
                                         </Link>
