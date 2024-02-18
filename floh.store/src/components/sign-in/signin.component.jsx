@@ -103,7 +103,8 @@ export function SigninComponent({ socket }) {
           if (data.code === 200) {
             updateUserData(data);
             if (localStorage.getItem("login") === "true") {
-              navigate("/home");
+              //   navigate("/");
+              window.location.assign("/");
             }
           } else {
             console.error("Error fetching users:", data.message);
