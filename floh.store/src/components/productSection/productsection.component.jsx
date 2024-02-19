@@ -92,27 +92,19 @@ export const ProductSectionComponent = () => {
           {products.length > visibleProducts && (
             <>
               <button
-                className="absolute left-2 xl:-left-12 2xl:-left-24 top-1/2 transform -translate-y-1/2 bg-jet hover:bg-springgreen transition-all text-white px-3 py-1.5 rounded-full"
+                className="absolute -left-0 md:-left-5 lg:-left-6 xl:-left-6 2xl:-left-6 top-1/2 transform -translate-y-1/2 bg-jet hover:bg-springgreen transition-all text-white px-3 lg:px-4 py-1.5 rounded-full font-monospace h-12 lg:h-16 opacity-70 font-bold text-2xl"
                 onClick={handlePrevSlide}
                 style={{
-                  height: "4rem",
-                  opacity: "0.7",
                   fontFamily: "monospace",
-                  fontWeight: "bold",
-                  fontSize: "1.25rem",
                 }}
               >
                 &lt;
               </button>
               <button
-                className="absolute right-2 xl:-right-12 2xl:-right-24 top-1/2 transform -translate-y-1/2 bg-jet hover:bg-springgreen transition-all text-white px-3 py-1.5 rounded-full"
+                className="absolute -right-0 md:-right-5 lg:-right-6 xl:-right-6 2xl:-right-6 top-1/2 transform -translate-y-1/2 bg-jet hover:bg-springgreen transition-all text-white px-3 lg:px-4 py-1.5 rounded-full font-monospace h-12 lg:h-16 opacity-70 font-bold text-2xl"
                 onClick={handleNextSlide}
                 style={{
-                  height: "4rem",
-                  opacity: "0.7",
                   fontFamily: "monospace",
-                  fontWeight: "bold",
-                  fontSize: "1.25rem",
                 }}
               >
                 &gt;

@@ -187,7 +187,7 @@ export function SigninComponent({ socket }) {
               <div className="text-sm leading-6">
                 <Link
                   to="/profile/forgotpassword"
-                  className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                  className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 transition-all"
                 >
                   Passwort vergessen?
                 </Link>
@@ -209,7 +209,7 @@ export function SigninComponent({ socket }) {
               Noch kein Nutzerkonto vorhanden?{" "}
               <Link
                 to="/profile/register"
-                className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 ease-in duration-300"
+                className="font-semibold  hover:text-black text-emerald hover:text-black underline underline-offset-4 transition-all"
               >
                 Jetzt Registrieren!
               </Link>
