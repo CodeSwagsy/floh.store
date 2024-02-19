@@ -82,7 +82,7 @@ export function SettingsComponent() {
         updatedAbout[name] = value;
 
         setAbout(updatedAbout);
-        console.log(updatedAbout)
+
     };
 
 
@@ -203,28 +203,28 @@ export function SettingsComponent() {
                             <label htmlFor="street" className="max-lg:w-7/12 w-4/12">Straße</label>
                             <input type="text" name="street"
                                    onChange={handleAboutChange}
-                                   defaultValue={userData ? userData.doc.info.about.location.street : ""}
+                                   defaultValue={userData?.doc?.info?.about?.location?.street}
                                    className="block placeholder:bg-emerald w-full lg:w-6/12"/>
                         </div>
                         <div className="flex w-full lg:justify-between">
                             <label htmlFor="house" className="max-lg:w-7/12 w-4/12">Hausnummer</label>
                             <input type="text" name="house"
                                    onChange={handleAboutChange}
-                                   defaultValue={userData ? userData.doc.info.about.location.house : ""}
+                                   defaultValue={userData?.doc?.info?.about?.location?.house}
                                    className="block placeholder:bg-emerald w-full lg:w-6/12"/>
                         </div>
                         <div className="flex w-full lg:justify-between">
                             <label htmlFor="zip" className="max-lg:w-7/12 w-4/12">Postleitzahl</label>
                             <input type="text" name="zip"
                                    onChange={handleAboutChange}
-                                   defaultValue={userData ? userData.doc.info.about.location.zip : ""}
+                                   defaultValue={userData?.doc?.info?.about?.location?.zip}
                                    className="block placeholder:bg-emerald w-full lg:w-6/12"/>
                         </div>
                         <div className="flex w-full lg:justify-between">
                             <label htmlFor="city" className="max-lg:w-7/12 w-4/12">Wohnort</label>
                             <input type="text" name="city"
                                    onChange={handleAboutChange}
-                                   defaultValue={userData ? userData.doc.info.about.location.city : ""}
+                                   defaultValue={userData?.doc?.info?.about?.location?.city}
                                    className="block placeholder:bg-emerald w-full lg:w-6/12"/>
                         </div>
                     </div>
@@ -235,7 +235,7 @@ export function SettingsComponent() {
                                 name="gender"
                                 onChange={handleAboutChange}
                                 className="block placeholder:bg-emerald w-full lg:w-6/12"
-                                defaultValue={userData ? userData.doc.info.about.gender : ""}
+                                defaultValue={userData?.doc?.info?.about?.gender}
                             >
                                 {options.map((option) => (
                                     <option key={option.value} value={option.value}>
@@ -249,7 +249,7 @@ export function SettingsComponent() {
                             <label htmlFor="birthday" className="max-lg:w-7/12 w-4/12">Geburtstag</label>
                             <input type="date" name="birthday"
                                    onChange={handleAboutChange}
-                                   defaultValue={userData ? userData.doc.info.about.birthday.slice(0, 10) : ""}
+                                   defaultValue={userData?.doc?.info?.about?.birthday?.slice(0, 10)}
                                    className="block placeholder:bg-emerald w-full lg:w-6/12"/>
                         </div>
                     </div>
@@ -258,7 +258,7 @@ export function SettingsComponent() {
                             <label htmlFor="tel" className="max-lg:w-7/12 w-4/12">Telefonnummer</label>
                             <input type="tel" name="tel"
                                    onChange={handleAboutChange}
-                                   defaultValue={userData ? userData.doc.info.about.tel : ""}
+                                   defaultValue={userData?.doc?.info?.about?.tel}
                                    className="block placeholder:bg-emerald w-full lg:w-6/12"/>
                         </div>
                     </div>
@@ -279,7 +279,7 @@ export function SettingsComponent() {
                         <label htmlFor="name" className="max-lg:w-7/12 w-4/12">E-Mail Adresse</label>
                         <input type="email" name="email"
                                onChange={(e) => setEmail(e.target.value)}
-                               defaultValue={userData ? userData.doc.email : ""}
+                               defaultValue={userData?.doc?.email}
                                className="block placeholder:bg-emerald w-full lg:w-6/12"/>
                     </div>
                     <div className="flex flex-row justify-end gap-2 lg:gap-4 mt-4 ">
