@@ -31,10 +31,7 @@ export function FooterComponent() {
   return (
     <>
       <footer className="flex flex-col my-4 lg:my-8 text-jet">
-        <div
-          className="container mx-auto border-t border-gray-300 pt-4
-                     flex justify-between max-lg:items-center max-lg:flex-col"
-        >
+        <div className="container mx-auto border-t border-gray-300 pt-4 flex justify-between max-lg:items-center max-lg:flex-col">
           <div className="flex flex-col max-lg:items-center max-lg:justify-center">
             <h1 className="font-semibold">FLOH.STORE</h1>
             <ul className="flex flex-col max-lg:items-center mt-2">
