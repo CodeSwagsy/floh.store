@@ -24,7 +24,7 @@ export function RegisterComponent() {
 
     const validatePassword = () => {
 
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&_/\\-]{8,}$/;
 
         if (credentials.password !== credentials.passwordConfirm) {
             setError('Die Passwörter stimmen nicht überein');

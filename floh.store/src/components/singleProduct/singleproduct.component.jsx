@@ -182,7 +182,8 @@ export function SingleProductComponent({socket, users, setMessages}) {
                 <>
                     <div className="container mx-auto lg:mt-12">
                         <div className="flex pb-4">
-                            <p className="lg:text-2xl font-semibold underline hover:cursor-pointer" onClick={breadCrumbHandler}>{product?.category}
+                            <p className="lg:text-2xl font-semibold underline hover:cursor-pointer"
+                               onClick={breadCrumbHandler}>{product?.category}
                             </p>
                             <h2 className="lg:text-2xl no-underline">
                                 &nbsp; / {product ? product.title : " "}
@@ -248,12 +249,10 @@ export function SingleProductComponent({socket, users, setMessages}) {
                                             </>
                                         )}
                                     </div>
-                                    <button
-                                        className="lg:my-2 flex shadow-sm flex-row items-center justify-center text-whitesmoke rounded-lg bg-jet hover:bg-springgreen hover:text-jet transition-all w-full lg:w-1/2 lg:px-2 py-1 py-2.5 max-md:text-sm xl:text-xl">
-                                        <Link to={`/profile/user-products/${product.owner}`}>
-                                            Alle Anzeigen des Verkäufers
-                                        </Link>
-                                    </button>
+                                    <Link to={`/profile/user-products/${product.owner}`}
+                                          className="lg:my-4 flex shadow-sm flex-row text-center items-center justify-center text-whitesmoke rounded-lg bg-jet hover:bg-springgreen hover:text-jet transition-all w-full lg:w-1/2 lg:px-2 py-1 py-2.5 max-md:text-sm xl:text-xl">
+                                        Alle Anzeigen des Nutzers
+                                    </Link>
                                 </div>
 
                                 <div className="">
