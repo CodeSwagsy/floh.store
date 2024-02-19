@@ -25,7 +25,10 @@ export const AllProductsPage = () => {
   }, [searchedProducts]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
   }, [currentPage]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -39,6 +42,12 @@ export const AllProductsPage = () => {
           currentPage * productsPerPage
         )
       : [];
+
+  useEffect(() => {
+    if (currentPage !== 1){
+      setCurrentPage(1)
+    }
+  }, [products]);
 
   useEffect(() => {
     if (!startSearch) {

@@ -23,7 +23,7 @@ function AppDownload() {
               className="max-lg:mt-2 flex items-center h-16 overflow-hidden p-2 rounded-lg bg-jet text-whitesmoke"
             >
               <img
-                src="android-icon.png"
+                src="/android-icon.png"
                 alt="android icon"
                 style={{
                   width: "4rem",

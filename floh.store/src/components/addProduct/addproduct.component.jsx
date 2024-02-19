@@ -108,12 +108,20 @@ export function AddProductComponent() {
     if (credentials.title.length <= 10) {
       setError("Der Titel der Anzeige muss mindestens 10 Zeichen lang sein.");
     }
+    if (!credentials.category) {
+      setError("Bitte wählen Sie eine Kategorie des Artikel aus.");
+      return;
+    }
     if (!credentials.zip) {
       setError("Bitte geben Sie ihre Postleitzahl ein.");
       return;
     }
     if (!credentials.city) {
       setError("Bitte geben Sie ihren Wohnort ein.");
+      return;
+    }
+    if (!credentials.condition) {
+      setError("Bitte wählen Sie den Zustand des Artikels aus.");
       return;
     }
     if (credentials.images.length === 0 && credentials.type === "offer") {
