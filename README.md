@@ -1,4 +1,4 @@
-# Floh.Store - online Flohmarkt
+# Floh.Store - Online Flohmarkt
 
 <img src="https://github.com/CodeSwagsy/floh.store/assets/125378394/9a77cdf2-a9dd-41cb-ae7c-84e946e5e64c" width="700" height="400">
 
